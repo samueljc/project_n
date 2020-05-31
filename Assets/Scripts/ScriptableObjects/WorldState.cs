@@ -9,13 +9,11 @@ public sealed class WorldState : MonoBehaviour {
   private List<int> badNumbers;
   private List<int> veryBadNumbers;
 
-  [HideInInspector]
   public StoreState storeState;
 
   public void Awake() {
     DontDestroyOnLoad(this.gameObject);
     InitializeNumbers();
-    this.storeState = new StoreState();
   }
 
   public void Start() {

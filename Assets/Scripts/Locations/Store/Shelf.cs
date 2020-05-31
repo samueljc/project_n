@@ -7,11 +7,9 @@ public class Shelf : MonoBehaviour, IDropHandler {
   public int shelfIndex;
 
   public PortableObject prefab;
-
-  public WorldState worldState;
+  public ShelfInventory inventory;
 
   private RectTransform rectTransform;
-  private ShelfState shelfState;
   private bool invalidated;
 
   public void Awake() {
@@ -20,9 +18,7 @@ public class Shelf : MonoBehaviour, IDropHandler {
   }
 
   public void Start() {
-    AisleState aisleState = worldState.storeState.aisleStates[this.aisleIndex];
-    this.shelfState = aisleState.shelfStates[this.shelfIndex];
-    this.shelfState.inventory.onChange += this.Invalidate;
+    this.inventory.onChange += this.Invalidate;
   }
 
   public void LateUpdate() {
@@ -40,7 +36,7 @@ public class Shelf : MonoBehaviour, IDropHandler {
       return;
     }
     // TODO: only allow store items
-    this.shelfState.AddToShelf(obj.item);
+    this.inventory.Add(obj.item);
     /*
     if (obj.item is StoreItem storeItem) {
       Debug.Log("Dropping item on shelf");
@@ -63,7 +59,7 @@ public class Shelf : MonoBehaviour, IDropHandler {
     }
     // instantiate new ones
     float offset = 0;
-    foreach (var item in this.shelfState.inventory) {
+    foreach (PortableItem item in this.inventory) {
       PortableObject obj = Instantiate(this.prefab, Vector3.zero, Quaternion.identity, this.rectTransform);
       (obj.transform as RectTransform).anchoredPosition = new Vector2(offset, 0f);
       offset += 20f;

@@ -6,16 +6,11 @@ public class Player : MonoBehaviour {
   [SerializeField]
   private Locations _location;
 
-  public InventoryCollection inventory;
-
+  public Inventory inventory;
   public int wallet;
 
   public Locations location {
     get { return this._location; }
-  }
-
-  public void Awake() {
-    this.inventory = new InventoryCollection(2);
   }
 
   public void SetPlayerLocation(Locations location) {

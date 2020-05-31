@@ -9,10 +9,8 @@ public class Store : MonoBehaviour, ILocation {
   public GameObject checkout;
 
   public Player player;
-  public StoreState storeState;
 
-  public void Awake() {
-  }
+  public void Awake() {}
 
   public void Update() {
     this.aisle1.SetActive(false);

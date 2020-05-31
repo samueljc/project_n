@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639ad25c221f6a7479db5e0d20d144af, type: 3}
+  m_Name: Store
+  m_EditorClassIdentifier: 
+  aisles:
+  - shelves:
+    - inventory: {fileID: 11400000, guid: 9118e143afcc3e945ab073e458c40669, type: 2}
+    - inventory: {fileID: 11400000, guid: 8206079abf64624479e4a90011d06ef3, type: 2}
+    - inventory: {fileID: 11400000, guid: f51de9bc01a8e2a48a716187851b43db, type: 2}
+  - shelves:
+    - inventory: {fileID: 11400000, guid: 4373fbe752043564a88b9726ed78c87f, type: 2}
+    - inventory: {fileID: 11400000, guid: 7aa14ea6c65b66440aeba5d309b12c0f, type: 2}
+    - inventory: {fileID: 11400000, guid: 50935f1463593914faf2a62075d48507, type: 2}

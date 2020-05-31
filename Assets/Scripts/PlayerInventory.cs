@@ -8,7 +8,7 @@ public class PlayerInventory : MonoBehaviour, IDropHandler {
   public Player player;
   public PortableObject prefab;
 
-  private InventoryCollection inventory;
+  private Inventory inventory;
   private RectTransform rectTransform;
   private bool invalidated;
 

@@ -3,21 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryCollection : ScriptableObject, IEnumerable<PortableItem> {
+[CreateAssetMenu(fileName = "New Inventory", menuName = "Scriptable Objects/Inventories/Inventory")]
+public class Inventory : ScriptableObject, IEnumerable<PortableItem> {
   public delegate void OnChangeHandler();
   public event OnChangeHandler onChange;
 
-  private int capacity;
-  private List<PortableItem> items;
+  public int capacity = int.MaxValue;
+  private List<PortableItem> items = new List<PortableItem>();
 
-  public InventoryCollection(int capacity = int.MaxValue) {
-    this.capacity = capacity;
-    // Definitely don't want to try to allocate an int.MaxValue sized array, so
-    // take anything over 16 and clamp it.
-    this.items = new List<PortableItem>(capacity > 16 ? 16 : capacity);
-  }
-
-  public bool Add(PortableItem item) {
+  public virtual bool Add(PortableItem item) {
     if (item == null) {
       // no null items
       return false;
