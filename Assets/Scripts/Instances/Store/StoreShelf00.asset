@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 536d3edc09324804e99cedeebb73cab2, type: 3}
   m_Name: StoreShelf00
   m_EditorClassIdentifier: 
-  capacity: 2147483647
+  capacity: 100

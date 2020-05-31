@@ -311,7 +311,8 @@ PrefabInstance:
         type: 3}
       propertyPath: prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6831630889754557387, guid: 083691ccee8ebc845913165e3ba79cc2,
+        type: 3}
     - target: {fileID: 3677180426040277260, guid: 0a66176817810f1488ab30a0aec04e90,
         type: 3}
       propertyPath: inventory
@@ -512,7 +513,8 @@ PrefabInstance:
         type: 3}
       propertyPath: prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6831630889754557387, guid: 083691ccee8ebc845913165e3ba79cc2,
+        type: 3}
     - target: {fileID: 3677180426040277260, guid: 0a66176817810f1488ab30a0aec04e90,
         type: 3}
       propertyPath: inventory
@@ -1240,7 +1242,8 @@ PrefabInstance:
         type: 3}
       propertyPath: prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6831630889754557387, guid: 083691ccee8ebc845913165e3ba79cc2,
+        type: 3}
     - target: {fileID: 3677180426040277260, guid: 0a66176817810f1488ab30a0aec04e90,
         type: 3}
       propertyPath: inventory
@@ -1956,7 +1959,8 @@ PrefabInstance:
         type: 3}
       propertyPath: prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6831630889754557387, guid: 083691ccee8ebc845913165e3ba79cc2,
+        type: 3}
     - target: {fileID: 3677180426040277260, guid: 0a66176817810f1488ab30a0aec04e90,
         type: 3}
       propertyPath: inventory
@@ -2101,7 +2105,8 @@ PrefabInstance:
         type: 3}
       propertyPath: prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6831630889754557387, guid: 083691ccee8ebc845913165e3ba79cc2,
+        type: 3}
     - target: {fileID: 3677180426040277260, guid: 0a66176817810f1488ab30a0aec04e90,
         type: 3}
       propertyPath: inventory
@@ -2472,7 +2477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96d4aae24e39ec347856c1c891e2acb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storeState: {fileID: 0}
+  storeState: {fileID: 11400000, guid: 2170aef719de990499cfde966ec6d4ce, type: 2}
 --- !u!4 &1428040543
 Transform:
   m_ObjectHideFlags: 0
@@ -2722,7 +2727,8 @@ PrefabInstance:
         type: 3}
       propertyPath: prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6831630889754557387, guid: 083691ccee8ebc845913165e3ba79cc2,
+        type: 3}
     - target: {fileID: 3677180426040277260, guid: 0a66176817810f1488ab30a0aec04e90,
         type: 3}
       propertyPath: inventory

@@ -9,5 +9,7 @@ public class PortableItemDetails : ScriptableObject {
   public int price;
   public bool flower;
   public bool vhs;
-  public Sprite sprite;
+  // Visuals
+  public Sprite forwardSprite;
+  public Sprite sideSprite;
 }

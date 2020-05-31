@@ -3,9 +3,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Shelf : MonoBehaviour, IDropHandler {
-  public int aisleIndex;
-  public int shelfIndex;
-
   public PortableObject prefab;
   public ShelfInventory inventory;
 
@@ -35,17 +32,10 @@ public class Shelf : MonoBehaviour, IDropHandler {
       Debug.Log("Drag object is not a portable object");
       return;
     }
-    // TODO: only allow store items
-    this.inventory.Add(obj.item);
-    /*
-    if (obj.item is StoreItem storeItem) {
-      Debug.Log("Dropping item on shelf");
-    } else {
-      // TODO: not a store object, so we should show a "that doesn't go there"
-      // notice or something
-      Debug.Log("Drag object is not a store item");
+    if (!this.inventory.Add(obj.item)) {
+      // TODO: not a store item or full; figure out which and display a
+      // dialog or something
     }
-    */
   }
 
   public void Invalidate() {

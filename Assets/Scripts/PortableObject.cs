@@ -4,18 +4,32 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+/**
+ * Portable Object is an interactable wrapper around a portable item that
+ * supports being clicked and dragged into other inventories.
+ */
 public class PortableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
   // TODO: pick a sprite relative to the PortableItem?
   public PortableItem item;
 
   private RectTransform rectTransform;
   private CanvasGroup canvasGroup;
+  private Image image;
 
   private Vector2 startDragPosition;
 
-  private void Awake() {
+  public PortableItemDetails details {
+    get { return this.item.details; }
+  }
+
+  void Awake() {
     rectTransform = GetComponent<RectTransform>();
     canvasGroup = GetComponent<CanvasGroup>();
+    image = GetComponent<Image>();
+  }
+
+  void Start() {
+    image.sprite = this.item.details.forwardSprite;
   }
 
   // drag handler methods

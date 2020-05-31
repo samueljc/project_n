@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1cc5ccca37cf0047933e3396d0897af, type: 3}
-  m_Name: Bleach
+  m_Name: Soup
   m_EditorClassIdentifier: 
-  noun: Bleach
-  description: A bottle of bleach.
+  noun: Can of Soup
+  description: An expired can of soup.
   storeObject: 1
-  price: 6
+  price: 1
   flower: 0
   vhs: 0
-  sprite: {fileID: 21300000, guid: d04ffa271638f0240a8c9a4a62d41e17, type: 3}
+  forwardSprite: {fileID: 21300000, guid: 1c2ca35ff3d148b418d1597ac899e139, type: 3}
+  sideSprite: {fileID: 21300000, guid: 1c2ca35ff3d148b418d1597ac899e139, type: 3}

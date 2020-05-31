@@ -4,6 +4,7 @@ public class PortableItem : ScriptableObject {
   public delegate void RemoveHandler();
 
   public RemoveHandler onRemoved;
+  public PortableItemDetails details;
 
   /**
    * Take the current object from whatever owns it by calling its removal
