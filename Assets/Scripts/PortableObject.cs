@@ -29,7 +29,8 @@ public class PortableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
   }
 
   void Start() {
-    image.sprite = this.item.details.forwardSprite;
+    this.image.sprite = this.item.details.forwardSprite;
+    this.image.alphaHitTestMinimumThreshold = 0.1f;
   }
 
   // drag handler methods

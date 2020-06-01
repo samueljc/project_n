@@ -11,6 +11,10 @@ public class Inventory : ScriptableObject, IEnumerable<PortableItem> {
   public int capacity = int.MaxValue;
   private List<PortableItem> items = new List<PortableItem>();
 
+  public void OnEnable() {
+    this.Clear();
+  }
+
   public virtual bool Add(PortableItem item) {
     if (item == null) {
       // no null items
