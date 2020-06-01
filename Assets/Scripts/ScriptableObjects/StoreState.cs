@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -24,14 +25,59 @@ public class StoreAisle {
 
 [CreateAssetMenu(fileName="New Store", menuName="Scriptable Objects/Store")]
 public class StoreState : ScriptableObject {
-  public StoreAisle[] aisles;
-  public PortableItemFactory factory;
+  [SerializeField]
+  private StoreAisle[] aisles;
+  [SerializeField]
+  private PortableItemFactory factory;
+  [SerializeField]
+  private Numbers numbers;
+  [SerializeField]
+  private Journal journal;
   
   public void Repopulate() {
     foreach (StoreAisle aisle in this.aisles) {
       foreach (StoreShelf shelf in aisle.shelves) {
         shelf.Repopulate(factory);
       }
+    }
+  }
+
+  public void RecordEntropy() {
+    List<float> scores = new List<float>();
+    foreach (StoreAisle aisle in this.aisles) {
+      Dictionary<string, int> aisleState = new Dictionary<string, int>();
+      int aisleTotal = 0;
+      foreach (StoreShelf shelf in aisle.shelves) {
+        Dictionary<string, int> shelfState = new Dictionary<string, int>();
+        int shelfTotal = 0;
+        foreach (PortableItem item in shelf.inventory) {
+          if (!shelfState.ContainsKey(item.name)) {
+            shelfState[item.name] = 0;
+          }
+          shelfState[item.name] += 1;
+          shelfTotal += 1;
+
+          if (!aisleState.ContainsKey(item.name)) {
+            aisleState[item.name] = 0;
+          }
+          aisleState[item.name] += 1;
+          aisleTotal += 1;
+        }
+
+        // compute entropy for the shelf
+        this.journal.Add(JournalSource.Store_Shelf_Types, numbers.Score(shelfState.Count));
+        foreach (int number in shelfState.Values) {
+          this.journal.Add(JournalSource.Store_Shelf_TypeCount, numbers.Score(number));
+        }
+        this.journal.Add(JournalSource.Store_Shelf_TotalCount, numbers.Score(shelfTotal));
+      }
+
+      // compute entropy for the aisle
+      this.journal.Add(JournalSource.Store_Aisle_Types, numbers.Score(aisleState.Count));
+      foreach (int number in aisleState.Values) {
+        this.journal.Add(JournalSource.Store_Aisle_TypeCount, numbers.Score(number));
+      }
+      this.journal.Add(JournalSource.Store_Aisle_TotalCount, numbers.Score(aisleTotal));
     }
   }
 }
