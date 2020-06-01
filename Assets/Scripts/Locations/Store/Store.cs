@@ -17,13 +17,13 @@ public class Store : MonoBehaviour, ILocation {
     this.aisle2.SetActive(false);
     this.checkout.SetActive(false);
     switch (this.player.location) {
-      case Locations.STORE_AISLE_1:
+      case Location.STORE_AISLE_1:
         this.aisle1.SetActive(true);
         break;
-      case Locations.STORE_AISLE_2:
+      case Location.STORE_AISLE_2:
         this.aisle2.SetActive(true);
         break;
-      case Locations.STORE_CHECKOUT:
+      case Location.STORE_CHECKOUT:
         this.checkout.SetActive(true);
         break;
       default:
@@ -33,20 +33,20 @@ public class Store : MonoBehaviour, ILocation {
   }
 
   public void GoToAisle1() {
-    this.player.SetPlayerLocation(Locations.STORE_AISLE_1);
+    this.player.SetPlayerLocation(Location.STORE_AISLE_1);
   }
 
   public void GoToAisle2() {
-    this.player.SetPlayerLocation(Locations.STORE_AISLE_2);
+    this.player.SetPlayerLocation(Location.STORE_AISLE_2);
   }
 
   public void GoToCheckout() {
-    this.player.SetPlayerLocation(Locations.STORE_CHECKOUT);
+    this.player.SetPlayerLocation(Location.STORE_CHECKOUT);
   }
 
   public void Enter() {
     // Default location is the first aisle
-    this.player.SetPlayerLocation(Locations.STORE_AISLE_1);
+    this.player.SetPlayerLocation(Location.STORE_AISLE_1);
   }
 
   public void Exit() {
@@ -67,6 +67,6 @@ public class Store : MonoBehaviour, ILocation {
         return;
       }
     }
-    this.player.SetPlayerLocation(Locations.MAP);
+    this.player.SetPlayerLocation(Location.MAP);
   }
 }

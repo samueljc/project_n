@@ -87,5 +87,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05720c3c6d109fb40b2b240b5259d89f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 6831630889754557387, guid: 083691ccee8ebc845913165e3ba79cc2, type: 3}
   inventory: {fileID: 0}
+  prefab: {fileID: 6831630889754557387, guid: 083691ccee8ebc845913165e3ba79cc2, type: 3}
+  dialogEvent: {fileID: 11400000, guid: dc4edcce5576bd440a4a94e26b86b025, type: 2}

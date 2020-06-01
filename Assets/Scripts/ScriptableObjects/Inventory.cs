@@ -22,14 +22,12 @@ public class Inventory : ScriptableObject, IEnumerable<PortableItem> {
     this.Clear();
   }
 
-  public virtual bool Add(PortableItem item) {
+  public virtual Error Add(PortableItem item) {
     if (item == null) {
-      // no null items
-      return false;
+      return Error.Inventory_InvalidItem;
     }
     if (this.items.Count >= this.capacity) {
-      // no room
-      return false;
+      return Error.Inventory_OutOfSpace;
     }
     item.Take(() => {
       this.items.Remove(item);
@@ -37,7 +35,7 @@ public class Inventory : ScriptableObject, IEnumerable<PortableItem> {
     });
     this.items.Add(item);
     this.NotifyChange();
-    return true;
+    return Error.NoError;
   }
 
   public bool Contains(PortableItem item) {

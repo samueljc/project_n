@@ -1,4 +1,4 @@
-public enum Locations {
+public enum Location {
   MAP,
   STORE_CHECKOUT,
   STORE_AISLE_1,

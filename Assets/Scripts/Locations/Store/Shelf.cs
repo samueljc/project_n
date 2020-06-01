@@ -3,8 +3,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Shelf : MonoBehaviour, IDropHandler {
-  public PortableObject prefab;
   public ShelfInventory inventory;
+
+  [SerializeField]
+  private PortableObject prefab;
+  [SerializeField]
+  private DialogEvent dialogEvent;
 
   private RectTransform rectTransform;
   private bool invalidated;
@@ -14,8 +18,12 @@ public class Shelf : MonoBehaviour, IDropHandler {
     this.invalidated = true;
   }
 
-  public void Start() {
+  public void OnEnable() {
     this.inventory.onChange += this.Invalidate;
+  }
+
+  public void OnDisable() {
+    this.inventory.onChange -= this.Invalidate;
   }
 
   public void LateUpdate() {
@@ -29,12 +37,22 @@ public class Shelf : MonoBehaviour, IDropHandler {
     // get the object currently being dragged
     PortableObject obj = eventData.pointerDrag?.GetComponent<PortableObject>();
     if (obj == null) {
-      Debug.Log("Drag object is not a portable object");
+      dialogEvent.Raise(Dialog.Store_Shelf_InvalidItem);
       return;
     }
-    if (!this.inventory.Add(obj.item)) {
-      // TODO: not a store item or full; figure out which and display a
-      // dialog or something
+    // We already have this object.
+    if (this.inventory.Contains(obj.item)) {
+      return;
+    }
+    // Try to add it and check for errors.
+    Error err = this.inventory.Add(obj.item);
+    switch (err) {
+      case Error.Inventory_InvalidItem:
+        dialogEvent.Raise(Dialog.Store_Shelf_InvalidItem);
+        break;
+      case Error.Inventory_OutOfSpace:
+        dialogEvent.Raise(Dialog.Store_Shelf_OutOfSpace);
+        break;
     }
   }
 
@@ -65,12 +83,18 @@ public class Shelf : MonoBehaviour, IDropHandler {
         PortableObject obj = Instantiate(this.prefab, Vector3.zero, Quaternion.identity, this.rectTransform);
         obj.item = item;
         RectTransform itemTransform = obj.transform as RectTransform;
+        // Set the pivot relative to the sprite's pivot. This ensures our items
+        // all appear on the same vertical axis of the shelf.
         itemTransform.pivot = item.forwardSprite.pivot / itemTransform.sizeDelta;
-        xOffset += item.width / 2f;
-        itemTransform.anchoredPosition = new Vector2(xOffset, 0f);
+        // Set the anchor to the bottom left.
         itemTransform.anchorMin = Vector2.zero;
         itemTransform.anchorMax = Vector2.zero;
-        xOffset += item.width / 2f + this.inventory.itemGap;
+        // Set the anchor position which is the offset from the anchor. We do
+        // half first and half later to avoid overlapping due to the different
+        // sizes of our objects.
+        xOffset += item.width / 2f;
+        itemTransform.anchoredPosition = new Vector2(xOffset, 0f);
+        xOffset += item.width / 2f + this.inventory.physicalItemGap;
       }
     }
   }

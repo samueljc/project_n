@@ -9,7 +9,10 @@ public class StoreShelf {
     this.inventory.Clear();
     int newItems = StaticRandom.Range(0, 10);
     for (int i = 0; i < newItems; ++i) {
-      this.inventory.Add(factory.CreateRandomItem());
+      Error err = this.inventory.Add(factory.CreateRandomItem());
+      if (err != Error.NoError) {
+        Debug.LogFormat("Could not add item to shelf: {0}", err);
+      }
     }
   }
 }
