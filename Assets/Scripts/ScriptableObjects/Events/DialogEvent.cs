@@ -1,10 +1,12 @@
 using UnityEngine;
 
 public enum Dialog {
-  Store_Shelf_InvalidItem,
-  Store_Shelf_OutOfSpace,
   PlayerInventory_InvalidItem,
   PlayerInventory_OutOfSpace,
+  Store_Shelf_InvalidItem,
+  Store_Shelf_OutOfSpace,
+  Store_Checkout_InsufficientFunds,
+  Store_Checkout_NoOutsideItems,
 }
 
 [CreateAssetMenu(fileName="New Dialog Event", menuName="Scriptable Objects/Events/Dialog Event")]

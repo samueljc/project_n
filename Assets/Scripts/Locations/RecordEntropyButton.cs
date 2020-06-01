@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RecordEntropy : MonoBehaviour {
+public class RecordEntropyButton : MonoBehaviour {
   [SerializeField]
   private WorldState worldState;
 

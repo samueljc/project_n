@@ -4,11 +4,26 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Store : MonoBehaviour, ILocation {
-  public GameObject aisle1;
-  public GameObject aisle2;
-  public GameObject checkout;
+  [SerializeField]
+  private GameObject aisle1;
+  [SerializeField]
+  private GameObject aisle2;
+  [SerializeField]
+  private GameObject checkout;
+  
+  [SerializeField]
+  private Player player;
+  [SerializeField]
+  private DialogEvent dialogEvent;
 
-  public Player player;
+  [SerializeField]
+  private Button checkoutButton;
+  [SerializeField]
+  private Button exitButton;
+  [SerializeField]
+  private Button shoppingButton;
+  [SerializeField]
+  private Text cashRegisterText;
 
   public void Awake() {}
 
@@ -42,31 +57,54 @@ public class Store : MonoBehaviour, ILocation {
 
   public void GoToCheckout() {
     this.player.SetPlayerLocation(Location.STORE_CHECKOUT);
+    this.shoppingButton.gameObject.SetActive(true);
+
+    int price = this.CalculateCheckoutPrice();
+    cashRegisterText.text = "$" + price + ".00";
+
+    if (this.player.inventory.Count == 0) {
+      this.exitButton.gameObject.SetActive(true);
+      this.checkoutButton.gameObject.SetActive(false);
+    } else {
+      this.exitButton.gameObject.SetActive(false);
+      if (this.player.wallet >= price) {
+        this.checkoutButton.gameObject.SetActive(true);
+      } else {
+        this.checkoutButton.gameObject.SetActive(false);
+        dialogEvent.Raise(Dialog.Store_Checkout_InsufficientFunds);
+      }
+    }
   }
 
   public void Enter() {
-    // Default location is the first aisle
-    this.player.SetPlayerLocation(Location.STORE_AISLE_1);
+    // if the player brings something in from outside show the checkout
+    // counter and display some dialog directing them outside, otherwise
+    // take them directly to the first aisle
+    bool allowedToShop = this.player.inventory.Count > 0;
+    if (allowedToShop) {
+      this.player.SetPlayerLocation(Location.STORE_CHECKOUT);
+      dialogEvent.Raise(Dialog.Store_Checkout_NoOutsideItems);
+    } else {
+      this.player.SetPlayerLocation(Location.STORE_AISLE_1);
+    }
+    this.cashRegisterText.text = "$0.00";
+    this.exitButton.gameObject.SetActive(!allowedToShop);
+    this.checkoutButton.gameObject.SetActive(allowedToShop);
+    this.shoppingButton.gameObject.SetActive(allowedToShop);
   }
 
   public void Exit() {
+    this.player.wallet -= this.CalculateCheckoutPrice();
+    this.player.SetPlayerLocation(Location.MAP);
+  }
+
+  int CalculateCheckoutPrice() {
     int price = 0;
     foreach (var item in this.player.inventory) {
-      // TODO: determine price
-      /*
-      if (item is StoreItem storeItem && !storeItem.paid) {
-        price += storeItem.price;
-      }
-      */
-    }
-    if (price > 0) {
-      if (this.player.wallet >= price) {
-        this.player.wallet -= price;
-      } else {
-        // TODO: insufficient funds notification; don't allow
-        return;
+      if (item.storeObject) {
+        price += item.price;
       }
     }
-    this.player.SetPlayerLocation(Location.MAP);
+    return price;
   }
 }
