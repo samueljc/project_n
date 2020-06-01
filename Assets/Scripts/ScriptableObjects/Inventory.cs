@@ -11,7 +11,14 @@ public class Inventory : ScriptableObject, IEnumerable<PortableItem> {
   public int capacity = int.MaxValue;
   private List<PortableItem> items = new List<PortableItem>();
 
+  public int Count {
+    get { return this.items.Count; }
+  }
+
   public void OnEnable() {
+    // NOTE: this clears all inventories when they're enabled in order to avoid
+    // leaving them with garbage after testing in the editor. If we ever need
+    // to enable/disable inventories we need to re-evaluate this.
     this.Clear();
   }
 

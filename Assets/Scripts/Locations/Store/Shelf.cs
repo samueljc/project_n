@@ -47,13 +47,32 @@ public class Shelf : MonoBehaviour, IDropHandler {
     for (int i = 0; i < this.rectTransform.childCount; ++i) {
       Destroy(this.rectTransform.GetChild(i).gameObject);
     }
-    // instantiate new ones
-    float offset = 0;
+
+    // get all of our objects by type so we can sort them
+    var itemsByType = new Dictionary<string, List<PortableItem>>();
     foreach (PortableItem item in this.inventory) {
-      PortableObject obj = Instantiate(this.prefab, Vector3.zero, Quaternion.identity, this.rectTransform);
-      (obj.transform as RectTransform).anchoredPosition = new Vector2(offset, 0f);
-      offset += 20f;
-      obj.item = item;
+      if (!itemsByType.ContainsKey(item.name)) {
+        itemsByType[item.name] = new List<PortableItem>();
+      }
+      itemsByType[item.name].Add(item);
+    }
+
+    // Layout our objects
+    float bucketWidth = rectTransform.rect.width / itemsByType.Count;
+    float bucketOffset = 0;
+    foreach (var items in itemsByType.Values) {
+      float itemOffset = bucketOffset;
+      foreach (var item in items) {
+        PortableObject obj = Instantiate(this.prefab, Vector3.zero, Quaternion.identity, this.rectTransform);
+        obj.item = item;
+        RectTransform itemTransform = obj.transform as RectTransform;
+        itemTransform.pivot = item.forwardSprite.pivot / itemTransform.sizeDelta;
+        itemTransform.anchoredPosition = new Vector2(itemOffset, 0f);
+        itemTransform.anchorMin = Vector2.zero;
+        itemTransform.anchorMax = Vector2.zero;
+        itemOffset += item.width + 1f;
+      }
+      bucketOffset += bucketWidth;
     }
   }
 }

@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1cc5ccca37cf0047933e3396d0897af, type: 3}
   m_Name: Bleach
   m_EditorClassIdentifier: 
-  noun: Bleach
+  name: Bleach
   description: A bottle of bleach.
   storeObject: 1
   price: 6
-  flower: 0
-  vhs: 0
   forwardSprite: {fileID: 21300000, guid: d04ffa271638f0240a8c9a4a62d41e17, type: 3}
   sideSprite: {fileID: 21300000, guid: d04ffa271638f0240a8c9a4a62d41e17, type: 3}
+  width: 24
+  height: 48
+  depth: 6

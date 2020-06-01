@@ -10,7 +10,7 @@ using UnityEngine.EventSystems;
  */
 public class PortableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
   // TODO: pick a sprite relative to the PortableItem?
-  public PortableItem item;
+  [HideInInspector] public PortableItem item;
 
   private RectTransform rectTransform;
   private CanvasGroup canvasGroup;
@@ -23,9 +23,9 @@ public class PortableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
   }
 
   void Awake() {
-    rectTransform = GetComponent<RectTransform>();
-    canvasGroup = GetComponent<CanvasGroup>();
-    image = GetComponent<Image>();
+    this.rectTransform = GetComponent<RectTransform>();
+    this.canvasGroup = GetComponent<CanvasGroup>();
+    this.image = GetComponent<Image>();
   }
 
   void Start() {
@@ -36,17 +36,18 @@ public class PortableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
   // drag handler methods
   public void OnBeginDrag(PointerEventData eventData) {
     this.startDragPosition = this.rectTransform.anchoredPosition;
-    canvasGroup.blocksRaycasts = false;
-    canvasGroup.alpha = 0.8f;
+    this.transform.SetAsLastSibling();
+    this.canvasGroup.blocksRaycasts = false;
+    this.canvasGroup.alpha = 0.8f;
   }
 
   public void OnDrag(PointerEventData eventData) {
-    rectTransform.anchoredPosition += eventData.delta;
+    this.rectTransform.anchoredPosition += eventData.delta;
   }
 
   public void OnEndDrag(PointerEventData eventData) {
     this.rectTransform.anchoredPosition = this.startDragPosition;
-    canvasGroup.blocksRaycasts = true;
-    canvasGroup.alpha = 1f;
+    this.canvasGroup.blocksRaycasts = true;
+    this.canvasGroup.alpha = 1f;
   }
 }
