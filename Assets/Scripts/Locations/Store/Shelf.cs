@@ -49,6 +49,7 @@ public class Shelf : MonoBehaviour, IDropHandler {
     }
 
     // get all of our objects by type so we can sort them
+    // FIXME: could keep the dict around if allocating it is slow
     var itemsByType = new Dictionary<string, List<PortableItem>>();
     foreach (PortableItem item in this.inventory) {
       if (!itemsByType.ContainsKey(item.name)) {
@@ -58,21 +59,19 @@ public class Shelf : MonoBehaviour, IDropHandler {
     }
 
     // Layout our objects
-    float bucketWidth = rectTransform.rect.width / itemsByType.Count;
-    float bucketOffset = 0;
+    float xOffset = 0;
     foreach (var items in itemsByType.Values) {
-      float itemOffset = bucketOffset;
       foreach (var item in items) {
         PortableObject obj = Instantiate(this.prefab, Vector3.zero, Quaternion.identity, this.rectTransform);
         obj.item = item;
         RectTransform itemTransform = obj.transform as RectTransform;
         itemTransform.pivot = item.forwardSprite.pivot / itemTransform.sizeDelta;
-        itemTransform.anchoredPosition = new Vector2(itemOffset, 0f);
+        xOffset += item.width / 2f;
+        itemTransform.anchoredPosition = new Vector2(xOffset, 0f);
         itemTransform.anchorMin = Vector2.zero;
         itemTransform.anchorMax = Vector2.zero;
-        itemOffset += item.width + 1f;
+        xOffset += item.width / 2f + this.inventory.itemGap;
       }
-      bucketOffset += bucketWidth;
     }
   }
 }

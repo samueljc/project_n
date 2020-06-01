@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: StoreShelf00
   m_EditorClassIdentifier: 
   capacity: 100
+  spaceAvailable: 500
+  itemGap: 1

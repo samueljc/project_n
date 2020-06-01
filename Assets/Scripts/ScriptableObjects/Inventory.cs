@@ -9,7 +9,7 @@ public class Inventory : ScriptableObject, IEnumerable<PortableItem> {
   public event OnChangeHandler onChange;
 
   public int capacity = int.MaxValue;
-  private List<PortableItem> items = new List<PortableItem>();
+  protected List<PortableItem> items = new List<PortableItem>();
 
   public int Count {
     get { return this.items.Count; }
