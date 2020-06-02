@@ -1,10 +1,14 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName="New Numbers", menuName="Scriptable Objects/Numbers")]
 public class Numbers : ScriptableObject {
+  [NonSerialized]
   private List<int> veryGoodNumbers;
+  [NonSerialized]
   private List<int> goodNumbers;
+  [NonSerialized]
   private List<int> veryBadNumbers;
 
   public void OnEnable() {

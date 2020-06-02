@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -48,6 +49,7 @@ public class JournalDay {
 
 [CreateAssetMenu(fileName="New Journal", menuName="Scriptable Objects/Journal")]
 public class Journal : ScriptableObject {
+  [NonSerialized]
   private List<JournalDay> journal;
 
   public JournalDay Today {

@@ -3,23 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Inventory", menuName = "Scriptable Objects/Inventories/Inventory")]
+[CreateAssetMenu(fileName="New Inventory", menuName="Scriptable Objects/Inventories/Inventory")]
 public class Inventory : ScriptableObject, IEnumerable<PortableItem> {
   public delegate void OnChangeHandler();
   public event OnChangeHandler onChange;
 
-  public int capacity = int.MaxValue;
-  protected List<PortableItem> items = new List<PortableItem>();
+  public int capacity = 100;
+  // TODO: do we need to support default items? No use for it yet.
+  [NonSerialized]
+  protected List<PortableItem> items;
+
+  public void OnEnable() {
+    this.items = new List<PortableItem>();
+  }
 
   public int Count {
     get { return this.items.Count; }
-  }
-
-  public void OnEnable() {
-    // NOTE: this clears all inventories when they're enabled in order to avoid
-    // leaving them with garbage after testing in the editor. If we ever need
-    // to enable/disable inventories we need to re-evaluate this.
-    this.Clear();
   }
 
   public virtual Error Add(PortableItem item) {
