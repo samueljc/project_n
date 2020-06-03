@@ -28,7 +28,7 @@ public class Store : MonoBehaviour {
 
   public void Awake() {}
 
-  public void OnEnable() {
+  public void Start() {
     Enter();
   }
 

@@ -23,7 +23,7 @@ public class StoreAisle {
   public StoreShelf[] shelves;
 }
 
-[CreateAssetMenu(fileName="New Store", menuName="Scriptable Objects/Store")]
+[CreateAssetMenu(fileName="New Store", menuName="Scriptable Objects/State/Store")]
 public class StoreState : ScriptableObject {
   [SerializeField]
   private StoreAisle[] aisles;

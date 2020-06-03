@@ -1,11 +1,25 @@
 ﻿using UnityEngine;
 
 public sealed class WorldState : MonoBehaviour {
-  public StoreState storeState;
+  public PlayerState player;
   public Journal journal;
+  public Numbers numbers;
+
+  public StoreState storeState;
+
+  private static WorldState instance;
 
   public void Awake() {
-    DontDestroyOnLoad(this.gameObject);
+    // Just using `DontDestroyOnLoad` isn't enough if we want to load into
+    // other scenes, so we mark this object if we don't have an instance. When
+    // we load a scene if it has its own instance we delete that and just keep
+    // using this one.
+    if (instance == null) {
+      DontDestroyOnLoad(this.gameObject);
+      instance = this;
+    } else if (instance != this) {
+      Destroy(this.gameObject);
+    }
   }
 
   public void Start() {
