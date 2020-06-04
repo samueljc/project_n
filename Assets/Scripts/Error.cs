@@ -3,4 +3,5 @@ public enum Error {
   Undefined,
   Inventory_OutOfSpace,
   Inventory_InvalidItem,
+  Inventory_AlreadyExists,
 }

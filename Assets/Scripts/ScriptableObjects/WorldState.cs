@@ -2,6 +2,7 @@
 
 public sealed class WorldState : MonoBehaviour {
   public PlayerState player;
+  public Inventory playerCar;
   public Journal journal;
   public Numbers numbers;
 

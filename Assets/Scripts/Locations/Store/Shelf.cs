@@ -2,35 +2,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Shelf : MonoBehaviour, IDropHandler {
-  public ShelfInventory inventory;
-
+public class Shelf : InventoryDropHandler {
   [SerializeField]
   private PortableObject prefab;
   [SerializeField]
   private DialogEvent dialogEvent;
 
   private RectTransform rectTransform;
-  private bool invalidated;
 
   public void Awake() {
     this.rectTransform = GetComponent<RectTransform>();
-    this.invalidated = true;
-  }
-
-  public void OnEnable() {
-    this.inventory.onChange += this.Invalidate;
-  }
-
-  public void OnDisable() {
-    this.inventory.onChange -= this.Invalidate;
-  }
-
-  public void LateUpdate() {
-    if (this.invalidated) {
-      this.ValidateLayout();
-      this.invalidated = false;
-    }
   }
 
   public void OnDrop(PointerEventData eventData) {
@@ -56,11 +37,13 @@ public class Shelf : MonoBehaviour, IDropHandler {
     }
   }
 
-  public void Invalidate() {
-    this.invalidated = true;
-  }
+  protected override void ValidateLayout() {
+    // The underlying inventory should be a ShelfInventory
+    ShelfInventory shelf = this.inventory as ShelfInventory;
+    if (shelf == null) {
+      throw new System.InvalidCastException("Inventory is not a ShelfInventory");
+    }
 
-  private void ValidateLayout() {
     // clear existing children
     for (int i = 0; i < this.rectTransform.childCount; ++i) {
       Destroy(this.rectTransform.GetChild(i).gameObject);
@@ -94,8 +77,19 @@ public class Shelf : MonoBehaviour, IDropHandler {
         // sizes of our objects.
         xOffset += item.width / 2f;
         itemTransform.anchoredPosition = new Vector2(xOffset, 0f);
-        xOffset += item.width / 2f + this.inventory.physicalItemGap;
+        xOffset += item.width / 2f + shelf.physicalItemGap;
       }
+    }
+  }
+
+  protected override void HandleDropError(Error error) {
+    switch (error) {
+      case Error.Inventory_InvalidItem:
+      dialogEvent.Raise(Dialog.Store_Shelf_InvalidItem);
+        break;
+      case Error.Inventory_OutOfSpace:
+        dialogEvent.Raise(Dialog.Store_Shelf_OutOfSpace);
+        break;
     }
   }
 }

@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: 10b29495572278b4987d8e238607c13e, type: 2}
+  playerCar: {fileID: 11400000, guid: ba2e85291e109d046a29da688f00762b, type: 2}
   journal: {fileID: 11400000, guid: 6e0e85766db8f2f48be79edbbff3f054, type: 2}
   numbers: {fileID: 11400000, guid: c9513881b789c9d4f915fd5c74c7b040, type: 2}
   storeState: {fileID: 11400000, guid: 2170aef719de990499cfde966ec6d4ce, type: 2}
