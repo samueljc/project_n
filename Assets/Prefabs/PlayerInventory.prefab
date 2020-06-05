@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4935679195234433910}
   - component: {fileID: 4935679195234433905}
   m_Layer: 5
-  m_Name: Inventory
+  m_Name: PlayerInventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4935679195234433914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41c61c9cfa1bd2342a772d530659396a, type: 3}
+  m_Script: {fileID: 11500000, guid: 91d743fdc7ee9b745b7d21ad9bcc6e9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 11400000, guid: 7eac6ebec18468148b30905f1a16a771, type: 2}

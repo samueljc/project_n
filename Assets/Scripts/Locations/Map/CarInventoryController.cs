@@ -1,17 +1,33 @@
 ﻿using UnityEngine;
 
-public class CarInventory : InventoryDropHandler {
+/// <summary>
+/// Controller for interacting with the player's car inventory.
+/// </summary>
+public class CarInventoryController : InventoryController {
+  /// <summary>
+  /// Prefab for generating <c>PortableObject</c>s.
+  /// </summary>
+  /// <seealso cref="PortableObject" />
   [SerializeField]
   private PortableObject prefab;
+
+  /// <summary>
+  /// A dialog event for handling dialog.
+  /// </summary>
   [SerializeField]
   private DialogEvent dialogEvent;
 
+  /// <summary>
+  /// The <c>GameObject</c>s transform.
+  /// </summary>
   private RectTransform rectTransform;
 
-  public void Awake() {
+  /// <inheritdoc />
+  void Awake() {
     this.rectTransform = GetComponent<RectTransform>();
   }
 
+  /// <inheritdoc />
   protected override void ValidateLayout() {
     // clear existing children
     for (int i = 0; i < this.rectTransform.childCount; ++i) {
@@ -24,12 +40,16 @@ public class CarInventory : InventoryDropHandler {
     }
   }
 
-  protected override void HandleDropError(Error error) {
+  /// <inheritdoc />
+  /// <remarks>
+  /// Raises dialog events based on the <c>Error</c>
+  /// </remarks>
+  protected override void HandleDropError(InventoryError error) {
     switch (error) {
-      case Error.Inventory_InvalidItem:
+      case InventoryError.InvalidItem:
         dialogEvent.Raise(Dialog.CarInventory_InvalidItem);
         break;
-      case Error.Inventory_OutOfSpace:
+      case InventoryError.OutOfSpace:
         dialogEvent.Raise(Dialog.CarInventory_OutOfSpace);
         break;
     }

@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Dialogs notified by dialog events.
+/// </summary>
 public enum Dialog {
   PlayerInventory_InvalidItem,
   PlayerInventory_OutOfSpace,
@@ -11,20 +14,27 @@ public enum Dialog {
   CarInventory_OutOfSpace,
 }
 
+/// <summary>
+/// An event for when dialog should be created.
+/// </summary>
 [CreateAssetMenu(fileName="New Dialog Event", menuName="Scriptable Objects/Events/Dialog Event")]
 public class DialogEvent : ScriptableObject {
-  public delegate void DialogEventHandler(Dialog dialog);
-  private event DialogEventHandler onDialogEvent;
+  /// <summary>
+  /// Handler for dialog events.
+  /// </summary>
+  /// <param name="dialog">The dialog to show.</param>
+  public delegate void DialogHandler(Dialog dialog);
 
+  /// <summary>
+  /// Event handlers for dialog events.
+  /// </summary>
+  public event DialogHandler showDialog;
+
+  /// <summary>
+  /// Raise a dialog event to be handled by the dialog handlers.
+  /// </summary>
+  /// <param name="dialog">The dialog to raise.</param>
   public void Raise(Dialog dialog) {
-    onDialogEvent(dialog);
-  }
-
-  public void RegisterListener(DialogEventHandler listener) {
-    onDialogEvent += listener;
-  }
-
-  public void UnregisterListener(DialogEventHandler listener) {
-    onDialogEvent -= listener;
+    this.showDialog?.Invoke(dialog);
   }
 }

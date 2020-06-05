@@ -2064,7 +2064,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 345787716}
-        m_MethodName: Exit
+        m_MethodName: Checkout
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3258,17 +3258,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shelf0
       objectReference: {fileID: 0}
-    - target: {fileID: 3677180426040277260, guid: 0a66176817810f1488ab30a0aec04e90,
-        type: 3}
-      propertyPath: worldState
-      value: 
-      objectReference: {fileID: 1428040542}
-    - target: {fileID: 3677180426040277260, guid: 0a66176817810f1488ab30a0aec04e90,
-        type: 3}
-      propertyPath: prefab
-      value: 
-      objectReference: {fileID: 6831630889754557387, guid: 083691ccee8ebc845913165e3ba79cc2,
-        type: 3}
     - target: {fileID: 3677180426040277260, guid: 0a66176817810f1488ab30a0aec04e90,
         type: 3}
       propertyPath: inventory

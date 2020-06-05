@@ -1,42 +1,38 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class Shelf : InventoryDropHandler {
+/// <inheritdoc />
+/// <summary>
+/// A shelf controller.
+/// </summary>
+public class ShelfInventoryController : InventoryController {
+  /// <summary>
+  /// Prefab for generating <c>PortableObject</c>s.
+  /// </summary>
+  /// <seealso cref="PortableObject" />
   [SerializeField]
   private PortableObject prefab;
+  
+  /// <summary>
+  /// A dialog event for handling dialog.
+  /// </summary>
   [SerializeField]
   private DialogEvent dialogEvent;
 
+  /// <summary>
+  /// The <c>GameObject</c>s transform.
+  /// </summary>
   private RectTransform rectTransform;
 
-  public void Awake() {
+  /// <inheritdoc />
+  void Awake() {
     this.rectTransform = GetComponent<RectTransform>();
   }
 
-  public void OnDrop(PointerEventData eventData) {
-    // get the object currently being dragged
-    PortableObject obj = eventData.pointerDrag?.GetComponent<PortableObject>();
-    if (obj == null) {
-      dialogEvent.Raise(Dialog.Store_Shelf_InvalidItem);
-      return;
-    }
-    // We already have this object.
-    if (this.inventory.Contains(obj.item)) {
-      return;
-    }
-    // Try to add it and check for errors.
-    Error err = this.inventory.Add(obj.item);
-    switch (err) {
-      case Error.Inventory_InvalidItem:
-        dialogEvent.Raise(Dialog.Store_Shelf_InvalidItem);
-        break;
-      case Error.Inventory_OutOfSpace:
-        dialogEvent.Raise(Dialog.Store_Shelf_OutOfSpace);
-        break;
-    }
-  }
-
+  /// <inheritdoc />
+  /// <remarks>
+  /// Arranges the panel so that objects of the same type are clustered.
+  /// </remarks>
   protected override void ValidateLayout() {
     // The underlying inventory should be a ShelfInventory
     ShelfInventory shelf = this.inventory as ShelfInventory;
@@ -82,12 +78,16 @@ public class Shelf : InventoryDropHandler {
     }
   }
 
-  protected override void HandleDropError(Error error) {
+  /// <inheritdoc />
+  /// <remarks>
+  /// Raises dialog events based on the <c>Error</c>
+  /// </remarks>
+  protected override void HandleDropError(InventoryError error) {
     switch (error) {
-      case Error.Inventory_InvalidItem:
-      dialogEvent.Raise(Dialog.Store_Shelf_InvalidItem);
+      case InventoryError.InvalidItem:
+        dialogEvent.Raise(Dialog.Store_Shelf_InvalidItem);
         break;
-      case Error.Inventory_OutOfSpace:
+      case InventoryError.OutOfSpace:
         dialogEvent.Raise(Dialog.Store_Shelf_OutOfSpace);
         break;
     }

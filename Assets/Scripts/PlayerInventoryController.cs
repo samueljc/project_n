@@ -1,20 +1,33 @@
 ﻿using UnityEngine;
 
-// TODO: I think there's a lot that could be extracted out into a more generic
-// Inventory class that inherits from these pieces which we could use for the
-// shelves, player inventory, flower pits, etc.
-public class PlayerInventoryDisplay : InventoryDropHandler {
+/// <summary>
+/// Controller for the player's inventory.
+/// </summary>
+public class PlayerInventoryController : InventoryController {
+  /// <summary>
+  /// Prefab for generating <c>PortableObject</c>s.
+  /// </summary>
+  /// <seealso cref="PortableObject" />
   [SerializeField]
   private PortableObject prefab;
+  
+  /// <summary>
+  /// A dialog event for handling dialog.
+  /// </summary>
   [SerializeField]
   private DialogEvent dialogEvent;
 
+  /// <summary>
+  /// The <c>GameObject</c>s transform.
+  /// </summary>
   private RectTransform rectTransform;
 
-  public void Awake() {
+  /// <inheritdoc />
+  void Awake() {
     this.rectTransform = GetComponent<RectTransform>();
   }
 
+  /// <inheritdoc />
   protected override void ValidateLayout() {
     // clear existing children
     for (int i = 0; i < this.rectTransform.childCount; ++i) {
@@ -27,12 +40,16 @@ public class PlayerInventoryDisplay : InventoryDropHandler {
     }
   }
 
-  protected override void HandleDropError(Error error) {
+  /// <inheritdoc />
+  /// <remarks>
+  /// Raises dialog events based on the <c>Error</c>
+  /// </remarks>
+  protected override void HandleDropError(InventoryError error) {
     switch (error) {
-      case Error.Inventory_InvalidItem:
+      case InventoryError.InvalidItem:
         dialogEvent.Raise(Dialog.PlayerInventory_InvalidItem);
         break;
-      case Error.Inventory_OutOfSpace:
+      case InventoryError.OutOfSpace:
         dialogEvent.Raise(Dialog.PlayerInventory_OutOfSpace);
         break;
     }

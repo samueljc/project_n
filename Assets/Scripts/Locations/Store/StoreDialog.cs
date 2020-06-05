@@ -2,6 +2,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// The dialog controller for the store.
+/// </summary>
+// I'm not going to thoroughly document this yet as I want to rework it.
 public class StoreDialog : MonoBehaviour {
   [SerializeField]
   private DialogEvent dialogEvent;
@@ -11,11 +15,11 @@ public class StoreDialog : MonoBehaviour {
   private Text shopkeeperText;
 
   void OnEnable() {
-    this.dialogEvent.RegisterListener(this.ShowDialog);
+    this.dialogEvent.showDialog += this.ShowDialog;
   }
 
   void OnDisable() {
-    this.dialogEvent.UnregisterListener(this.ShowDialog);
+    this.dialogEvent.showDialog -= this.ShowDialog;
     this.CancelInvoke();
   }
 
