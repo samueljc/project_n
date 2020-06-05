@@ -8,10 +8,10 @@ public class PortableItemDetails : ScriptableObject {
   public bool storeObject;
   public int price;
   // Visuals
-  public Sprite forwardSprite;
-  public Sprite sideSprite;
+  public Sprite inventorySprite;
+  public Sprite draggingSprite;
   // Dimensions
-  public float width;
+  public float shelfWidth;
   public float height;
   public float depth;
 }

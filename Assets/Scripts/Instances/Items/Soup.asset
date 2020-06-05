@@ -16,8 +16,8 @@ MonoBehaviour:
   description: An expired can of soup.
   storeObject: 1
   price: 1
-  forwardSprite: {fileID: 21300000, guid: 1c2ca35ff3d148b418d1597ac899e139, type: 3}
-  sideSprite: {fileID: 21300000, guid: 1c2ca35ff3d148b418d1597ac899e139, type: 3}
-  width: 16
+  inventorySprite: {fileID: 21300000, guid: 1c2ca35ff3d148b418d1597ac899e139, type: 3}
+  draggingSprite: {fileID: 21300000, guid: 1c2ca35ff3d148b418d1597ac899e139, type: 3}
+  shelfWidth: 16
   height: 20
   depth: 3

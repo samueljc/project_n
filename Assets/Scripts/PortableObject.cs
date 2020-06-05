@@ -1,25 +1,44 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+
+public enum PortableObjectOrientation {
+  Dragging,
+  Inventory,
+}
 
 /**
  * Portable Object is an interactable wrapper around a portable item that
  * supports being clicked and dragged into other inventories.
  */
 public class PortableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
-  // TODO: pick a sprite relative to the PortableItem?
-  [HideInInspector] public PortableItem item;
+  [HideInInspector]
+  public PortableItem item;
 
   private RectTransform rectTransform;
   private CanvasGroup canvasGroup;
   private Image image;
+  private PortableObjectOrientation objectOrientation = PortableObjectOrientation.Inventory;
 
   private Vector2 startDragPosition;
 
   public PortableItemDetails details {
     get { return this.item.details; }
+  }
+
+  public PortableObjectOrientation orientation {
+    get { return this.objectOrientation; }
+    set {
+      this.objectOrientation = orientation;
+      switch (this.objectOrientation) {
+        case PortableObjectOrientation.Inventory:
+          this.image.sprite = this.details.inventorySprite;
+          break;
+        case PortableObjectOrientation.Dragging:
+          this.image.sprite = this.details.draggingSprite;
+          break;
+      }
+    }
   }
 
   void Awake() {
@@ -29,7 +48,7 @@ public class PortableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
   }
 
   void Start() {
-    this.image.sprite = this.item.details.forwardSprite;
+    this.image.sprite = this.item.details.inventorySprite;
     this.image.alphaHitTestMinimumThreshold = 0.1f;
   }
 
@@ -39,6 +58,7 @@ public class PortableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     this.transform.SetAsLastSibling();
     this.canvasGroup.blocksRaycasts = false;
     this.canvasGroup.alpha = 0.8f;
+    this.image.sprite = this.details.draggingSprite;
   }
 
   public void OnDrag(PointerEventData eventData) {
@@ -49,5 +69,6 @@ public class PortableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     this.rectTransform.anchoredPosition = this.startDragPosition;
     this.canvasGroup.blocksRaycasts = true;
     this.canvasGroup.alpha = 1f;
+    this.image.sprite = this.details.inventorySprite;
   }
 }

@@ -7,6 +7,8 @@ public enum Dialog {
   Store_Shelf_OutOfSpace,
   Store_Checkout_InsufficientFunds,
   Store_Checkout_NoOutsideItems,
+  CarInventory_InvalidItem,
+  CarInventory_OutOfSpace,
 }
 
 [CreateAssetMenu(fileName="New Dialog Event", menuName="Scriptable Objects/Events/Dialog Event")]

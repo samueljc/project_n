@@ -11,9 +11,9 @@ public class ShelfInventory : Inventory {
     }
 
     // check for shelf space
-    float spaceNeeded = item.width;
+    float spaceNeeded = item.shelfWidth;
     foreach (var i in this) {
-      spaceNeeded += i.width + physicalItemGap;
+      spaceNeeded += i.shelfWidth + physicalItemGap;
       if (physicalSpaceAvailable < spaceNeeded) {
         return Error.Inventory_OutOfSpace;
       }

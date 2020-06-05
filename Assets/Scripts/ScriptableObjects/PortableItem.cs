@@ -22,24 +22,16 @@ public class PortableItem : ScriptableObject {
     get { return this.details.price; }
   }
 
-  public Sprite forwardSprite {
-    get { return this.details.forwardSprite; }
+  public Sprite inventorySprite {
+    get { return this.details.inventorySprite; }
   }
 
-  public Sprite sideSprite {
-    get { return this.details.sideSprite; }
+  public Sprite draggingSprite {
+    get { return this.details.draggingSprite; }
   }
 
-  public float width {
-    get { return this.details.width; }
-  }
-
-  public float height {
-    get { return this.details.height; }
-  }
-
-  public float depth {
-    get { return this.details.depth; }
+  public float shelfWidth {
+    get { return this.details.shelfWidth; }
   }
 
   /**

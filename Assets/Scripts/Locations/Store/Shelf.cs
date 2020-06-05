@@ -68,16 +68,16 @@ public class Shelf : InventoryDropHandler {
         RectTransform itemTransform = obj.transform as RectTransform;
         // Set the pivot relative to the sprite's pivot. This ensures our items
         // all appear on the same vertical axis of the shelf.
-        itemTransform.pivot = item.forwardSprite.pivot / itemTransform.sizeDelta;
+        itemTransform.pivot = item.inventorySprite.pivot / itemTransform.sizeDelta;
         // Set the anchor to the bottom left.
         itemTransform.anchorMin = Vector2.zero;
         itemTransform.anchorMax = Vector2.zero;
         // Set the anchor position which is the offset from the anchor. We do
         // half first and half later to avoid overlapping due to the different
         // sizes of our objects.
-        xOffset += item.width / 2f;
+        xOffset += item.shelfWidth / 2f;
         itemTransform.anchoredPosition = new Vector2(xOffset, 0f);
-        xOffset += item.width / 2f + shelf.physicalItemGap;
+        xOffset += item.shelfWidth / 2f + shelf.physicalItemGap;
       }
     }
   }
