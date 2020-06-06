@@ -34,6 +34,11 @@ public class PortableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
   private Image image;
 
   /// <summary>
+  /// The transform of the canvas to use when dragging.
+  /// </summary>
+  private Transform draggingCanvas;
+
+  /// <summary>
   /// The item's orientation.
   /// </summary>
   /// <remarks>
@@ -45,6 +50,11 @@ public class PortableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
   /// The cursor offset when initating a drag event.
   /// </summary>
   private Vector2 startDragPosition;
+
+  /// <summary>
+  /// The transform of the parent object when initiating a drag event.
+  /// </summary>
+  private Transform startDragParent;
 
   /// <summary>
   /// The details of the underlying item.
@@ -76,6 +86,10 @@ public class PortableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     this.rectTransform = GetComponent<RectTransform>();
     this.canvasGroup = GetComponent<CanvasGroup>();
     this.image = GetComponent<Image>();
+    // TODO: How can I do this without a tag and without needing to share too
+    // much information between portable objects and their containers?
+    GameObject canvas = GameObject.FindGameObjectWithTag("DraggingCanvas");
+    this.draggingCanvas = canvas.transform;
   }
 
   /// <inheritdoc />
@@ -87,16 +101,27 @@ public class PortableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
   // drag handler methods
 
   /// <inheritdoc />
+  /// <remarks>
+  /// When we start dragging we want to record some information so we can move
+  /// this object back if necessary, then we need to put it on the dragging
+  /// canvas to make sure it's above everything else.
+  /// </remarks>
   public void OnBeginDrag(PointerEventData eventData) {
     this.startDragPosition = this.rectTransform.anchoredPosition;
+    this.startDragParent = this.transform.parent;
+
+    this.transform.SetParent(this.draggingCanvas);
     this.transform.SetAsLastSibling();
-    this.canvasGroup.blocksRaycasts = false;
+
     this.canvasGroup.alpha = 0.8f;
+
     this.image.sprite = this.details.draggingSprite;
   }
 
   /// <inheritdoc />
   /// <remarks>
+  /// While dragging we want to continuously update the position relative to
+  /// the pointer.
   /// </remarks>
   public void OnDrag(PointerEventData eventData) {
     this.rectTransform.anchoredPosition += eventData.delta;
@@ -104,11 +129,16 @@ public class PortableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
   /// <inheritdoc />
   /// <remarks>
+  /// After dragging, we want to reset this object to its original position.
+  /// If it was dropped into a new inventory that inventory will take it, so
+  /// we don't need to do special handling for that here.
   /// </remarks>
   public void OnEndDrag(PointerEventData eventData) {
+    this.transform.SetParent(this.startDragParent);
     this.rectTransform.anchoredPosition = this.startDragPosition;
-    this.canvasGroup.blocksRaycasts = true;
+
     this.canvasGroup.alpha = 1f;
+
     this.image.sprite = this.details.inventorySprite;
   }
 }

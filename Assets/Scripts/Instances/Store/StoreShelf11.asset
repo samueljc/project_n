@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: StoreShelf11
   m_EditorClassIdentifier: 
   capacity: 100
+  physicalSpaceAvailable: 500
+  physicalItemGap: 1
