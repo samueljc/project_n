@@ -62,5 +62,5 @@ public class StoreDialog : MonoBehaviour {
   void HideDialog() {
     this.playerText.gameObject.SetActive(false);
     this.shopkeeperText.gameObject.SetActive(false);
-}
+  }
 }
