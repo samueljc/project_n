@@ -42,6 +42,13 @@ public class DialogBox : MonoBehaviour {
   private Coroutine autoAdvanceCoroutine;
 
   /// <summary>
+  /// The precision to use when evaluating a cue's write delay to 0. If the
+  /// difference between the delay and 0 is less than this value then the
+  /// text will be shown immediately instead of being populated over time.
+  /// </summary>
+  private const float writeDelaySkipPopulate = 0.00001f;
+
+  /// <summary>
   /// The current cue that's being processed.
   /// </summary>
   public DialogCue currentCue { 
@@ -108,12 +115,17 @@ public class DialogBox : MonoBehaviour {
       this.text.text = this.currentCue.text;
       this.populating = false;
     } else if (this.currentCueIndex < this.cues.Count - 1) {
-      // dismiss the current item
+      // Dismiss the current cue.
       this.currentCue?.dismissed?.Invoke();
-      // Start showing the next item in the list.
       this.text.text = "";
+
+      // Advance the cue index and start populating the dialog box.
       this.currentCueIndex += 1;
-      this.populateCoroutine = this.StartCoroutine(this.Populate());
+      if (this.currentCue.writeDelay <= DialogBox.writeDelaySkipPopulate) {
+        this.text.text = this.currentCue.text;
+      } else {
+        this.populateCoroutine = this.StartCoroutine(this.Populate());
+      }
     } else {
       DialogCue.DismissedHandler callback = this.currentCue?.dismissed;
       // All done; dismiss the dialog box.
@@ -145,17 +157,12 @@ public class DialogBox : MonoBehaviour {
   IEnumerator Populate() {
     this.populating = true;
     DialogCue cue = this.currentCue;
+    WaitForSeconds delay = new WaitForSeconds(cue.writeDelay);
 
     // Iterate through the text showing 1 character at a time.
     foreach (char c in cue.text) {
       this.text.text += c;
-      if (cue.writeDelay < 0.01f) {
-        // At 60 fps this would be less than 1 frame per second, so don't
-        // bother allocating a `WaitForSeconds`.
-        yield return null;
-      } else {
-        yield return new WaitForSeconds(cue.writeDelay);
-      }
+      yield return delay;
     }
 
     // Setup auto-advance.

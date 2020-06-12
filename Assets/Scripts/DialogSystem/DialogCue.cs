@@ -37,7 +37,7 @@ public class DialogCue {
   public DialogCue(
     string text,
     float advanceTimer = float.PositiveInfinity,
-    float writeDelay = 0.05f,
+    float writeDelay = 0.02f,
     DismissedHandler dismissed = null
   ) {
     this.text = text;

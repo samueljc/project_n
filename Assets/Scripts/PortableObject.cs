@@ -29,6 +29,11 @@ public class PortableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
   private CanvasGroup canvasGroup;
 
   /// <summary>
+  /// The root canvas this object is attached to.
+  /// </summary>
+  private Canvas root;
+
+  /// <summary>
   /// The game object's image.
   /// </summary>
   private Image image;
@@ -86,6 +91,8 @@ public class PortableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     this.rectTransform = GetComponent<RectTransform>();
     this.canvasGroup = GetComponent<CanvasGroup>();
     this.image = GetComponent<Image>();
+    // Get the root canvas for determining our scale factor.
+    this.root = GetComponentInParent<Canvas>().rootCanvas;
     // TODO: How can I do this without a tag and without needing to share too
     // much information between portable objects and their containers?
     GameObject canvas = GameObject.FindGameObjectWithTag("DraggingCanvas");
@@ -124,7 +131,7 @@ public class PortableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
   /// the pointer.
   /// </remarks>
   public void OnDrag(PointerEventData eventData) {
-    this.rectTransform.anchoredPosition += eventData.delta;
+    this.rectTransform.anchoredPosition += eventData.delta / this.root.scaleFactor;
   }
 
   /// <inheritdoc />

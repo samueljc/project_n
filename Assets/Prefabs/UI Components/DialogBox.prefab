@@ -195,8 +195,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 14
+  m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -271,6 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 612a89b45e4da6042bc40f3cf530ad8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogEvent: {fileID: 0}
   text: {fileID: 5684241236836024713}
 --- !u!1001 &3100349082520268379
 PrefabInstance:
