@@ -19,10 +19,14 @@ public class Suburb : MonoBehaviour {
       new DialogCue("Part 2", 2f, 1f),
       new DialogCue("Part 3", 2f)
     );
-    forever.Show(new DialogCue("you can't delete me"));
-    forever.dismissed += () => {
-      Debug.Log("dismissed");
-      forever.Show(new DialogCue("HAHAHAHA"));
+    DialogCue cue = new DialogCue("you can't delete me");
+    DialogCue laughCue = new DialogCue("HAHAHAHA");
+    cue.dismissed = () => {
+      forever.Show(laughCue);
     };
+    laughCue.dismissed = () => {
+      forever.Show(laughCue);
+    };
+    forever.Show(cue);
   }
 }

@@ -11,11 +11,13 @@ public class Store : MonoBehaviour {
   /// </summary>
   [SerializeField]
   private GameObject aisle1;
+
   /// <summary>
   /// The view for the second aisle.
   /// </summary>
   [SerializeField]
   private GameObject aisle2;
+
   /// <summary>
   /// The view for the checkout counter.
   /// </summary>
@@ -27,33 +29,38 @@ public class Store : MonoBehaviour {
   /// </summary>
   [SerializeField]
   private Inventory playerInventory;
+
   /// <summary>
   /// The player's wallet.
   /// </summary>
   [SerializeField]
   private IntVariable playerWallet;
+
   /// <summary>
-  /// A dialog event for handling dialog.
+  /// The dialog event handler for the shelf inventory.
   /// </summary>
   [SerializeField]
-  private DialogEvent dialogEvent;
+  private DialogEvent shopkeeperDialogEvent;
 
   /// <summary>
   /// A reference to the checkout button at the checkout counter.
   /// </summary>
   [SerializeField]
   private Button checkoutButton;
+
   /// <summary>
   /// A reference to the exit button at the checkout counter.
   /// </summary>
   [SerializeField]
   private Button exitButton;
+
   /// <summary>
   /// A reference to the start / return to shopping button at the checkout
   /// counter.
   /// </summary>
   [SerializeField]
   private Button shoppingButton;
+
   /// <summary>
   /// A reference to the cash register text at the checkout counter.
   /// </summary>
@@ -136,7 +143,7 @@ public class Store : MonoBehaviour {
       this.exitButton.gameObject.SetActive(!allowedToShop);
       this.checkoutButton.gameObject.SetActive(allowedToShop);
       this.shoppingButton.gameObject.SetActive(allowedToShop);
-      dialogEvent.Raise(Dialog.Store_Checkout_NoOutsideItems);
+      this.SayNoOutsideItems();
     }
   }
 
@@ -154,7 +161,7 @@ public class Store : MonoBehaviour {
       this.playerWallet.value -= price;
       SceneManager.LoadScene("Map");
     } else {
-      dialogEvent.Raise(Dialog.Store_Checkout_InsufficientFunds);
+      this.SayInsufficientFunds();
     }
   }
 
@@ -177,5 +184,21 @@ public class Store : MonoBehaviour {
       }
     }
     return price;
+  }
+
+  /// <summary>
+  /// Broadcast insufficient funds.
+  /// </summary>
+  private void SayInsufficientFunds() {
+    string text = LocalizationManager.GetText(MessageKey.StoreCheckout_InsufficientFunds_1);
+    shopkeeperDialogEvent.Raise(new DialogCue(text, 2f));
+  }
+
+  /// <summary>
+  /// Broadcast no outside items.
+  /// </summary>
+  private void SayNoOutsideItems() {
+    string text = LocalizationManager.GetText(MessageKey.StoreCheckout_NoOutsideItems_1);
+    shopkeeperDialogEvent.Raise(new DialogCue(text, 2f));
   }
 }

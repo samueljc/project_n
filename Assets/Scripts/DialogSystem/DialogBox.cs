@@ -1,48 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using TMPro;
-
-[System.Serializable]
-public struct DialogCue {
-  /// <summary>
-  /// The text to show.
-  /// </summary>
-  public string text;
-
-  /// <summary>
-  /// The time after the full text has been show to wait until advancing
-  /// the cue.
-  /// </summary>
-  public float advanceTimer;
-
-  /// <summary>
-  /// The delay between characters when writing.
-  /// </summary>
-  public float writeDelay;
-
-  /// <summary>
-  /// Create a new dialog cue for a dialog box.
-  /// </summary>
-  public DialogCue(string text, float advanceTimer = float.PositiveInfinity, float writeDelay = 0.05f) {
-    this.text = text;
-    this.advanceTimer = advanceTimer;
-    this.writeDelay = writeDelay;
-  }
-}
 
 public class DialogBox : MonoBehaviour {
   /// <summary>
-  /// Handler for dismissed events.
+  /// A dialog event that this subscribes to for displaying text.
   /// </summary>
-  public delegate void DismissedHandler();
-
-  /// <summary>
-  /// Event handlers for dismissed events.
-  /// </summary>
-  public event DismissedHandler dismissed;
+  [SerializeField]
+  private DialogEvent dialogEvent;
 
   /// <summary>
   /// The text game object to render to.
@@ -74,6 +40,32 @@ public class DialogBox : MonoBehaviour {
   /// The auto-advance coroutine.
   /// </summary>
   private Coroutine autoAdvanceCoroutine;
+
+  /// <summary>
+  /// The current cue that's being processed.
+  /// </summary>
+  public DialogCue currentCue { 
+    get {
+      if (this.cues == null || this.currentCueIndex < 0 || this.currentCueIndex >= this.cues.Count) {
+        return null;
+      }
+      return this.cues[this.currentCueIndex];
+    }
+  }
+
+  /// <inheritdoc />
+  void OnEnable() {
+    if (this.dialogEvent != null) {
+      this.dialogEvent.showDialog += this.Show;
+    }
+  }
+
+  /// <inheritdoc />
+  void OnDisable() {
+    if (this.dialogEvent != null) {
+      this.dialogEvent.showDialog -= this.Show;
+    }
+  }
 
   /// <summary>
   /// Show the given content in the dialog box.
@@ -113,31 +105,38 @@ public class DialogBox : MonoBehaviour {
     this.ResetCoroutines();
     if (this.populating) {
       // Skip to the end of populating.
-      this.text.text = this.cues[currentCueIndex].text;
+      this.text.text = this.currentCue.text;
       this.populating = false;
-    } else if (currentCueIndex < this.cues.Count - 1) {
+    } else if (this.currentCueIndex < this.cues.Count - 1) {
+      // dismiss the current item
+      this.currentCue?.dismissed?.Invoke();
       // Start showing the next item in the list.
       this.text.text = "";
       this.currentCueIndex += 1;
       this.populateCoroutine = this.StartCoroutine(this.Populate());
     } else {
+      DialogCue.DismissedHandler callback = this.currentCue?.dismissed;
       // All done; dismiss the dialog box.
       this.Dismiss();
+      // Call the last cue's dismiss delegate.
+      callback?.Invoke();
     }
   }
 
   /// <summary>
   /// Dismiss the dialog box.
   /// </summary>
+  /// <remarks>
+  /// Invoking this explicitly does not trigger any dismiss callbacks. Advancing
+  /// will, but if we're explicitly invoking dismiss it's assumed we're just
+  /// trying to close the dialog.
+  /// </remarks>
   public void Dismiss() {
     this.ResetCoroutines();
     this.ResetState();
     foreach (Transform child in transform) {
       child.gameObject.SetActive(false);
     }
-    // We want to invoke at the end in case we end up calling `Show` in
-    // the callback.
-    this.dismissed?.Invoke();
   }
 
   /// <summary>
@@ -145,7 +144,7 @@ public class DialogBox : MonoBehaviour {
   /// </summary>
   IEnumerator Populate() {
     this.populating = true;
-    DialogCue cue = this.cues[this.currentCueIndex];
+    DialogCue cue = this.currentCue;
 
     // Iterate through the text showing 1 character at a time.
     foreach (char c in cue.text) {

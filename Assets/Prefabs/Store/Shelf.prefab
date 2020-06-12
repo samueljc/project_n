@@ -38,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 77}
-  m_SizeDelta: {x: 550, y: 64}
+  m_SizeDelta: {x: 500, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &-115107809739290809
 Canvas:
@@ -129,4 +129,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory: {fileID: 0}
   prefab: {fileID: 6831630889754557387, guid: 083691ccee8ebc845913165e3ba79cc2, type: 3}
-  dialogEvent: {fileID: 11400000, guid: dc4edcce5576bd440a4a94e26b86b025, type: 2}
+  playerDialogEvent: {fileID: 11400000, guid: 3897048f063c18b43a5bcb7f12a0f0d2, type: 2}

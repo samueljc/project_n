@@ -15,7 +15,7 @@ public class CarInventoryController : InventoryController {
   /// A dialog event for handling dialog.
   /// </summary>
   [SerializeField]
-  private DialogEvent dialogEvent;
+  private DialogEvent playerDialogEvent;
 
   /// <summary>
   /// The <c>GameObject</c>s transform.
@@ -47,11 +47,27 @@ public class CarInventoryController : InventoryController {
   protected override void HandleDropError(InventoryError error) {
     switch (error) {
       case InventoryError.InvalidItem:
-        dialogEvent.Raise(Dialog.CarInventory_InvalidItem);
+        this.SayCarInvalidItem();
         break;
       case InventoryError.OutOfSpace:
-        dialogEvent.Raise(Dialog.CarInventory_OutOfSpace);
+        this.SayCarOutOfSpace();
         break;
     }
+  }
+
+  /// <summary>
+  /// Broadcast that we can't put that in the car.
+  /// </summary>
+  private void SayCarInvalidItem() {
+    string text = LocalizationManager.GetText(MessageKey.CarInventory_InvalidItem_1);
+    playerDialogEvent.Raise(new DialogCue(text, 2f));
+  }
+
+  /// <summary>
+  /// Broadcast that there's no room in the car.
+  /// </summary>
+  private void SayCarOutOfSpace() {
+    string text = LocalizationManager.GetText(MessageKey.CarInventory_InvalidItem_1);
+    playerDialogEvent.Raise(new DialogCue(text, 2f));
   }
 }
