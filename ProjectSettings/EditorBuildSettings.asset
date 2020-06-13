@@ -6,18 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Store.unity
+    path: Assets/01.Scenes/Store.unity
     guid: b72d4425a61817546860e0c7f09bd6f2
   - enabled: 1
-    path: Assets/Scenes/Map.unity
+    path: Assets/01.Scenes/Map.unity
     guid: b47c4d3f18641074187ccb02796579ef
   - enabled: 1
-    path: Assets/Scenes/Suburb.unity
+    path: Assets/01.Scenes/Suburb.unity
     guid: f8eb297d6bacc484089ee551ae625323
   - enabled: 1
-    path: Assets/Scenes/VideoStore.unity
+    path: Assets/01.Scenes/VideoStore.unity
     guid: 4b98c794a319a0e408386a334900b7f3
   - enabled: 1
-    path: Assets/Scenes/Beach.unity
+    path: Assets/01.Scenes/Beach.unity
     guid: c9f3f7e6ad5eaed479bca6962fa4d43b
   m_configObjects: {}
