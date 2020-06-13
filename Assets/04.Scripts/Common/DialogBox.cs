@@ -69,6 +69,7 @@ public class DialogBox : MonoBehaviour {
 
   /// <inheritdoc />
   void OnDisable() {
+    this.Dismiss();
     if (this.dialogEvent != null) {
       this.dialogEvent.showDialog -= this.Show;
     }

@@ -65,7 +65,7 @@ public class StoreController : MonoBehaviour {
   /// A reference to the cash register text at the checkout counter.
   /// </summary>
   [SerializeField]
-  private Text cashRegisterText;
+  private TMPro.TextMeshProUGUI cashRegisterText;
 
   /// <inheritdoc />
   void Start() {
@@ -187,7 +187,7 @@ public class StoreController : MonoBehaviour {
   /// Broadcast insufficient funds.
   /// </summary>
   private void SayInsufficientFunds() {
-    string text = LocalizationManager.GetText(MessageKey.StoreCheckout_InsufficientFunds_1);
+    string text = LocalizationManager.GetText(MessageKey.Shopkeeper_InsufficientFunds_1);
     shopkeeperDialogEvent.Raise(new DialogCue(text, 2f));
   }
 
@@ -195,7 +195,7 @@ public class StoreController : MonoBehaviour {
   /// Broadcast no outside items.
   /// </summary>
   private void SayNoOutsideItems() {
-    string text = LocalizationManager.GetText(MessageKey.StoreCheckout_NoOutsideItems_1);
+    string text = LocalizationManager.GetText(MessageKey.Shopkeeper_NoOutsideItems_1);
     shopkeeperDialogEvent.Raise(new DialogCue(text, 2f));
   }
 }

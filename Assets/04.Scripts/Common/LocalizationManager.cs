@@ -63,12 +63,12 @@ public class LocalizationManager {
       new Message("There's no space on the shelf.")
     },
     {
-      MessageKey.StoreCheckout_InsufficientFunds_1,
-      new Message("Looks like I don't have enough money.")
+      MessageKey.Shopkeeper_InsufficientFunds_1,
+      new Message("Check the register again, pal, you're coming up short.")
     },
     {
-      MessageKey.StoreCheckout_NoOutsideItems_1,
-      new Message("Please leave your things outside.")
+      MessageKey.Shopkeeper_NoOutsideItems_1,
+      new Message("Leave your trash outside, I don't want it cluttering up my shelves.")
     },
     // car dialog
     {

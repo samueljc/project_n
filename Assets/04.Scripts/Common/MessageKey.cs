@@ -12,8 +12,8 @@ public enum MessageKey {
   PlayerInventory_OutOfSpace_1,
   StoreShelf_InvalidItem_1,
   StoreShelf_OutOfSpace_1,
-  StoreCheckout_InsufficientFunds_1,
-  StoreCheckout_NoOutsideItems_1,
+  Shopkeeper_InsufficientFunds_1,
+  Shopkeeper_NoOutsideItems_1,
   CarInventory_InvalidItem_1,
   CarInventory_OutOfSpace_1,
 }
