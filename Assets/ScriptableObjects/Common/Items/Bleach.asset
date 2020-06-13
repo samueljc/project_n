@@ -18,6 +18,6 @@ MonoBehaviour:
   price: 6
   inventorySprite: {fileID: 21300000, guid: d04ffa271638f0240a8c9a4a62d41e17, type: 3}
   draggingSprite: {fileID: 21300000, guid: d04ffa271638f0240a8c9a4a62d41e17, type: 3}
-  shelfWidth: 24
+  shelfWidth: 27
   height: 48
   depth: 6
