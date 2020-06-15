@@ -2,9 +2,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 /// <summary>
-/// Abstract controller for an indexed inventory cell.
+/// Abstract controller for interacting with an inventory cell.
 /// </summary>
-public abstract class IndexedInventoryCellController : MonoBehaviour, IDropHandler {
+/// <seealso cref="Inventory" />
+public abstract class InventoryCellController : MonoBehaviour, IDropHandler {
   /// <summary>
   /// Prefab for generating <c>PortableObject</c>s.
   /// </summary>
@@ -15,7 +16,7 @@ public abstract class IndexedInventoryCellController : MonoBehaviour, IDropHandl
   /// <summary>
   /// The underlying inventory we want to interact with.
   /// </summary>
-  public IndexedInventory inventory;
+  public Inventory inventory;
 
   /// <summary>
   /// The index this cell represents.
@@ -82,7 +83,7 @@ public abstract class IndexedInventoryCellController : MonoBehaviour, IDropHandl
   /// Logic for re-validating the view of this inventory whenever the
   /// underlying inventory is changed.
   /// </summary>
-  protected void ValidateLayout() {
+  protected virtual void ValidateLayout() {
     // clear existing children
     for (int i = 0; i < this.rectTransform.childCount; ++i) {
       Destroy(this.rectTransform.GetChild(i).gameObject);

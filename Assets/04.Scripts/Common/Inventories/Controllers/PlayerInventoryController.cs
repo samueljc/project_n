@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Controller for interacting with the player's car inventory.
+/// Controller for the player's inventory.
 /// </summary>
-public class CarInventoryController : IndexedInventoryCellController {
+public class PlayerInventoryController : InventoryCellController {
   /// <summary>
-  /// A dialog event for handling dialog.
+  /// The dialog event handler for the player inventory.
   /// </summary>
   [SerializeField]
   private DialogEvent playerDialogEvent;
@@ -17,27 +17,27 @@ public class CarInventoryController : IndexedInventoryCellController {
   protected override void HandleDropError(InventoryError error) {
     switch (error) {
       case InventoryError.InvalidItem:
-        this.SayCarInvalidItem();
+        this.SayInvalidItem();
         break;
       case InventoryError.OutOfSpace:
-        this.SayCarOutOfSpace();
+        this.SayInventoryFull();
         break;
     }
   }
 
   /// <summary>
-  /// Broadcast that we can't put that in the car.
+  /// Broadcast an inventory full event.
   /// </summary>
-  private void SayCarInvalidItem() {
-    string text = LocalizationManager.GetText(MessageKey.CarInventory_InvalidItem_1);
+  private void SayInventoryFull() {
+    string text = LocalizationManager.GetText(MessageKey.PlayerInventory_OutOfSpace_1);
     playerDialogEvent.Raise(new DialogCue(text, 2f));
   }
 
   /// <summary>
-  /// Broadcast that there's no room in the car.
+  /// Broadcast an invalid item.
   /// </summary>
-  private void SayCarOutOfSpace() {
-    string text = LocalizationManager.GetText(MessageKey.CarInventory_InvalidItem_1);
+  private void SayInvalidItem() {
+    string text = LocalizationManager.GetText(MessageKey.PlayerInventory_InvalidItem_1);
     playerDialogEvent.Raise(new DialogCue(text, 2f));
   }
 }

@@ -8,8 +8,8 @@ public class PlayerState : ScriptableObject {
   /// <summary>
   /// The player's inventory.
   /// </summary>
-  /// <seealso cref="IndexedInventory" />
-  public IndexedInventory inventory;
+  /// <seealso cref="Inventory" />
+  public Inventory inventory;
 
   /// <summary>
   /// The player's wallet.

@@ -3,6 +3,7 @@
 /// </summary>
 public enum InventoryError {
   NoError,
+  Unknown,
   OutOfSpace,
   OutOfBounds,
   InvalidItem,

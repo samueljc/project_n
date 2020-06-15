@@ -28,7 +28,7 @@ public class StoreController : MonoBehaviour {
   /// The player's inventory.
   /// </summary>
   [SerializeField]
-  private IndexedInventory playerInventory;
+  private Inventory playerInventory;
 
   /// <summary>
   /// The player's wallet.
@@ -176,7 +176,7 @@ public class StoreController : MonoBehaviour {
   private int CalculateCheckoutPrice() {
     int price = 0;
     foreach (PortableItem item in this.playerInventory) {
-      if (item != null && item.storeObject) {
+      if (item != null) {
         price += item.price;
       }
     }

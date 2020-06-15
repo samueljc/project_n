@@ -17,14 +17,14 @@ public class PortableItemDetails : ScriptableObject {
   public string description;
 
   /// <summary>
-  /// A boolean representing if this item is can be found in the store.
-  /// </summary>
-  public bool storeObject;
-
-  /// <summary>
   /// The integer price of an item.
   /// </summary>
   public int price;
+
+  /// <summary>
+  /// A boolean representing if this item is a shovel.
+  /// </summary>
+  public bool shovel;
 
   // Visuals
 
@@ -44,14 +44,4 @@ public class PortableItemDetails : ScriptableObject {
   /// The width of this object for layout purposes.
   /// </summary>
   public float shelfWidth;
-
-  /// <summary>
-  /// The height of this object for layout purposes.
-  /// </summary>
-  public float height;
-
-  /// <summary>
-  /// The depth of this object for layout purposes.
-  /// </summary>
-  public float depth;
 }

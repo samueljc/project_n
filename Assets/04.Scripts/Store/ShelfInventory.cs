@@ -1,46 +1,66 @@
 using UnityEngine;
 
 /// <summary>
-/// An inventory that only accepts store items that can sit on a shelf.
+/// A dynamic inventory that's limited by physical space.
 /// </summary>
 [CreateAssetMenu(fileName="New Shelf Inventory", menuName="Scriptable Objects/Inventories/Shelf Inventory")]
 public class ShelfInventory : Inventory {
   /// <summary>
-  /// The physical space of the shelf.
+  /// The physical space in the inventory.
   /// </summary>
   public float physicalSpaceAvailable = 400f;
 
   /// <summary>
-  /// The phsical space between items on a shelf.
+  /// The physical space between items in the inventory.
   /// </summary>
   public float physicalItemGap = 1f;
 
-  /// <summary>
-  /// Add a <c>PortableItem</c> to the shelf.
-  /// </summary>
-  /// <param name="item">The item to be added.</param>
-  /// <returns>
-  /// An <c>Error</c> denoting any problems adding to the shelf inventory.
-  /// </returns>
+  /// <inheritdoc />
   /// <remarks>
   /// In addition to performing all of the usual inventory checks this will
-  /// also make sure the item physically fits on the shelf using the item's
-  /// width and the remaining shelf width.
+  /// also make sure the item physically fits using the item's width and the
+  /// remaining inventory width.
   /// </remarks>
   public override InventoryError Add(PortableItem item) {
-    if (!item.details.storeObject) {
+    if (!this.Supports(item)) {
       return InventoryError.InvalidItem;
     }
 
-    // check for shelf space
+    if (this.Contains(item)) {
+      return InventoryError.AlreadyExists;
+    }
+
+    // Check for space on the shelf.
     float spaceNeeded = item.shelfWidth;
-    foreach (var i in this) {
-      spaceNeeded += i.shelfWidth + physicalItemGap;
-      if (physicalSpaceAvailable < spaceNeeded) {
-        return InventoryError.OutOfSpace;
+    foreach (PortableItem i in this.items) {
+      if (i != null) {
+        spaceNeeded += physicalItemGap + i.shelfWidth;
+        if (physicalSpaceAvailable < spaceNeeded) {
+          return InventoryError.OutOfSpace;
+        }
       }
     }
 
-    return base.Add(item);
+    // It's a valid item and everything will fit. Now put it in the first
+    // available slot.
+    for (int i = 0; i < this.items.Count; ++i) {
+      if (this.items[i] == null) {
+        item.inventory?.Remove(item);
+        this.UpdateIndex(i, item);
+        return InventoryError.NoError;
+      }
+    }
+
+    // If we couldn't find an empty slot it means we don't have space.
+    return InventoryError.OutOfSpace;
+  }
+
+  /// <see cref="Add" />
+  /// <remarks>
+  /// This type of inventory doesn't really support setting an item by the
+  /// index so this just proxies to <c>Add</c> and drops the index.
+  /// </remarks>
+  public override InventoryError Set(int index, PortableItem item) {
+    return this.Add(item);
   }
 }

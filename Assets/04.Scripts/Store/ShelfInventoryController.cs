@@ -3,7 +3,7 @@ using UnityEngine;
 
 /// <inheritdoc />
 /// <summary>
-/// A shelf controller.
+/// A shelf inventory controller.
 /// </summary>
 public class ShelfInventoryController : InventoryController {
   /// <summary>
@@ -18,9 +18,9 @@ public class ShelfInventoryController : InventoryController {
   /// </remarks>
   protected override void ValidateLayout() {
     // The underlying inventory should be a ShelfInventory
-    ShelfInventory shelf = this.inventory as ShelfInventory;
-    if (shelf == null) {
-      throw new System.InvalidCastException("Inventory is not a ShelfInventory");
+    ShelfInventory inventory = this.inventory as ShelfInventory;
+    if (inventory == null) {
+      throw new System.InvalidCastException("Inventory could not be cast to a ShelfInventory");
     }
 
     // clear existing children
@@ -31,7 +31,10 @@ public class ShelfInventoryController : InventoryController {
     // get all of our objects by type so we can sort them
     // FIXME: could keep the dict around if allocating it is slow
     var itemsByType = new Dictionary<string, List<PortableItem>>();
-    foreach (PortableItem item in this.inventory) {
+    foreach (PortableItem item in inventory) {
+      if (item == null) {
+        continue;
+      }
       if (!itemsByType.ContainsKey(item.name)) {
         itemsByType[item.name] = new List<PortableItem>();
       }
@@ -56,7 +59,7 @@ public class ShelfInventoryController : InventoryController {
         // sizes of our objects.
         xOffset += item.shelfWidth / 2f;
         itemTransform.anchoredPosition = new Vector2(xOffset, 0f);
-        xOffset += item.shelfWidth / 2f + shelf.physicalItemGap;
+        xOffset += item.shelfWidth / 2f + inventory.physicalItemGap;
       }
     }
   }

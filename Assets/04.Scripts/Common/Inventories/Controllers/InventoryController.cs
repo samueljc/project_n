@@ -2,9 +2,14 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 /// <summary>
-/// Abstract class for controlling interactions with UI inventories.
+/// Abstract controller for a full inventory.
 /// </summary>
 /// <seealso cref="Inventory" />
+/// <remarks>
+/// This should be used when you want to manage all cells from a single
+/// single game object. An example use case of this is if you only ever use
+/// add and don't care about the index.
+/// </remarks>
 public abstract class InventoryController : MonoBehaviour, IDropHandler {
   /// <summary>
   /// Prefab for generating <c>PortableObject</c>s.

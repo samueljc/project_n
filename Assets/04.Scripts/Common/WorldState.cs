@@ -12,7 +12,7 @@ public sealed class WorldState : MonoBehaviour {
   /// <summary>
   /// The state of the player's car.
   /// </summary>
-  public IndexedInventory playerCar;
+  public Inventory playerCar;
 
   /// <summary>
   /// The journal tracking entropy.

@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 536d3edc09324804e99cedeebb73cab2, type: 3}
+  m_Script: {fileID: 11500000, guid: c506dc27bc3b2294c9fa637ac3b64956, type: 3}
   m_Name: StoreShelf21
   m_EditorClassIdentifier: 
-  capacity: 100
+  capacity: 30
+  blacklist: {fileID: 0}
+  whitelist: {fileID: 0}
   physicalSpaceAvailable: 400
   physicalItemGap: 1
