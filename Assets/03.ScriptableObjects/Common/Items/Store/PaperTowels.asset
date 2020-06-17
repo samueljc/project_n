@@ -14,10 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Paper Towels
   description: A roll of yellowed paper towels.
-  storeObject: 1
   price: 2
   inventorySprite: {fileID: 21300000, guid: 87a2e145d92a0784ab15fac2b0871ee5, type: 3}
   draggingSprite: {fileID: 21300000, guid: 87a2e145d92a0784ab15fac2b0871ee5, type: 3}
   shelfWidth: 21
-  height: 36
-  depth: 6

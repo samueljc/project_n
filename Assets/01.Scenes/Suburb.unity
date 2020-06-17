@@ -1856,7 +1856,7 @@ PrefabInstance:
         type: 3}
       propertyPath: inventory
       value: 
-      objectReference: {fileID: 11400000, guid: 2c189dfb5eea5704291caaab962ec866,
+      objectReference: {fileID: 11400000, guid: 24128cba752780b448a2238ab65cff0e,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ccb71a5b15b6ae4895dcc97a9d26851, type: 3}

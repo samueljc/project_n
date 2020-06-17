@@ -29,11 +29,6 @@ public class PortableItem : ScriptableObject {
     get { return this.details.price; }
   }
 
-  /// <inheritdoc cref="M:PortableItemDetails.shovel" />
-  public bool shovel {
-    get { return this.details.shovel; }
-  }
-
   /// <inheritdoc cref="M:PortableItemDetails.inventorySprite" />
   public Sprite inventorySprite {
     get { return this.details.inventorySprite; }

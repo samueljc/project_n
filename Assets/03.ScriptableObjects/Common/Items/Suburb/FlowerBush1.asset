@@ -10,14 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1cc5ccca37cf0047933e3396d0897af, type: 3}
-  m_Name: Soup
+  m_Name: FlowerBush1
   m_EditorClassIdentifier: 
-  name: Soup
-  description: An expired can of soup.
-  storeObject: 1
-  price: 1
-  inventorySprite: {fileID: 21300000, guid: 5bb89772199920041ae81b8ac8f5c694, type: 3}
-  draggingSprite: {fileID: 21300000, guid: 5bb89772199920041ae81b8ac8f5c694, type: 3}
-  shelfWidth: 14
-  height: 20
-  depth: 3
+  name: Flower Bush
+  description: 
+  price: 0
+  inventorySprite: {fileID: 21300000, guid: 31412908cfacfb04c82ba91625f85736, type: 3}
+  draggingSprite: {fileID: 21300000, guid: 31412908cfacfb04c82ba91625f85736, type: 3}
+  shelfWidth: 0

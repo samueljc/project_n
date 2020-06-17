@@ -10,14 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1cc5ccca37cf0047933e3396d0897af, type: 3}
-  m_Name: Bread
+  m_Name: Soda
   m_EditorClassIdentifier: 
-  name: Loaf of Bread
-  description: An old loaf of bread. It's starting to show signs of mold.
-  storeObject: 1
+  name: Bottle of Soda
+  description: A bottle of soda. I suspect it's flat.
   price: 1
-  inventorySprite: {fileID: 21300000, guid: 010109e5b838db046925a50606f16a5e, type: 3}
-  draggingSprite: {fileID: 21300000, guid: 010109e5b838db046925a50606f16a5e, type: 3}
-  shelfWidth: 62
-  height: 0
-  depth: 0
+  inventorySprite: {fileID: 21300000, guid: fb41b4852f2dab946ad6af482f4bc96c, type: 3}
+  draggingSprite: {fileID: 21300000, guid: fb41b4852f2dab946ad6af482f4bc96c, type: 3}
+  shelfWidth: 15

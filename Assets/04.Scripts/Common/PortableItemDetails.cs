@@ -21,11 +21,6 @@ public class PortableItemDetails : ScriptableObject {
   /// </summary>
   public int price;
 
-  /// <summary>
-  /// A boolean representing if this item is a shovel.
-  /// </summary>
-  public bool shovel;
-
   // Visuals
 
   /// <summary>
