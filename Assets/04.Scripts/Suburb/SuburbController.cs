@@ -1,32 +1,51 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SuburbController : MonoBehaviour {
-  public DialogBox normal;
-  public DialogBox autoAdvance;
-  public DialogBox slow;
-  public DialogBox multiple;
-  public DialogBox forever;
+  /// <summary>
+  /// The view for the suburb.
+  /// </summary>
+  [SerializeField]
+  private GameObject suburb;
+
+  /// <summary>
+  /// The views for the houses in the suburb.
+  /// </summary>
+  [SerializeField]
+  private GameObject[] houses;
 
   // Start is called before the first frame update
   void Start() {
-    normal.Show(new DialogCue("Standard dialog"));
-    autoAdvance.Show(new DialogCue("Auto-advance dialog", 1f));
-    slow.Show(new DialogCue("Slow dialog", float.PositiveInfinity, 2f));
-    multiple.Show(
-      new DialogCue("Part 1", 2f),
-      new DialogCue("Part 2", 2f, 1f),
-      new DialogCue("Part 3", 2f)
-    );
-    DialogCue cue = new DialogCue("you can't delete me");
-    DialogCue laughCue = new DialogCue("HAHAHAHA");
-    cue.dismissed = () => {
-      forever.Show(laughCue);
-    };
-    laughCue.dismissed = () => {
-      forever.Show(laughCue);
-    };
-    forever.Show(cue);
+    this.GoToSuburb();
+  }
+
+  /// <summary>
+  /// Go to the suburb overview screen.
+  /// </summary>
+  public void GoToSuburb() {
+    this.suburb.SetActive(true);
+    foreach (GameObject house in this.houses) {
+      house.SetActive(false);
+    }
+  }
+
+  /// <summary>
+  /// Go to the given house.
+  /// </summary>
+  public void GoToHouse(GameObject house) {
+    this.suburb.SetActive(false);
+    foreach (GameObject h in houses) {
+      h.SetActive(h == house);
+    }
+  }
+
+  /// <summary>
+  /// Exit the suburb and return to the map. This will end work for the day and
+  /// you won't be able to return to the suburb until tomorrow.
+  /// </summary>
+  public void Exit() {
+    SceneManager.LoadScene("Map");
   }
 }

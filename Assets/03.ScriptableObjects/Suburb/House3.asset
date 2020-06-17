@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53e8a324dec37eb429e3dcd7c8350fec, type: 3}
-  m_Name: PlayerCarInventoryBlacklist
-  m_EditorClassIdentifier: 
-  items:
-  - {fileID: 11400000, guid: d391c74371315e24f9a9c7e726bbb305, type: 2}
+  m_Script: {fileID: 0}
+  m_Name: House3
+  m_EditorClassIdentifier: Assembly-CSharp::SuburbHouseState
+  planter: {fileID: 11400000, guid: 6e590b20ab822324184f71b87932c752, type: 2}

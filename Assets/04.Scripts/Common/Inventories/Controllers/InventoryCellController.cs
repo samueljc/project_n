@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 /// Abstract controller for interacting with an inventory cell.
 /// </summary>
 /// <seealso cref="Inventory" />
-public abstract class InventoryCellController : MonoBehaviour, IDropHandler {
+public abstract class InventoryCellController : MonoBehaviour, IDropHandler, IInventoryController {
   /// <summary>
   /// Prefab for generating <c>PortableObject</c>s.
   /// </summary>
@@ -61,12 +61,17 @@ public abstract class InventoryCellController : MonoBehaviour, IDropHandler {
   }
 
   /// <inheritdoc />
+  public virtual bool CanTakeItem(PortableItem item) {
+    return true;
+  }
+
+  /// <inheritdoc />
   /// <remarks>
   /// Takes the dragged object and attempts to add it to the inventory. If
   /// the object cannot be added the <c>HandleDropError</c> method will be
   /// called with the appropriate <c>Error</c> value.
   /// </remarks>
-  public void OnDrop(PointerEventData eventData) {
+  public virtual void OnDrop(PointerEventData eventData) {
     // if it's not a portable object what are we doing dragging it into our
     // inventory
     PortableItemController obj = eventData.pointerDrag?.GetComponent<PortableItemController>();
@@ -92,6 +97,7 @@ public abstract class InventoryCellController : MonoBehaviour, IDropHandler {
     PortableItem item = this.inventory[this.inventoryIndex];
     if (item != null) {
       PortableItemController obj = Instantiate(this.prefab, Vector3.zero, Quaternion.identity, this.rectTransform);
+      obj.inventory = this;
       obj.item = item;
       RectTransform itemTransform = obj.transform as RectTransform;
       // Center the object in the cell.

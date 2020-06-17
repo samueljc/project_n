@@ -10,7 +10,7 @@ using UnityEngine.EventSystems;
 /// single game object. An example use case of this is if you only ever use
 /// add and don't care about the index.
 /// </remarks>
-public abstract class InventoryController : MonoBehaviour, IDropHandler {
+public abstract class InventoryController : MonoBehaviour, IDropHandler, IInventoryController {
   /// <summary>
   /// Prefab for generating <c>PortableObject</c>s.
   /// </summary>
@@ -61,6 +61,11 @@ public abstract class InventoryController : MonoBehaviour, IDropHandler {
   }
 
   /// <inheritdoc />
+  public virtual bool CanTakeItem(PortableItem item) {
+    return true;
+  }
+
+  /// <inheritdoc />
   /// <remarks>
   /// Takes the dragged object and attempts to add it to the inventory. If
   /// the object cannot be added the <c>HandleDropError</c> method will be
@@ -91,6 +96,7 @@ public abstract class InventoryController : MonoBehaviour, IDropHandler {
     // instantiate new ones
     foreach (PortableItem item in this.inventory) {
       PortableItemController obj = Instantiate(this.prefab, Vector3.zero, Quaternion.identity, this.rectTransform);
+      obj.inventory = this;
       obj.item = item;
     }
   }

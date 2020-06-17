@@ -53,6 +53,15 @@ public class LocalizationManager {
       MessageKey.PlayerInventory_OutOfSpace_1,
       new Message("I don't have space for that.")
     },
+    // car dialog
+    {
+      MessageKey.CarInventory_InvalidItem_1,
+      new Message("I'm not putting that in my car.")
+    },
+    {
+      MessageKey.CarInventory_OutOfSpace_1,
+      new Message("My car is too small; it won't fit.")
+    },
     // store dialog
     {
       MessageKey.StoreShelf_InvalidItem_1,
@@ -70,14 +79,14 @@ public class LocalizationManager {
       MessageKey.Shopkeeper_NoOutsideItems_1,
       new Message("Leave your trash outside, I don't want it cluttering up my shelves.")
     },
-    // car dialog
+    // suburb dialog
     {
-      MessageKey.CarInventory_InvalidItem_1,
-      new Message("I'm not putting that in my car.")
+      MessageKey.Planter_InvalidItem_1,
+      new Message("The only thing that belongs in the planter are plants...")
     },
     {
-      MessageKey.CarInventory_OutOfSpace_1,
-      new Message("My car is too small; it won't fit.")
+      MessageKey.Planter_NeedShovel_1,
+      new Message("I need a shovel to dig that up.")
     }
   };
 

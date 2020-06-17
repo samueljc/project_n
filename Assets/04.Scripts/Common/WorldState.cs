@@ -30,6 +30,14 @@ public sealed class WorldState : MonoBehaviour {
   public StoreState storeState;
 
   /// <summary>
+  /// The state of the suburb.
+  /// </summary>
+  public SuburbState suburbState;
+
+  [SerializeField]
+  private PortableItemDetails shovel;
+
+  /// <summary>
   /// The singular world state instance.
   /// </summary>
   private static WorldState instance;
@@ -57,7 +65,16 @@ public sealed class WorldState : MonoBehaviour {
   /// Repopulate the world state at the end of a day.
   /// </summary>
   public void Repopulate() {
+    this.playerCar.Clear();
+    this.playerCar.Add(this.CreateShovel());
     this.storeState.Repopulate();
+    this.suburbState.Repopulate();
+  }
+
+  private PortableItem CreateShovel() {
+    PortableItem item = ScriptableObject.CreateInstance<PortableItem>();
+    item.details = shovel;
+    return item;
   }
 
   /// <summary>

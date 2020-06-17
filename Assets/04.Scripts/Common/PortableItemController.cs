@@ -11,12 +11,18 @@ public enum PortableObjectOrientation {
 /// Game controller for an underlying <c>PortableItem</c>.
 /// </summary>
 /// <seealso cref="PortableItem" />
-public class PortableItemController : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
+public class PortableItemController : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerUpHandler {
   /// <summary>
   /// The underlying item.
   /// </summary>
   [HideInInspector]
   public PortableItem item;
+
+  /// <summary>
+  /// The drag item handler for the parent inventory.
+  /// </summary>
+  [HideInInspector]
+  public IInventoryController inventory;
 
   /// <summary>
   /// The game object's transform.
@@ -50,6 +56,11 @@ public class PortableItemController : MonoBehaviour, IBeginDragHandler, IDragHan
   /// This is used for determining which sprite to render.
   /// </remarks>
   private PortableObjectOrientation objectOrientation = PortableObjectOrientation.Inventory;
+
+  /// <summary>
+  /// Boolean used internally for hiding drag events.
+  /// </summary>
+  private bool hideDrag = false;
 
   /// <summary>
   /// The cursor offset when initating a drag event.
@@ -109,11 +120,31 @@ public class PortableItemController : MonoBehaviour, IBeginDragHandler, IDragHan
 
   /// <inheritdoc />
   /// <remarks>
+  /// We check here if the inventory will let us take this as we want to capture
+  /// any events that are caused by denying (such as display a dialog box) when
+  /// the user clicks instead of when they actually start dragging.
+  /// </remarks>
+  public void OnPointerDown(PointerEventData eventData) {
+    if (this.inventory != null && !this.inventory.CanTakeItem(this.item)) {
+      this.hideDrag = true;
+      eventData.pointerPress = null;
+    }
+  }
+
+  /// <inheritdoc />
+  /// <remarks>
   /// When we start dragging we want to record some information so we can move
   /// this object back if necessary, then we need to put it on the dragging
   /// canvas to make sure it's above everything else.
   /// </remarks>
   public void OnBeginDrag(PointerEventData eventData) {
+    if (this.hideDrag) {
+      // Note: Setting pointerDrag to null stop the subsequent OnDrag and
+      // OnDragEnd events. It also immediately triggers OnPointerUp.
+      eventData.pointerDrag = null;
+      return;
+    }
+
     this.startDragPosition = this.rectTransform.anchoredPosition;
     this.startDragParent = this.transform.parent;
 
@@ -147,5 +178,13 @@ public class PortableItemController : MonoBehaviour, IBeginDragHandler, IDragHan
     this.canvasGroup.alpha = 1f;
 
     this.image.sprite = this.details.inventorySprite;
+  }
+
+  /// <inheritdoc />
+  /// <remarks>
+  /// Reset the pointer event.
+  /// </remarks>
+  public void OnPointerUp(PointerEventData eventData) {
+    this.hideDrag = false;
   }
 }

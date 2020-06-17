@@ -12,14 +12,32 @@ public class PortableItemFactory : ScriptableObject {
   public PortableItemDetails[] items;
 
   /// <summary>
+  /// Create a copy of an item.
+  /// </summary>
+  /// <param name="item">The item to copy.</param>
+  /// <returns>A new portable item based on the provided item.</returns>
+  public PortableItem CreateItem(PortableItem item) {
+    return this.CreateItem(item.details);
+  }
+
+  /// <summary>
+  /// Create a portable item from the given details.
+  /// </summary>
+  /// <param name="details">The item details to use.</param>
+  /// <returns>An item based on the given details.</returns>
+  public PortableItem CreateItem(PortableItemDetails details) {
+    PortableItem item = ScriptableObject.CreateInstance<PortableItem>();
+    item.details = details;
+    return item;
+  }
+
+  /// <summary>
   /// Creates a random item from the list of possible items.
   /// </summary>
   /// <returns>
   /// A new <c>PortableItem</c> based on the randomly selected details.
   /// </returns>
   public PortableItem CreateRandomItem() {
-    PortableItem item = ScriptableObject.CreateInstance<PortableItem>();
-    item.details = items[StaticRandom.Range(0, items.Length)];
-    return item;
+    return CreateItem(items[StaticRandom.Range(0, items.Length)]);
   }
 }

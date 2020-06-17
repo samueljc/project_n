@@ -177,6 +177,22 @@ public class Inventory : ScriptableObject, IEnumerable<PortableItem> {
   }
 
   /// <summary>
+  /// See if the inventory contains an item with the given details.
+  /// </summary>
+  /// <param name="details">The details to look for.</param>
+  /// <returns>
+  /// A boolean denoting if an item with the details was present.
+  /// </returns>
+  public bool Contains(PortableItemDetails details) {
+    foreach (PortableItem item in this.items) {
+      if (item != null && item.details == details) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /// <summary>
   /// Add an item to the first empty cell in the inventory.
   /// </summary>
   /// <param name="item">The item to add.</param>
