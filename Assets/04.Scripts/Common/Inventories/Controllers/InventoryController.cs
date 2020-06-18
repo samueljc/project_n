@@ -69,7 +69,7 @@ public abstract class InventoryController : MonoBehaviour, IDropHandler, IInvent
   /// <remarks>
   /// Takes the dragged object and attempts to add it to the inventory. If
   /// the object cannot be added the <c>HandleDropError</c> method will be
-  /// called with the appropriate <c>Error</c> value.
+  /// called with the appropriate <c>InventoryError</c> value.
   /// </remarks>
   public void OnDrop(PointerEventData eventData) {
     // if it's not a portable object what are we doing dragging it into our

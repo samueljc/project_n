@@ -87,6 +87,10 @@ public class LocalizationManager {
     {
       MessageKey.Planter_NeedShovel_1,
       new Message("I need a shovel to dig that up.")
+    },
+    {
+      MessageKey.TrashCan_InvalidItem_1,
+      new Message("I can't just throw that away.")
     }
   };
 

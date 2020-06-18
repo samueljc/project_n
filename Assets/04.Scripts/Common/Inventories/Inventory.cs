@@ -31,7 +31,7 @@ public class Inventory : ScriptableObject, IEnumerable<PortableItem> {
   /// <remarks>
   /// If the whitelist is set this will be ignored.
   /// </remarks>
-  public InventoryBlacklist blacklist;
+  public ItemBlacklist blacklist;
 
   /// <summary>
   /// The only items allowed in this inventory.
@@ -39,7 +39,7 @@ public class Inventory : ScriptableObject, IEnumerable<PortableItem> {
   /// <remarks>
   /// If this is set the blacklist will be ignored.
   /// </remarks>
-  public InventoryWhitelist whitelist;
+  public ItemWhitelist whitelist;
 
   /// <summary>
   /// A list containing the inventory's <c>PortableItem</c>s.
@@ -132,20 +132,7 @@ public class Inventory : ScriptableObject, IEnumerable<PortableItem> {
   /// <param name="item">The item to check.</param>
   /// <returns>True if supported, false otherwise.</returns>
   public bool Supports(PortableItem item) {
-    if (item == null) {
-      return false;
-    }
-    // Check the whitelist and blacklist when permitting items.
-    if (this.whitelist != null) {
-      if (!this.whitelist.Contains(item)) {
-        return false;
-      }
-    } else if (this.blacklist != null) {
-      if (this.blacklist.Contains(item)) {
-        return false;
-      }
-    }
-    return true;
+    return item.Filter(this.whitelist, this.blacklist);
   }
 
   /// <summary>

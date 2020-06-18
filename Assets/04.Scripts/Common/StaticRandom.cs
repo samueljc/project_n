@@ -16,6 +16,16 @@ public static class StaticRandom {
   }
 
   /// <summary>
+  /// Return a random vector between min [inclusive] and max [inclusive].
+  /// </summary>
+  /// <param name="min">The minimum vector.</param>
+  /// <param name="max">The maximum vector.</param>
+  /// <returns>A vector between the minimum and maximum vectors.</returns>
+  public static Vector2 Range(in Vector2 min, in Vector2 max) {
+    return new Vector2(Range(min.x, max.x), Range(min.y, max.y));
+  }
+
+  /// <summary>
   /// Shuffle a list in place.
   /// </summary>
   /// <param name="list">The list to shuffle.</param>

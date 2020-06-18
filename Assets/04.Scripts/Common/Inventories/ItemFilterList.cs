@@ -3,7 +3,7 @@ using UnityEngine;
 /// <summary>
 /// An abstract list for controlling inventory access.
 /// </summary>
-public abstract class InventoryFilterList : ScriptableObject {
+public abstract class ItemFilterList : ScriptableObject {
   /// <summary>
   /// A list of items that are permitted.
   /// </summary>

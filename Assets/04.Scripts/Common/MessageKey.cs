@@ -21,4 +21,5 @@ public enum MessageKey {
   // suburb
   Planter_InvalidItem_1,
   Planter_NeedShovel_1,
+  TrashCan_InvalidItem_1,
 }
