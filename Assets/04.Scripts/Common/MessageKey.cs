@@ -22,4 +22,5 @@ public enum MessageKey {
   Planter_InvalidItem_1,
   Planter_NeedShovel_1,
   TrashCan_InvalidItem_1,
+  Tree_InsufficientFunds_1,
 }

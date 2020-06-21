@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &431109404105715082
+--- !u!1 &2961567377852375419
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,26 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6157109689390283247}
-  - component: {fileID: 3481216228102107656}
-  - component: {fileID: 1497976097840341809}
-  - component: {fileID: 7672353481812284500}
-  - component: {fileID: -8286937626570374283}
-  - component: {fileID: -730956534097699001}
+  - component: {fileID: 8759625291400394014}
+  - component: {fileID: 2066520945309417209}
+  - component: {fileID: 4047578544703221696}
+  - component: {fileID: 1762244981503911841}
   m_Layer: 5
-  m_Name: CarInventoryCell
+  m_Name: TreeInventoryCell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!224 &6157109689390283247
+--- !u!224 &8759625291400394014
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 431109404105715082}
+  m_GameObject: {fileID: 2961567377852375419}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,13 +38,13 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 64, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!223 &3481216228102107656
+--- !u!223 &2066520945309417209
 Canvas:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 431109404105715082}
+  m_GameObject: {fileID: 2961567377852375419}
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
@@ -61,13 +59,13 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &1497976097840341809
+--- !u!114 &4047578544703221696
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 431109404105715082}
+  m_GameObject: {fileID: 2961567377852375419}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
@@ -78,54 +76,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &7672353481812284500
+--- !u!114 &1762244981503911841
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 431109404105715082}
+  m_GameObject: {fileID: 2961567377852375419}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f4ab6c27fedf2d42bd1508f48e5769e, type: 3}
+  m_Script: {fileID: 11500000, guid: 39be68de30adb0c48acfbc11ef8e0b09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 6831630889754557387, guid: 083691ccee8ebc845913165e3ba79cc2, type: 3}
   playerDialogEvent: {fileID: 11400000, guid: 3897048f063c18b43a5bcb7f12a0f0d2, type: 2}
---- !u!222 &-8286937626570374283
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 431109404105715082}
-  m_CullTransparentMesh: 0
---- !u!114 &-730956534097699001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 431109404105715082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.21176471}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  playerWallet: {fileID: 11400000, guid: 399de0bff81b43946979d06ece65dd17, type: 2}

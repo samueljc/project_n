@@ -43,3 +43,10 @@ Inherit from `EditorWindow`.
 
 `Init` is kind of like `Awake`.
 `OnGUI` is kind of like `Update`.
+
+## Instantiate
+
+Instantiating objects ends up calling `Awake` and `OnEnable`. `OnEnable` will
+be skipped if the object is disabled, so if you expect some values to be
+defined before `OnEnable` runs you need your prefab to be disabled by default,
+set those values, and then activate the object.

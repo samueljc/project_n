@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 /// <summary>
@@ -44,7 +42,7 @@ public class PlanterInventoryController : InventoryCellController {
   /// allowing them to swap bushes.
   /// </remarks>
   public override void OnDrop(PointerEventData eventData) {
-    if (this.inventory[this.inventoryIndex] != null && !this.PlayerHasShovel()) {
+    if (this.inventory[this.index] != null && !this.PlayerHasShovel()) {
       this.SayNeedShovel();
       return;
     }

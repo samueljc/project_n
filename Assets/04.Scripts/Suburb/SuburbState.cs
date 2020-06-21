@@ -27,7 +27,7 @@ public class SuburbState : ScriptableObject {
     List<PortableItem> plants = new List<PortableItem>();
     for (int h = 0; h < houses.Length; ++h) {
       PortableItem plant = planterFactory.CreateRandomItem();
-      for (int i = 0; i < houses[h].planter.capacity; ++i) {
+      for (int i = 0; i < houses[h].Planter.capacity; ++i) {
         plants.Add(planterFactory.CreateItem(plant));
       }
     }

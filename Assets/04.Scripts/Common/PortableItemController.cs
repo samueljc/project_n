@@ -15,14 +15,20 @@ public class PortableItemController : MonoBehaviour, IPointerDownHandler, IBegin
   /// <summary>
   /// The underlying item.
   /// </summary>
-  [HideInInspector]
-  public PortableItem item;
+  private PortableItem item;
+
+  /// <summary>
+  /// The underlying item.
+  /// </summary>
+  public PortableItem Item {
+    get { return this.item; }
+  }
 
   /// <summary>
   /// The drag item handler for the parent inventory.
   /// </summary>
   [HideInInspector]
-  public IInventoryController inventory;
+  private InventoryController inventory;
 
   /// <summary>
   /// The game object's transform.
@@ -75,25 +81,31 @@ public class PortableItemController : MonoBehaviour, IPointerDownHandler, IBegin
   /// <summary>
   /// The details of the underlying item.
   /// </summary>
-  public PortableItemDetails details {
+  public PortableItemDetails Details {
     get { return this.item.details; }
   }
 
   /// <summary>
   /// The orientation of the item.
   /// </summary>
-  public PortableObjectOrientation orientation {
+  public PortableObjectOrientation Orientation {
     get { return this.objectOrientation; }
     set {
-      this.objectOrientation = orientation;
+      this.objectOrientation = Orientation;
       switch (this.objectOrientation) {
         case PortableObjectOrientation.Inventory:
-          this.image.sprite = this.details.inventorySprite;
+          this.image.sprite = this.Details.inventorySprite;
           break;
         case PortableObjectOrientation.Dragging:
-          this.image.sprite = this.details.draggingSprite;
+          this.image.sprite = this.Details.draggingSprite;
           break;
       }
+      // Set the size to the sprite size.
+      this.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, this.image.sprite.rect.width);
+      this.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, this.image.sprite.rect.height);
+      // Set the pivot to the sprite pivot. Need to divide by the sprite size
+      // as the sprite pivot is in pixels but we need it as a fraction.
+      this.rectTransform.pivot = this.image.sprite.pivot / this.image.sprite.rect.size;
     }
   }
 
@@ -112,7 +124,6 @@ public class PortableItemController : MonoBehaviour, IPointerDownHandler, IBegin
 
   /// <inheritdoc />
   void Start() {
-    this.image.sprite = this.item.details.inventorySprite;
     this.image.alphaHitTestMinimumThreshold = 0.1f;
   }
 
@@ -153,7 +164,7 @@ public class PortableItemController : MonoBehaviour, IPointerDownHandler, IBegin
 
     this.canvasGroup.alpha = 0.8f;
 
-    this.image.sprite = this.details.draggingSprite;
+    this.image.sprite = this.Details.draggingSprite;
   }
 
   /// <inheritdoc />
@@ -177,7 +188,7 @@ public class PortableItemController : MonoBehaviour, IPointerDownHandler, IBegin
 
     this.canvasGroup.alpha = 1f;
 
-    this.image.sprite = this.details.inventorySprite;
+    this.image.sprite = this.Details.inventorySprite;
   }
 
   /// <inheritdoc />
@@ -186,5 +197,26 @@ public class PortableItemController : MonoBehaviour, IPointerDownHandler, IBegin
   /// </remarks>
   public void OnPointerUp(PointerEventData eventData) {
     this.hideDrag = false;
+  }
+
+  /// <summary>
+  /// Initializes the controller with the necessary information to convert an
+  /// item's state into a functional game object.
+  /// </summary>
+  /// <param name="item">
+  /// The portable item to wrap this controller around in order to transform
+  /// it into a valid game object.
+  /// </param>
+  /// <param name="inventory">
+  /// The optional inventory controller this item belongs to. It's perfectly
+  /// valid for an item to not belong to an inventory.
+  /// </param>
+  public void Initialize(PortableItem item, InventoryController inventory = null) {
+    if (item == null) {
+      throw new System.ArgumentNullException("item cannot be null");
+    }
+    this.item = item;
+    this.inventory = inventory;
+    this.Orientation = PortableObjectOrientation.Inventory;
   }
 }

@@ -10,7 +10,7 @@ using UnityEngine.EventSystems;
 /// single game object. An example use case of this is if you only ever use
 /// add and don't care about the index.
 /// </remarks>
-public abstract class InventoryController : MonoBehaviour, IDropHandler, IInventoryController {
+public abstract class InventoryController : MonoBehaviour, IDropHandler {
   /// <summary>
   /// Prefab for generating <c>PortableObject</c>s.
   /// </summary>
@@ -21,7 +21,8 @@ public abstract class InventoryController : MonoBehaviour, IDropHandler, IInvent
   /// <summary>
   /// The underlying inventory we want to interact with.
   /// </summary>
-  public Inventory inventory;
+  [SerializeField]
+  protected Inventory inventory;
 
   /// <summary>
   /// The <c>GameObject</c>s transform.
@@ -39,12 +40,12 @@ public abstract class InventoryController : MonoBehaviour, IDropHandler, IInvent
   }
 
   /// <inheritdoc />
-  void OnEnable() {
+  protected virtual void OnEnable() {
     this.inventory.AddChangedHandler(this.Invalidate);
   }
 
   /// <inheritdoc />
-  void OnDisable() {
+  protected virtual void OnDisable() {
     this.inventory.RemoveChangedHandler(this.Invalidate);
   }
 
@@ -53,7 +54,7 @@ public abstract class InventoryController : MonoBehaviour, IDropHandler, IInvent
   /// Will re-validate by calling <c>ValidateLayout</c> if the layout were
   /// invalidated.
   /// </remarks>
-  void LateUpdate() {
+  protected virtual void LateUpdate() {
     if (this.invalidated) {
       this.ValidateLayout();
       this.invalidated = false;
@@ -71,16 +72,16 @@ public abstract class InventoryController : MonoBehaviour, IDropHandler, IInvent
   /// the object cannot be added the <c>HandleDropError</c> method will be
   /// called with the appropriate <c>InventoryError</c> value.
   /// </remarks>
-  public void OnDrop(PointerEventData eventData) {
+  public virtual void OnDrop(PointerEventData eventData) {
     // if it's not a portable object what are we doing dragging it into our
     // inventory
     PortableItemController obj = eventData.pointerDrag?.GetComponent<PortableItemController>();
     if (obj == null) {
-      HandleDropError(InventoryError.InvalidItem);
+      this.HandleDropError(InventoryError.InvalidItem);
       return;
     }
     // Try to add it and check for errors.
-    HandleDropError(this.inventory.Add(obj.item));
+    this.HandleDropError(this.inventory.Add(obj.Item));
     return;
   }
 
@@ -96,8 +97,7 @@ public abstract class InventoryController : MonoBehaviour, IDropHandler, IInvent
     // instantiate new ones
     foreach (PortableItem item in this.inventory) {
       PortableItemController obj = Instantiate(this.prefab, Vector3.zero, Quaternion.identity, this.rectTransform);
-      obj.inventory = this;
-      obj.item = item;
+      obj.Initialize(item, this);
     }
   }
 
@@ -113,7 +113,7 @@ public abstract class InventoryController : MonoBehaviour, IDropHandler, IInvent
   /// Inventory change callback to invalidate the current view and trigger
   /// a redraw.
   /// </summary>
-  void Invalidate() {
+  protected void Invalidate() {
     this.invalidated = true;
   }
 }

@@ -21,8 +21,8 @@ public class ShelfInventory : Inventory {
   /// also make sure the item physically fits using the item's width and the
   /// remaining inventory width.
   /// </remarks>
-  public override InventoryError Add(PortableItem item) {
-    if (!this.Supports(item)) {
+  public override InventoryError Add(PortableItem item, bool ignoreFilters = false) {
+    if (!ignoreFilters && !this.Supports(item)) {
       return InventoryError.InvalidItem;
     }
 
@@ -60,7 +60,7 @@ public class ShelfInventory : Inventory {
   /// This type of inventory doesn't really support setting an item by the
   /// index so this just proxies to <c>Add</c> and drops the index.
   /// </remarks>
-  public override InventoryError Set(int index, PortableItem item) {
-    return this.Add(item);
+  public override InventoryError Set(int index, PortableItem item, bool ignoreFilters = false) {
+    return this.Add(item, ignoreFilters);
   }
 }

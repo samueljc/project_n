@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3d2171ecc6449840bb9b5a0b026417d, type: 3}
-  m_Name: PlayerInventory
+  m_Name: House1TreeInventory
   m_EditorClassIdentifier: 
-  capacity: 2
-  blacklist: {fileID: 11400000, guid: 72b798badd748964eba6c53bdeef039e, type: 2}
-  whitelist: {fileID: 0}
+  capacity: 8
+  blacklist: {fileID: 0}
+  whitelist: {fileID: 11400000, guid: 73db3c7270558284ebf70fcce9903ffb, type: 2}

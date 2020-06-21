@@ -46,12 +46,8 @@ public class ShelfInventoryController : InventoryController {
     foreach (var items in itemsByType.Values) {
       foreach (var item in items) {
         PortableItemController obj = Instantiate(this.prefab, Vector3.zero, Quaternion.identity, this.rectTransform);
-        obj.inventory = this;
-        obj.item = item;
+        obj.Initialize(item, this);
         RectTransform itemTransform = obj.transform as RectTransform;
-        // Set the pivot relative to the sprite's pivot. This ensures our items
-        // all appear on the same vertical axis of the shelf.
-        itemTransform.pivot = item.inventorySprite.pivot / itemTransform.sizeDelta;
         // Set the anchor to the bottom left.
         itemTransform.anchorMin = Vector2.zero;
         itemTransform.anchorMax = Vector2.zero;

@@ -91,6 +91,10 @@ public class LocalizationManager {
     {
       MessageKey.TrashCan_InvalidItem_1,
       new Message("I can't just throw that away.")
+    },
+    {
+      MessageKey.Tree_InsufficientFunds_1,
+      new Message("I don't have the money to take that.")
     }
   };
 

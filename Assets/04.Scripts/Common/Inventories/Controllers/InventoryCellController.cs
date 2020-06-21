@@ -5,64 +5,31 @@ using UnityEngine.EventSystems;
 /// Abstract controller for interacting with an inventory cell.
 /// </summary>
 /// <seealso cref="Inventory" />
-public abstract class InventoryCellController : MonoBehaviour, IDropHandler, IInventoryController {
-  /// <summary>
-  /// Prefab for generating <c>PortableObject</c>s.
-  /// </summary>
-  /// <seealso cref="PortableItemController" />
-  [SerializeField]
-  protected PortableItemController prefab;
-
-  /// <summary>
-  /// The underlying inventory we want to interact with.
-  /// </summary>
-  public Inventory inventory;
-
+public abstract class InventoryCellController : InventoryController {
   /// <summary>
   /// The index this cell represents.
   /// </summary>
-  public int inventoryIndex;
+  protected int index;
+
+  /// <inheritdoc />
+  protected override void OnEnable() {
+    this.inventory.AddCellChangedHandler(this.index, this.Invalidate);
+  }
+
+  /// <inheritdoc />
+  protected override void OnDisable() {
+    this.inventory.RemoveCellChangedHandler(this.index, this.Invalidate);
+  }
 
   /// <summary>
-  /// The <c>GameObject</c>s transform.
+  /// Initialize the cell before it can be used.
   /// </summary>
-  protected RectTransform rectTransform;
-
-  /// <summary>
-  /// A boolean denoting if we need to re-validate the UI.
-  /// </summary>
-  protected bool invalidated = true;
-
-  /// <inheritdoc />
-  void Awake() {
-    this.rectTransform = GetComponent<RectTransform>();
-  }
-
-  /// <inheritdoc />
-  void OnEnable() {
-    this.inventory.AddCellChangedHandler(this.inventoryIndex, this.Invalidate);
-  }
-
-  /// <inheritdoc />
-  void OnDisable() {
-    this.inventory.RemoveCellChangedHandler(this.inventoryIndex, this.Invalidate);
-  }
-
-  /// <inheritdoc />
-  /// <remarks>
-  /// Will re-validate by calling <c>ValidateLayout</c> if the layout were
-  /// invalidated.
-  /// </remarks>
-  void LateUpdate() {
-    if (this.invalidated) {
-      this.ValidateLayout();
-      this.invalidated = false;
-    }
-  }
-
-  /// <inheritdoc />
-  public virtual bool CanTakeItem(PortableItem item) {
-    return true;
+  /// <param name="inventory">The underlying inventory.</param>
+  /// <param name="index">The inventory index this cell represents.</param>
+  public void Initialize(PortableItemController prefab, Inventory inventory, int index) {
+    this.prefab = prefab;
+    this.inventory = inventory;
+    this.index = index;
   }
 
   /// <inheritdoc />
@@ -71,7 +38,7 @@ public abstract class InventoryCellController : MonoBehaviour, IDropHandler, IIn
   /// the object cannot be added the <c>HandleDropError</c> method will be
   /// called with the appropriate <c>Error</c> value.
   /// </remarks>
-  public virtual void OnDrop(PointerEventData eventData) {
+  public override void OnDrop(PointerEventData eventData) {
     // if it's not a portable object what are we doing dragging it into our
     // inventory
     PortableItemController obj = eventData.pointerDrag?.GetComponent<PortableItemController>();
@@ -80,7 +47,7 @@ public abstract class InventoryCellController : MonoBehaviour, IDropHandler, IIn
       return;
     }
     // Try to add it and check for errors.
-    this.HandleDropError(this.inventory.Set(inventoryIndex, obj.item));
+    this.HandleDropError(this.inventory.Set(index, obj.Item));
     return;
   }
 
@@ -88,17 +55,16 @@ public abstract class InventoryCellController : MonoBehaviour, IDropHandler, IIn
   /// Logic for re-validating the view of this inventory whenever the
   /// underlying inventory is changed.
   /// </summary>
-  protected virtual void ValidateLayout() {
+  protected override void ValidateLayout() {
     // clear existing children
     for (int i = 0; i < this.rectTransform.childCount; ++i) {
       Destroy(this.rectTransform.GetChild(i).gameObject);
     }
     // add a new one
-    PortableItem item = this.inventory[this.inventoryIndex];
+    PortableItem item = this.inventory[this.index];
     if (item != null) {
       PortableItemController obj = Instantiate(this.prefab, Vector3.zero, Quaternion.identity, this.rectTransform);
-      obj.inventory = this;
-      obj.item = item;
+      obj.Initialize(item, this);
       RectTransform itemTransform = obj.transform as RectTransform;
       // Center the object in the cell.
       itemTransform.pivot = new Vector2(0.5f, 0.5f);
@@ -106,21 +72,5 @@ public abstract class InventoryCellController : MonoBehaviour, IDropHandler, IIn
       itemTransform.anchorMax = new Vector2(0.5f, 0.5f);
       itemTransform.anchoredPosition = Vector2.zero;
     }
-  }
-
-  /// <summary>
-  /// Callback for handling errors raised while attempting to add an item to
-  /// the inventory.
-  /// </summary>
-  /// <param name="error">The <c>Error</c> raised while dropping.</param>
-  /// <seealso cref="InventoryError" />
-  protected abstract void HandleDropError(InventoryError error);
-
-  /// <summary>
-  /// Inventory change callback to invalidate the current view and trigger
-  /// a redraw.
-  /// </summary>
-  void Invalidate() {
-    this.invalidated = true;
   }
 }

@@ -183,9 +183,10 @@ public class Inventory : ScriptableObject, IEnumerable<PortableItem> {
   /// Add an item to the first empty cell in the inventory.
   /// </summary>
   /// <param name="item">The item to add.</param>
+  /// <param name="ignoreFilters">Ignore the filters when setting this item.</param>
   /// <returns>Inventory error indicating the status of the operation.</returns>
-  public virtual InventoryError Add(PortableItem item) {
-    if (!this.Supports(item)) {
+  public virtual InventoryError Add(PortableItem item, bool ignoreFilters = false) {
+    if (!ignoreFilters && !this.Supports(item)) {
       return InventoryError.InvalidItem;
     }
 
@@ -211,9 +212,10 @@ public class Inventory : ScriptableObject, IEnumerable<PortableItem> {
   /// </summary>
   /// <param name="index">Index to use.</param>
   /// <param name="item">Item to use.</param>
+  /// <param name="ignoreFilters">Ignore the filters when setting this item.</param>
   /// <returns>Inventory error indicating the status of the operation.</returns>
-  public virtual InventoryError Set(int index, PortableItem item) {
-    if (!this.Supports(item)) {
+  public virtual InventoryError Set(int index, PortableItem item, bool ignoreFilters = false) {
+    if (!ignoreFilters && !this.Supports(item)) {
       return InventoryError.InvalidItem;
     }
 

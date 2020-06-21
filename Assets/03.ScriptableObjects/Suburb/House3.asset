@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: House3
   m_EditorClassIdentifier: Assembly-CSharp::SuburbHouseState
-  planter: {fileID: 11400000, guid: 6e590b20ab822324184f71b87932c752, type: 2}
+  Planter: {fileID: 11400000, guid: 6e590b20ab822324184f71b87932c752, type: 2}
+  Tree: {fileID: 11400000, guid: 16c34982b453c374c83f56accfa942e1, type: 2}
+  Lawn: {fileID: 11400000, guid: b8f7e81915bb6cf4b80f3b3c5702a3be, type: 2}
+  weedFactory: {fileID: 11400000, guid: 3422d0bf1f5177a44b2db7140f4842d0, type: 2}
+  fruitFactory: {fileID: 11400000, guid: 988d21dbc127c1a46accca6d1d2d98d8, type: 2}
