@@ -23,7 +23,7 @@ public class Inventory : ScriptableObject, IEnumerable<PortableItem> {
   /// <summary>
   /// The max capacity of the inventory.
   /// </summary>
-  public int capacity = 10;
+  public int Capacity = 10;
 
   /// <summary>
   /// Items not allowed in this inventory.
@@ -31,7 +31,8 @@ public class Inventory : ScriptableObject, IEnumerable<PortableItem> {
   /// <remarks>
   /// If the whitelist is set this will be ignored.
   /// </remarks>
-  public ItemBlacklist blacklist;
+  [SerializeField]
+  private ItemBlacklist blacklist;
 
   /// <summary>
   /// The only items allowed in this inventory.
@@ -39,7 +40,8 @@ public class Inventory : ScriptableObject, IEnumerable<PortableItem> {
   /// <remarks>
   /// If this is set the blacklist will be ignored.
   /// </remarks>
-  public ItemWhitelist whitelist;
+  [SerializeField]
+  private ItemWhitelist whitelist;
 
   /// <summary>
   /// A list containing the inventory's <c>PortableItem</c>s.
@@ -52,7 +54,6 @@ public class Inventory : ScriptableObject, IEnumerable<PortableItem> {
   /// </summary>
   private ChangedHandler[] cellChanged;
 
-
   /// <summary>
   /// Access a <c>PortableItem</c> by index.
   /// </summary>
@@ -64,7 +65,7 @@ public class Inventory : ScriptableObject, IEnumerable<PortableItem> {
   /// <summary>
   /// Count the number of items in the inventory.
   /// </summary>
-  public int count {
+  public int Count {
     get {
       int count = 0;
       foreach (PortableItem item in this.items) {
@@ -78,11 +79,11 @@ public class Inventory : ScriptableObject, IEnumerable<PortableItem> {
 
   /// <inheritdoc />
   void OnEnable() {
-    this.items = new List<PortableItem>(this.capacity);
-    for (int i = 0; i < this.capacity; ++i) {
+    this.items = new List<PortableItem>(this.Capacity);
+    for (int i = 0; i < this.Capacity; ++i) {
       this.items.Add(null);
     }
-    this.cellChanged = new ChangedHandler[this.capacity];
+    this.cellChanged = new ChangedHandler[this.Capacity];
   }
 
   /// <summary>

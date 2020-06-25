@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3d2171ecc6449840bb9b5a0b026417d, type: 3}
-  m_Name: House3PlanterInventory
+  m_Script: {fileID: 11500000, guid: 53e8a324dec37eb429e3dcd7c8350fec, type: 3}
+  m_Name: TreeEODBlacklist
   m_EditorClassIdentifier: 
-  capacity: 3
-  blacklist: {fileID: 0}
-  whitelist: {fileID: 11400000, guid: 609f47b02bc8bf040b6d90a8b6d56782, type: 2}
+  items:
+  - {fileID: 11400000, guid: 09456760a28006547a9a45a75772f870, type: 2}

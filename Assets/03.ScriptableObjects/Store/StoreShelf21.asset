@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c506dc27bc3b2294c9fa637ac3b64956, type: 3}
   m_Name: StoreShelf21
   m_EditorClassIdentifier: 
-  capacity: 30
+  Capacity: 30
   blacklist: {fileID: 0}
   whitelist: {fileID: 11400000, guid: d5497fb3cc76f414e9c5432f0f63ebe4, type: 2}
   physicalSpaceAvailable: 400

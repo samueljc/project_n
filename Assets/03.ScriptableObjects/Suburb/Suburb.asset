@@ -17,4 +17,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2c924992714bd9744a13f3c2773df8f6, type: 2}
   - {fileID: 11400000, guid: 65e1141c1d7491444b5e21e3322abe97, type: 2}
   planterFactory: {fileID: 11400000, guid: c188dde59ee13814c97c4aefe7d544cd, type: 2}
-  treeFactory: {fileID: 11400000, guid: 988d21dbc127c1a46accca6d1d2d98d8, type: 2}
+  player: {fileID: 11400000, guid: 10b29495572278b4987d8e238607c13e, type: 2}
+  playerEODBlacklist: {fileID: 11400000, guid: 32e7753987143c043aca2c15797b178b, type: 2}
+  treeEODBlacklist: {fileID: 11400000, guid: a6501b3fc5f940d4fac32b2ea49f6dc0, type: 2}

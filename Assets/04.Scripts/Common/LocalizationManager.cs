@@ -95,7 +95,15 @@ public class LocalizationManager {
     {
       MessageKey.Tree_InsufficientFunds_1,
       new Message("I don't have the money to take that.")
-    }
+    },
+    {
+      MessageKey.ConfirmExit_1,
+      new Message("Collect your pay and leave the suburb for the day?")
+    },
+    {
+      MessageKey.Suburb_Done_1,
+      new Message("I've done my job there for today. I'm not welcome back.")
+    },
   };
 
   /// <summary>

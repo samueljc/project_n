@@ -29,7 +29,7 @@ public class InventoryCellContainer : MonoBehaviour {
   /// layout controller should take care of arranging them.
   /// </remarks>
   void Awake() {
-    for (int i = 0 ; i < this.inventory.capacity; ++i) {
+    for (int i = 0 ; i < this.inventory.Capacity; ++i) {
       InventoryCellController cell = Instantiate<InventoryCellController>(
         cellPrefab,
         Vector2.zero,

@@ -43,17 +43,17 @@ public class SuburbHouseState : ScriptableObject {
     this.Planter.Clear();
 
     // Planting weeds...
-    int weeds = StaticRandom.Range(0, this.Lawn.capacity);
+    int weeds = StaticRandom.Range(0, this.Lawn.Capacity);
     for (int i = 0; i < weeds; ++i) {
       this.Lawn.Add(this.weedFactory.CreateRandomItem(), true);
     }
     // Grafting fruit...
-    int fruits = StaticRandom.Range(0, this.Tree.capacity * 2);
+    int fruits = StaticRandom.Range(0, this.Tree.Capacity * 2);
     for (int i = 0; i < fruits; ++i) {
       this.Tree.Add(this.fruitFactory.CreateRandomItem(), true);
     }
     // Planting flowers...
-    for (int i = 0; i < this.Planter.capacity; ++i) {
+    for (int i = 0; i < this.Planter.Capacity; ++i) {
       // Remove from the back of the cache for O(1).
       this.Planter.Add(plants[plants.Count - 1], true);
       plants.RemoveAt(plants.Count - 1);

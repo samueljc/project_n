@@ -15,7 +15,7 @@ public abstract class ItemFilterList : ScriptableObject {
   /// <param name="item">The item to compare to.</param>
   /// <returns>Boolean representing if the item is present.</returns>
   public bool Contains(PortableItem item) {
-    return this.Contains(item.details);
+    return item != null && this.Contains(item.details);
   }
 
   /// <summary>
@@ -24,9 +24,16 @@ public abstract class ItemFilterList : ScriptableObject {
   /// <param name="details">The details to compare to.</param>
   /// <returns>Boolean representing if the item is present.</returns>
   /// <remarks>
-  /// If the list of items is null or empty then this is always false.
+  /// <para>
+  /// If the list of items is <c>null</c> or empty then this is always false.
+  /// </para>
+  /// If the provided details are <c>null</c> then this is false.
+  /// </para>
   /// </remarks>
   public bool Contains(PortableItemDetails details) {
+    if (details == null) {
+      return false;
+    }
     foreach (PortableItemDetails d in this.items) {
       if (d == details) {
         return true;

@@ -6,6 +6,18 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class MapController : MonoBehaviour {
   /// <summary>
+  /// The state of the suburb.
+  /// </summary>
+  [SerializeField]
+  private SuburbState suburb;
+
+  /// <summary>
+  /// The player's dialog event bus.
+  /// </summary>
+  [SerializeField]
+  private DialogEvent playerDialogEvent;
+
+  /// <summary>
   /// Navigate to the store.
   /// </summary>
   public void GoToStore() {
@@ -23,7 +35,12 @@ public class MapController : MonoBehaviour {
   /// Navigate to the suburb.
   /// </summary>
   public void GoToSuburb() {
-    SceneManager.LoadScene("Suburb");
+    if (suburb.Done) {
+      string text = LocalizationManager.GetText(MessageKey.Suburb_Done_1);
+      playerDialogEvent.Raise(new DialogCue(text, 2f));
+    } else {
+      SceneManager.LoadScene("Suburb");
+    }
   }
 
   /// <summary>

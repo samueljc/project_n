@@ -128,7 +128,7 @@ public class StoreController : MonoBehaviour {
     // if the player brings something in from outside show the checkout
     // counter and display some dialog directing them outside, otherwise
     // take them directly to the first aisle
-    bool denyEntry = this.playerInventory.count != 0;
+    bool denyEntry = this.playerInventory.Count != 0;
     if (denyEntry) {
       this.aisle1.SetActive(false);
       this.aisle2.SetActive(false);

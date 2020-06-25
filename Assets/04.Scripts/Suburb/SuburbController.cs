@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class SuburbController : MonoBehaviour {
   /// <summary>
+  /// The state of the suburb this controls.
+  /// </summary>
+  [SerializeField]
+  private SuburbState state;
+
+  /// <summary>
   /// The view for the suburb.
   /// </summary>
   [SerializeField]
@@ -15,6 +21,12 @@ public class SuburbController : MonoBehaviour {
   /// </summary>
   [SerializeField]
   private GameObject[] houses;
+
+  /// <summary>
+  /// Dialog to show for confirming exit.
+  /// </summary>
+  [SerializeField]
+  private GameObject exitConfirmationDialog;
 
   // Start is called before the first frame update
   void Start() {
@@ -42,10 +54,18 @@ public class SuburbController : MonoBehaviour {
   }
 
   /// <summary>
-  /// Exit the suburb and return to the map. This will end work for the day and
-  /// you won't be able to return to the suburb until tomorrow.
+  /// Confirm that the player wants to leave work. After leaving work the
+  /// player can't return.
+  /// </summary>
+  public void CheckExit() {
+    this.exitConfirmationDialog.SetActive(true);
+  }
+
+  /// <summary>
+  /// Exit the suburb and return to the map.
   /// </summary>
   public void Exit() {
+    this.state.CashOut();
     SceneManager.LoadScene("Map");
   }
 }

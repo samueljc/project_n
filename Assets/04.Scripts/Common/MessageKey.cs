@@ -23,4 +23,6 @@ public enum MessageKey {
   Planter_NeedShovel_1,
   TrashCan_InvalidItem_1,
   Tree_InsufficientFunds_1,
+  ConfirmExit_1,
+  Suburb_Done_1,
 }

@@ -70,7 +70,7 @@ class LawnController : MonoBehaviour {
   /// Orders the lawn elements so that they're drawn correctly.
   /// </summary>
   private void OrderLawn() {
-    List<RectTransform> transforms = new List<RectTransform>(this.lawn.capacity);
+    List<RectTransform> transforms = new List<RectTransform>(this.lawn.Capacity);
     foreach (RectTransform transform in this.rectTransform) {
       transforms.Add(transform);
     }
