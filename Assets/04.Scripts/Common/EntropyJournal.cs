@@ -17,6 +17,9 @@ public enum JournalSource {
   Store_Aisle_Types,
   Store_Aisle_TypeCount,
   Store_Aisle_TotalCount,
+  // Suburb tree entropy
+  // Suburb planter entropy
+  // Suburb 
 }
 
 /// <summary>
