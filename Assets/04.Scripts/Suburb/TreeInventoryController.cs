@@ -19,10 +19,15 @@ public class TreeInventoryController : InventoryController {
   private IntVariable playerWallet;
 
   /// <summary>
-  /// The minimum space between items.
+  /// The random collider layout we use to find a position for the fruit.
   /// </summary>
-  [SerializeField]
-  private float minItemSpacing = 32f;
+  private RandomColliderLayout layout;
+
+  /// <inheritdoc />
+  protected override void Awake() {
+    this.layout = this.GetComponent<RandomColliderLayout>();
+    base.Awake();
+  }
 
   /// <inheritdoc />
   private void Start() {
@@ -32,45 +37,26 @@ public class TreeInventoryController : InventoryController {
     }
 
     // Layout the items.
-    Vector2 topRight = new Vector2(this.rectTransform.rect.width, this.rectTransform.rect.height);
     for (int itemIndex = 0; itemIndex < this.inventory.Capacity; ++itemIndex) {
       PortableItem item = this.inventory[itemIndex];
       if (item == null) {
         continue;
       }
 
-      PortableItemController obj = Instantiate(this.prefab, this.rectTransform);
-      obj.Initialize(item, this);
-      RectTransform itemTransform = obj.transform as RectTransform;
-      // Set the anchor to the bottom left of the tree rect.
-      itemTransform.anchorMin = Vector2.zero;
-      itemTransform.anchorMax = Vector2.zero;
-      itemTransform.pivot = new Vector2(0.5f, 0.5f);
-
-      // 100 attempts to place the item with no overlap. There's probably
-      // a better approach using some kind of physics algorithm to push
-      // overlapping objects apart, but this only needs to happen once per
-      // house per day.
-      bool remove = true;
-      for (int i = 0; i < 100; ++i) {
-        bool validPosition = true;
-        Vector2 position = StaticRandom.Vector2(Vector2.zero, topRight);
-        foreach (RectTransform child in this.rectTransform) {
-          if (Vector2.Distance(child.anchoredPosition, position) < this.minItemSpacing) {
-            validPosition = false;
-            break;
-          }
-        }
-        if (validPosition) {
-          itemTransform.anchoredPosition = position;
-          remove = false;
-          break;
-        }
-      }
-
-      // Remove this from the inventory because we couldn't place it after
-      // 100 attempts and we don't want it to count toward anything.
-      if (remove) {
+      Vector2 position;
+      if (this.layout.FindPosition(this.rectTransform, out position)) {
+        PortableItemController obj = Instantiate(this.prefab, this.rectTransform);
+        obj.Initialize(item, this);
+        // Set the anchor to the center because rect.min, rect.max, and the
+        // collider are all relative to the center.
+        RectTransform itemTransform = obj.transform as RectTransform;
+        itemTransform.anchorMin.Set(0.5f, 0.5f);
+        itemTransform.anchorMax.Set(0.5f, 0.5f);
+        itemTransform.anchoredPosition = position;
+        itemTransform.pivot.Set(0.5f, 0.5f);
+      } else {
+        // Couldn't place it after 100 attempts; clear it from the inventory so
+        // we don't count it in the score.
         this.inventory[itemIndex] = null;
       }
     }

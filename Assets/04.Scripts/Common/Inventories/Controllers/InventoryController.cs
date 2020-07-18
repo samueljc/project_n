@@ -35,7 +35,7 @@ public abstract class InventoryController : MonoBehaviour, IDropHandler, IInvent
   protected bool invalidated = true;
 
   /// <inheritdoc />
-  void Awake() {
+  protected virtual void Awake() {
     this.rectTransform = GetComponent<RectTransform>();
   }
 

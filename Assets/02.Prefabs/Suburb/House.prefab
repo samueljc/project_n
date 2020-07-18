@@ -1,5 +1,34 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &6027621322978638355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851107055563064876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeb9bc9f4646bf14daa49029a8932e8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minSpacing: 32
+  bounds:
+  - {fileID: 7352028210704156048}
+--- !u!114 &2894660423051662288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6174294942470429285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeb9bc9f4646bf14daa49029a8932e8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minSpacing: 0
+  bounds: []
 --- !u!114 &6208051250419923986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -791,31 +820,23 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 8359073280937501708, guid: 64c81d4323197f74d852d7d86fa66d92,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -3.800003
-      objectReference: {fileID: 0}
-    - target: {fileID: 8359073280937501708, guid: 64c81d4323197f74d852d7d86fa66d92,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 50.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 8359073280937501708, guid: 64c81d4323197f74d852d7d86fa66d92,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -62.06189
-      objectReference: {fileID: 0}
-    - target: {fileID: 8359073280937501708, guid: 64c81d4323197f74d852d7d86fa66d92,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: -168.31932
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64c81d4323197f74d852d7d86fa66d92, type: 3}
 --- !u!224 &328061150782949068 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3155529631304872073, guid: 64c81d4323197f74d852d7d86fa66d92,
+    type: 3}
+  m_PrefabInstance: {fileID: 3406745088714569285}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &851107055563064876 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2632509839406346345, guid: 64c81d4323197f74d852d7d86fa66d92,
+    type: 3}
+  m_PrefabInstance: {fileID: 3406745088714569285}
+  m_PrefabAsset: {fileID: 0}
+--- !u!60 &7352028210704156048 stripped
+PolygonCollider2D:
+  m_CorrespondingSourceObject: {fileID: 5278383894848041941, guid: 64c81d4323197f74d852d7d86fa66d92,
     type: 3}
   m_PrefabInstance: {fileID: 3406745088714569285}
   m_PrefabAsset: {fileID: 0}

@@ -23,9 +23,16 @@ class LawnController : MonoBehaviour {
   /// </summary>
   private RectTransform rectTransform;
 
+  /// <summary>
+  /// A layout engine for placing objects with no overlap within the bounds
+  /// of a collider.
+  /// </summary>
+  private RandomColliderLayout layout;
+
   /// <inheritdoc />
   void Awake() {
     this.rectTransform = GetComponent<RectTransform>();
+    this.layout = GetComponent<RandomColliderLayout>();
   }
 
   /// <inheritdoc />
@@ -40,30 +47,38 @@ class LawnController : MonoBehaviour {
 
   /// <inheritdoc />
   void Start() {
-    foreach (PortableItem weed in this.lawn) {
+    // Clear existing weeds.
+    for (int i = 0; i < this.rectTransform.childCount; ++i) {
+      GameObject child = this.rectTransform.GetChild(i).gameObject;
+      if (LawnController.IsWeed(child)) {
+        Destroy(child);
+      }
+    }
+
+    // Add new weeds.
+    for (int weedIndex = 0; weedIndex < this.lawn.Capacity; ++weedIndex) {
+      PortableItem weed = this.lawn[weedIndex];
       if (weed == null) {
         continue;
       }
-      PortableItemController obj = GameObject.Instantiate(this.prefab, Vector3.zero, Quaternion.identity, this.rectTransform);
-      obj.Initialize(weed);
-      this.PositionWeed(obj.gameObject);
-    }
-  }
 
-  /// <summary>
-  /// Place the weed in the bounds of the yard.
-  /// </summary>
-  /// <param name="weed">The weed to position.</param>
-  private void PositionWeed(GameObject weed) {
-    RectTransform transform = weed.transform as RectTransform;
-    // Set the anchor to the bottom left of the container.
-    transform.anchorMin = Vector2.zero;
-    transform.anchorMax = Vector2.zero;
-    // Move the object.
-    transform.anchoredPosition = new Vector2(
-      StaticRandom.Range(transform.pivot.x, rectTransform.rect.width - (transform.rect.width - transform.pivot.x)),
-      StaticRandom.Range(transform.pivot.y, rectTransform.rect.height - (transform.rect.height - transform.pivot.y))
-    );
+      Vector2 position;
+      if (layout.FindPosition(this.rectTransform, out position)) {
+        PortableItemController obj = GameObject.Instantiate(this.prefab, this.rectTransform);
+        obj.Initialize(weed);
+        // Set the anchor to the center because rect.min, rect.max, and the
+        // collider are all relative to the center.
+        RectTransform itemTransform = obj.transform as RectTransform;
+        itemTransform.anchorMin.Set(0.5f, 0.5f);
+        itemTransform.anchorMax.Set(0.5f, 0.5f);
+        itemTransform.anchoredPosition = position;
+      } else {
+        // Couldn't place it after 100 attempts; clear it from the inventory so
+        // we don't count it in the score.
+        this.lawn[weedIndex] = null;
+      }
+    }
+    this.OrderLawn();
   }
 
   /// <summary>
@@ -72,7 +87,9 @@ class LawnController : MonoBehaviour {
   private void OrderLawn() {
     List<RectTransform> transforms = new List<RectTransform>(this.lawn.Capacity);
     foreach (RectTransform transform in this.rectTransform) {
-      transforms.Add(transform);
+      if (LawnController.IsWeed(transform.gameObject)) {
+        transforms.Add(transform);
+      }
     }
     // Sort the items by y so that the layering is correct and then move them
     // to be the last sibling to enforce the draw order.
@@ -80,5 +97,14 @@ class LawnController : MonoBehaviour {
     foreach (RectTransform transform in transforms) {
       transform.SetAsLastSibling();
     }
+  }
+
+  /// <summary>
+  /// Check if the given game object is a weed.
+  /// </summary>
+  /// <param name="obj">The item in question.</param>
+  /// <returns>True if the object is a weed, false otherwise.</returns>
+  private static bool IsWeed(GameObject obj) {
+    return obj != null && obj.GetComponent<PortableItemController>() != null;
   }
 }
