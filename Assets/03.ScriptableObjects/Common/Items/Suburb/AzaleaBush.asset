@@ -15,6 +15,6 @@ MonoBehaviour:
   name: Azalea Bush
   description: 
   price: 0
-  inventorySprite: {fileID: 21300000, guid: 6b2749487af9cc34b86bb171eff15ac6, type: 3}
+  worldSprite: {fileID: 21300000, guid: 6b2749487af9cc34b86bb171eff15ac6, type: 3}
   draggingSprite: {fileID: 21300000, guid: 6b2749487af9cc34b86bb171eff15ac6, type: 3}
-  shelfWidth: 0
+  inventorySprite: {fileID: 21300000, guid: 6b2749487af9cc34b86bb171eff15ac6, type: 3}

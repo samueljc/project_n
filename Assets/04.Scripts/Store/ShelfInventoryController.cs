@@ -54,9 +54,8 @@ public class ShelfInventoryController : InventoryController {
         // Set the anchor position which is the offset from the anchor. We do
         // half first and half later to avoid overlapping due to the different
         // sizes of our objects.
-        xOffset += item.shelfWidth / 2f;
-        itemTransform.anchoredPosition = new Vector2(xOffset, 0f);
-        xOffset += item.shelfWidth / 2f + inventory.physicalItemGap;
+        itemTransform.anchoredPosition = new Vector2(xOffset + item.worldSprite.pivot.x, 0f);
+        xOffset += item.worldSprite.rect.width;
       }
     }
   }

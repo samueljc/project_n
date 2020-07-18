@@ -21,7 +21,7 @@ public static class StaticRandom {
   /// <param name="min">The minimum vector.</param>
   /// <param name="max">The maximum vector.</param>
   /// <returns>A vector between the minimum and maximum vectors.</returns>
-  public static Vector2 Range(in Vector2 min, in Vector2 max) {
+  public static Vector2 Vector2(in Vector2 min, in Vector2 max) {
     return new Vector2(Range(min.x, max.x), Range(min.y, max.y));
   }
 

@@ -15,6 +15,6 @@ MonoBehaviour:
   name: Apple
   description: A soft, loamy apple.
   price: 1
-  inventorySprite: {fileID: 21300000, guid: c685b0af8c9639c478a6bc43718530ff, type: 3}
+  worldSprite: {fileID: 21300000, guid: c685b0af8c9639c478a6bc43718530ff, type: 3}
   draggingSprite: {fileID: 21300000, guid: c685b0af8c9639c478a6bc43718530ff, type: 3}
-  shelfWidth: 18
+  inventorySprite: {fileID: 21300000, guid: c685b0af8c9639c478a6bc43718530ff, type: 3}

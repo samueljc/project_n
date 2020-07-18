@@ -15,7 +15,6 @@ MonoBehaviour:
   name: My shovel
   description: My trusty shovel.
   price: 0
-  shovel: 0
-  inventorySprite: {fileID: 21300000, guid: a987abd8e6345384baa139faccc746a3, type: 3}
+  worldSprite: {fileID: 21300000, guid: a987abd8e6345384baa139faccc746a3, type: 3}
   draggingSprite: {fileID: 21300000, guid: a987abd8e6345384baa139faccc746a3, type: 3}
-  shelfWidth: 0
+  inventorySprite: {fileID: 21300000, guid: a987abd8e6345384baa139faccc746a3, type: 3}

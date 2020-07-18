@@ -29,6 +29,11 @@ public class PortableItem : ScriptableObject {
     get { return this.details.price; }
   }
 
+  /// <inheritdoc cref="M:PortableItemDetails.worldSprite" />
+  public Sprite worldSprite {
+    get { return this.details.worldSprite; }
+  }
+
   /// <inheritdoc cref="M:PortableItemDetails.inventorySprite" />
   public Sprite inventorySprite {
     get { return this.details.inventorySprite; }
@@ -37,10 +42,5 @@ public class PortableItem : ScriptableObject {
   /// <inheritdoc cref="M:PortableItemDetails.draggingSprite" />
   public Sprite draggingSprite {
     get { return this.details.draggingSprite; }
-  }
-
-  /// <inheritdoc cref="M:PortableItemDetails.shelfWidth" />
-  public float shelfWidth {
-    get { return this.details.shelfWidth; }
   }
 }

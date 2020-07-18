@@ -15,6 +15,6 @@ MonoBehaviour:
   name: Crabgrass
   description: 
   price: 0
-  inventorySprite: {fileID: 21300000, guid: 6a91b1329b6f09a4d88d188bd91f1d18, type: 3}
+  worldSprite: {fileID: 21300000, guid: 6a91b1329b6f09a4d88d188bd91f1d18, type: 3}
   draggingSprite: {fileID: 21300000, guid: 6a91b1329b6f09a4d88d188bd91f1d18, type: 3}
-  shelfWidth: 0
+  inventorySprite: {fileID: 21300000, guid: 6a91b1329b6f09a4d88d188bd91f1d18, type: 3}

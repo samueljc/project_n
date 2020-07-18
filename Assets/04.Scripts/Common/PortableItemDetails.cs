@@ -24,19 +24,17 @@ public class PortableItemDetails : ScriptableObject {
   // Visuals
 
   /// <summary>
-  /// The sprite to use when this object is in an inventory.
+  /// The sprite to use when rendering this object in the world.
   /// </summary>
-  public Sprite inventorySprite;
+  public Sprite worldSprite;
 
   /// <summary>
   /// The sprite to use when this object is being dragged.
   /// </summary>
   public Sprite draggingSprite;
 
-  // Dimensions
-
   /// <summary>
-  /// The width of this object for layout purposes.
+  /// The sprite to use when this object is in a 64x64 tiled inventory grid.
   /// </summary>
-  public float shelfWidth;
+  public Sprite inventorySprite;
 }

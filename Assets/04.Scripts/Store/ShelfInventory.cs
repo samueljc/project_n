@@ -31,10 +31,10 @@ public class ShelfInventory : Inventory {
     }
 
     // Check for space on the shelf.
-    float spaceNeeded = item.shelfWidth;
+    float spaceNeeded = item.worldSprite.rect.width;
     foreach (PortableItem i in this.items) {
       if (i != null) {
-        spaceNeeded += physicalItemGap + i.shelfWidth;
+        spaceNeeded += physicalItemGap + i.worldSprite.rect.width;
         if (physicalSpaceAvailable < spaceNeeded) {
           return InventoryError.OutOfSpace;
         }

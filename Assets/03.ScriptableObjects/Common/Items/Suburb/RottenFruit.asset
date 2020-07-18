@@ -15,6 +15,6 @@ MonoBehaviour:
   name: Rotten Fruit
   description: Soft, rotten fruit that clung to the tree too long.
   price: 0
-  inventorySprite: {fileID: 21300000, guid: dc0edd17e3645fc44b39ce0d8e7b3c93, type: 3}
+  worldSprite: {fileID: 21300000, guid: dc0edd17e3645fc44b39ce0d8e7b3c93, type: 3}
   draggingSprite: {fileID: 21300000, guid: dc0edd17e3645fc44b39ce0d8e7b3c93, type: 3}
-  shelfWidth: 0
+  inventorySprite: {fileID: 21300000, guid: dc0edd17e3645fc44b39ce0d8e7b3c93, type: 3}

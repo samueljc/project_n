@@ -46,9 +46,13 @@ public abstract class InventoryCellController : InventoryController {
       this.HandleDropError(InventoryError.InvalidItem);
       return;
     }
+
     // Try to add it and check for errors.
-    this.HandleDropError(this.inventory.Set(index, obj.Item));
-    return;
+    InventoryError err = this.inventory.Set(index, obj.Item);
+    if (err != InventoryError.NoError) {
+      this.HandleDropError(err);
+      return;
+    }
   }
 
   /// <summary>

@@ -28,7 +28,7 @@ public class PortableItemController : MonoBehaviour, IPointerDownHandler, IBegin
   /// The drag item handler for the parent inventory.
   /// </summary>
   [HideInInspector]
-  private InventoryController inventory;
+  private IInventoryController inventory;
 
   /// <summary>
   /// The game object's transform.
@@ -110,7 +110,7 @@ public class PortableItemController : MonoBehaviour, IPointerDownHandler, IBegin
   }
 
   /// <inheritdoc />
-  void Awake() {
+  protected void Awake() {
     this.rectTransform = GetComponent<RectTransform>();
     this.canvasGroup = GetComponent<CanvasGroup>();
     this.image = GetComponent<Image>();
@@ -123,9 +123,7 @@ public class PortableItemController : MonoBehaviour, IPointerDownHandler, IBegin
   }
 
   /// <inheritdoc />
-  void Start() {
-    this.image.alphaHitTestMinimumThreshold = 0.1f;
-  }
+  protected void Start() {}
 
   // drag handler methods
 
@@ -211,7 +209,7 @@ public class PortableItemController : MonoBehaviour, IPointerDownHandler, IBegin
   /// The optional inventory controller this item belongs to. It's perfectly
   /// valid for an item to not belong to an inventory.
   /// </param>
-  public void Initialize(PortableItem item, InventoryController inventory = null) {
+  public void Initialize(PortableItem item, IInventoryController inventory = null) {
     if (item == null) {
       throw new System.ArgumentNullException("item cannot be null");
     }

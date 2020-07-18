@@ -15,6 +15,6 @@ MonoBehaviour:
   name: Bleach
   description: A bottle of bleach.
   price: 6
-  inventorySprite: {fileID: 21300000, guid: d04ffa271638f0240a8c9a4a62d41e17, type: 3}
+  worldSprite: {fileID: 21300000, guid: d04ffa271638f0240a8c9a4a62d41e17, type: 3}
   draggingSprite: {fileID: 21300000, guid: d04ffa271638f0240a8c9a4a62d41e17, type: 3}
-  shelfWidth: 27
+  inventorySprite: {fileID: 21300000, guid: d04ffa271638f0240a8c9a4a62d41e17, type: 3}

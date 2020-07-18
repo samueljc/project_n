@@ -15,6 +15,6 @@ MonoBehaviour:
   name: Bananas
   description: A bunch of browning bananas.
   price: 1
-  inventorySprite: {fileID: 21300000, guid: 121ff4f424bf0ba48a4a2044ae7717f4, type: 3}
+  worldSprite: {fileID: 21300000, guid: 121ff4f424bf0ba48a4a2044ae7717f4, type: 3}
   draggingSprite: {fileID: 21300000, guid: 121ff4f424bf0ba48a4a2044ae7717f4, type: 3}
-  shelfWidth: 35
+  inventorySprite: {fileID: 21300000, guid: 121ff4f424bf0ba48a4a2044ae7717f4, type: 3}

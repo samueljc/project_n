@@ -10,7 +10,7 @@ using UnityEngine.EventSystems;
 /// single game object. An example use case of this is if you only ever use
 /// add and don't care about the index.
 /// </remarks>
-public abstract class InventoryController : MonoBehaviour, IDropHandler {
+public abstract class InventoryController : MonoBehaviour, IDropHandler, IInventoryController {
   /// <summary>
   /// Prefab for generating <c>PortableObject</c>s.
   /// </summary>
@@ -80,9 +80,13 @@ public abstract class InventoryController : MonoBehaviour, IDropHandler {
       this.HandleDropError(InventoryError.InvalidItem);
       return;
     }
+
     // Try to add it and check for errors.
-    this.HandleDropError(this.inventory.Add(obj.Item));
-    return;
+    InventoryError err = this.inventory.Add(obj.Item);
+    if (err != InventoryError.NoError) {
+      this.HandleDropError(err);
+      return;
+    }
   }
 
   /// <summary>
