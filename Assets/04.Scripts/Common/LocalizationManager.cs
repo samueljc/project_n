@@ -50,9 +50,10 @@ public class LocalizationManager {
       {"vhs/rating", "RATING: {0}"},
       {"vhs/duration", "{0} min"},
       {"vhs/color", "Color"},
-      {"vhs/b&w", "Black & White"},
+      {"vhs/black & white", "Black & White"},
       //
       {"movie/studio/universal pictures", "Galactic Pictures"},
+      {"movie/studio/warner bros", "Warner Bros."},
       //
       {"movie/genre/horror", "Horror"},
       {"movie/genre/comedy", "Comedy"},
@@ -70,11 +71,12 @@ public class LocalizationManager {
       {"movie/genre/childrens", "Childrens"},
       {"movie/genre/musical", "Musical"},
       //
-      {"movie/star/kurt russell", "Kurt Russell"},
-      //
-      {"movie/director/john carpenter", "John Carpenter"},
-      //
-      {"movie/producer/david foster", "David Foster"},
+      {"movie/person/kurt russell", "Kurt Russell"},
+      {"movie/person/john carpenter", "John Carpenter"},
+      {"movie/person/david foster", "David Foster"},
+      {"movie/person/stanley kubrick", "Stanley Kubrick"},
+      {"movie/person/jack nicholson", "Jack Nicholson"},
+      {"movie/person/shelley duvall", "Shelley Duvall"},
       //
       {"movie/rating/g", "G"},
       {"movie/rating/pg", "PG"},
@@ -83,7 +85,24 @@ public class LocalizationManager {
       {"movie/rating/nc17", "NC-17"},
       //
       {"movie/the thing/title", "The Thing"},
-      {"movie/the thing/synopsis", ""},
+      {
+        "movie/the thing/summary",
+        "Set in the winter of 1982 at a research station in Antarctica where "+
+        "a twelve man research team finds an alien being that has fall from "+
+        "the sky and has remained buried in the snow for over 100,000 years. "+
+        "Soon it is unfrozen and unleashed creating havoc and terror as it "+
+        "changes forms and becomes one of them."
+      },
+      {"movie/the shining/title", "The Shining"},
+      {
+        "movie/the shining/summary",
+        "Think of the greatest terror imaginable. Is it a monstrous alien? "+
+        "A lethal epidemic? Or, as in this harrowing masterpiece, is it a "+
+        "fear of murder by someone you should love - a member of your "+
+        "own family? Vivid performances, menacing settings, dream-like "+
+        "tracking shots, and shock after shock melt into a milestone of "+
+        "the macabre."
+      }
     };
   }
 

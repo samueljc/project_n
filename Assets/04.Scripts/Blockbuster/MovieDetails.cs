@@ -3,8 +3,8 @@ using UnityEngine;
 /// <summary>
 /// A portable item with details about the movie.
 /// </summary>
-[CreateAssetMenu(fileName="New VHS Details", menuName="Scriptable Objects/VHS Details")]
-public class VHSDetails : PortableItemDetails {
+[CreateAssetMenu(fileName="New Movie Details", menuName="Scriptable Objects/Movie Details")]
+public class MovieDetails : PortableItemDetails {
   [SerializeField]
   private string title;
 
@@ -22,12 +22,12 @@ public class VHSDetails : PortableItemDetails {
   public string Studio { get { return this.studio; } }
 
   [SerializeField]
-  private string genre;
+  private string[] genres;
 
   /// <summary>
   /// The genre that the film falls in.
   /// </summary>
-  public string Genre { get { return this.genre; } }
+  public string[] Genres { get { return this.genres; } }
 
   [SerializeField]
   private int rentalPeriod;
@@ -73,7 +73,7 @@ public class VHSDetails : PortableItemDetails {
   private string rating;
 
   /// <summary>
-  /// The film's content rating - e.g. PG-13, R, PG, etc.
+  /// The film's MPAA rating - e.g. PG-13, R, PG, etc.
   /// </summary>
   public string Rating { get { return this.rating; } }
 

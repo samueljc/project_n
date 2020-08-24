@@ -26,6 +26,14 @@ public class LocalizedText : MonoBehaviour {
   /// </summary>
   private TextMeshProUGUI textGUI;
 
+  /// <summary>
+  /// Whether to use the default key to set the string value on start.
+  /// </summary>
+  /// <remarks>
+  /// This is intended to avoid 
+  /// </remarks>
+  private bool textIsSet = false;
+
   /// <inheritdoc />
   private void Awake() {
     this.textGUI = this.GetComponentInChildren<TextMeshProUGUI>();
@@ -33,8 +41,8 @@ public class LocalizedText : MonoBehaviour {
 
   /// <inheritdoc />
   private void Start() {
-    if (this.key != "") {
-      this.textGUI.text = LocalizationManager.GetText(key);
+    if (!this.textIsSet && this.key != "") {
+      this.SetText(LocalizationManager.GetText(key));
     }
   }
 
@@ -61,9 +69,7 @@ public class LocalizedText : MonoBehaviour {
   /// <param name="key">The key used to identify the string</param>
   /// <param name="args">The args to use when formatting the string</param>
   public void SetMessage(string key, params object[] args) {
-    if (this.key == key) {
-      return;
-    }
+    // can't short-circuit this one unless we want to store the args too
     this.key = key;
     if (this.key == "") {
       this.SetText("");
@@ -79,5 +85,6 @@ public class LocalizedText : MonoBehaviour {
   /// <remarks>No localization will be attempted.</remarks>
   public void SetText(string text) {
     this.textGUI.text = text;
+    this.textIsSet = true;
   }
 }
