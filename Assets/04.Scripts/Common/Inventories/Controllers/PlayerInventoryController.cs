@@ -29,7 +29,7 @@ public class PlayerInventoryController : InventoryCellController {
   /// Broadcast an inventory full event.
   /// </summary>
   private void SayInventoryFull() {
-    string text = LocalizationManager.GetText(MessageKey.PlayerInventory_OutOfSpace_1);
+    string text = LocalizationManager.GetText("player/inventory/no space");
     playerDialogEvent.Raise(new DialogCue(text, 2f));
   }
 
@@ -37,7 +37,7 @@ public class PlayerInventoryController : InventoryCellController {
   /// Broadcast an invalid item.
   /// </summary>
   private void SayInvalidItem() {
-    string text = LocalizationManager.GetText(MessageKey.PlayerInventory_InvalidItem_1);
+    string text = LocalizationManager.GetText("player/inventory/invalid item");
     playerDialogEvent.Raise(new DialogCue(text, 2f));
   }
 }

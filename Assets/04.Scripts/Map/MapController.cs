@@ -21,14 +21,14 @@ public class MapController : MonoBehaviour {
   /// Navigate to the store.
   /// </summary>
   public void GoToStore() {
-    SceneManager.LoadScene("Store");
+    SceneManager.LoadScene("Konbini");
   }
 
   /// <summary>
   /// Navigate to the video store.
   /// </summary>
   public void GoToVideoStore() {
-    SceneManager.LoadScene("VideoStore");
+    SceneManager.LoadScene("Blockbuster");
   }
 
   /// <summary>
@@ -36,7 +36,7 @@ public class MapController : MonoBehaviour {
   /// </summary>
   public void GoToSuburb() {
     if (suburb.Done) {
-      string text = LocalizationManager.GetText(MessageKey.Suburb_Done_1);
+      string text = LocalizationManager.GetText("suburb/unwelcome");
       playerDialogEvent.Raise(new DialogCue(text, 2f));
     } else {
       SceneManager.LoadScene("Suburb");

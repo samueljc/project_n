@@ -105,7 +105,7 @@ public class TreeInventoryController : InventoryController {
   /// Display an invalid item message.
   /// </summary>
   private void SayInsufficientFunds() {
-    string text = LocalizationManager.GetText(MessageKey.Tree_InsufficientFunds_1);
+    string text = LocalizationManager.GetText("suburb/tree/insufficient funds");
     this.playerDialogEvent.Raise(new DialogCue(text, 2f));
   }
 }

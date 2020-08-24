@@ -187,7 +187,7 @@ public class StoreController : MonoBehaviour {
   /// Broadcast insufficient funds.
   /// </summary>
   private void SayInsufficientFunds() {
-    string text = LocalizationManager.GetText(MessageKey.Shopkeeper_InsufficientFunds_1);
+    string text = LocalizationManager.GetText("konbini/shopkeeper/insufficient funds");
     shopkeeperDialogEvent.Raise(new DialogCue(text, 2f));
   }
 
@@ -195,7 +195,7 @@ public class StoreController : MonoBehaviour {
   /// Broadcast no outside items.
   /// </summary>
   private void SayNoOutsideItems() {
-    string text = LocalizationManager.GetText(MessageKey.Shopkeeper_NoOutsideItems_1);
+    string text = LocalizationManager.GetText("konbini/shopkeeper/no outside items");
     shopkeeperDialogEvent.Raise(new DialogCue(text, 2f));
   }
 }

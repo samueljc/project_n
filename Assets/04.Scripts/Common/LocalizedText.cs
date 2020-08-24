@@ -9,7 +9,17 @@ public class LocalizedText : MonoBehaviour {
   /// The key used to get the copy text.
   /// </summary>
   [SerializeField]
-  private MessageKey messageKey;
+  private string key;
+
+  /// <summary>
+  /// The current key of this localized text.
+  /// </summary>
+  public string Key {
+    get { return this.key; }
+    set {
+      this.SetText(value);
+    }
+  }
 
   /// <summary>
   /// A sibling text mesh pro component.
@@ -17,14 +27,57 @@ public class LocalizedText : MonoBehaviour {
   private TextMeshProUGUI textGUI;
 
   /// <inheritdoc />
-  void Awake() {
+  private void Awake() {
     this.textGUI = this.GetComponentInChildren<TextMeshProUGUI>();
   }
 
   /// <inheritdoc />
-  void Start() {
-    if (this.messageKey != MessageKey.Ignore) {
-      this.textGUI.text = LocalizationManager.GetText(messageKey);
+  private void Start() {
+    if (this.key != "") {
+      this.textGUI.text = LocalizationManager.GetText(key);
     }
+  }
+
+  /// <summary>
+  /// Set the text to the given message key
+  /// </summary>
+  /// <param name="key">The key used to identify the string</param>
+  public void SetMessage(string key) {
+    if (this.key == key || key == "") {
+      return;
+    }
+    this.key = key;
+    if (this.key == "") {
+      this.SetText("");
+    } else {
+      this.SetText(LocalizationManager.GetText(key));
+    }
+  }
+
+  /// <summary>
+  /// Set the text to the given message key and use the provided args for
+  /// formatting the string.
+  /// </summary>
+  /// <param name="key">The key used to identify the string</param>
+  /// <param name="args">The args to use when formatting the string</param>
+  public void SetMessage(string key, params object[] args) {
+    if (this.key == key) {
+      return;
+    }
+    this.key = key;
+    if (this.key == "") {
+      this.SetText("");
+    } else {
+      this.SetText(LocalizationManager.GetTextFormat(key, args));
+    }
+  }
+
+  /// <summary>
+  /// Set the localized text to a specific value.
+  /// </summary>
+  /// <param name="text">The string to use</param>
+  /// <remarks>No localization will be attempted.</remarks>
+  public void SetText(string text) {
+    this.textGUI.text = text;
   }
 }

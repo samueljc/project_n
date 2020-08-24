@@ -20,7 +20,7 @@ public class TrashCanController : VoidInventoryController {
   /// Display an invalid item message.
   /// </summary>
   public void SayInvalidItem() {
-    string text = LocalizationManager.GetText(MessageKey.TrashCan_InvalidItem_1);
+    string text = LocalizationManager.GetText("trash/invalid item");
     this.playerDialogEvent.Raise(new DialogCue(text, 2f));
   }
 }

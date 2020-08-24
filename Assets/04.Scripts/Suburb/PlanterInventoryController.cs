@@ -75,7 +75,7 @@ public class PlanterInventoryController : InventoryCellController {
   /// Display an invalid item message.
   /// </summary>
   private void SayInvalidItem() {
-    string text = LocalizationManager.GetText(MessageKey.Planter_InvalidItem_1);
+    string text = LocalizationManager.GetText("suburb/planter/invalid item");
     this.playerDialogEvent.Raise(new DialogCue(text, 2f));
   }
 
@@ -84,7 +84,7 @@ public class PlanterInventoryController : InventoryCellController {
   /// the bush.
   /// </summary>
   private void SayNeedShovel() {
-    string text = LocalizationManager.GetText(MessageKey.Planter_NeedShovel_1);
+    string text = LocalizationManager.GetText("suburb/planter/need shovel");
     this.playerDialogEvent.Raise(new DialogCue(text, 2f));
   }
 }

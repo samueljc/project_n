@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/01.Scenes/Store.unity
+    path: Assets/01.Scenes/Konbini.unity
     guid: b72d4425a61817546860e0c7f09bd6f2
   - enabled: 1
     path: Assets/01.Scenes/Map.unity
@@ -15,9 +15,13 @@ EditorBuildSettings:
     path: Assets/01.Scenes/Suburb.unity
     guid: f8eb297d6bacc484089ee551ae625323
   - enabled: 1
-    path: Assets/01.Scenes/VideoStore.unity
+    path: Assets/01.Scenes/Blockbuster.unity
     guid: 4b98c794a319a0e408386a334900b7f3
   - enabled: 1
     path: Assets/01.Scenes/Beach.unity
     guid: c9f3f7e6ad5eaed479bca6962fa4d43b
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: bb5aa45b57da6eb42a61e6d7847ee396,
+      type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: b19cc72a492a1954cb4e601b646d4afd,
+      type: 2}

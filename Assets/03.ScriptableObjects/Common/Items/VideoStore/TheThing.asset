@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc18b58f006be484684e88df97359d1a, type: 3}
+  m_Name: TheThing
+  m_EditorClassIdentifier: 
+  name: 
+  description: 
+  price: 0
+  worldSprite: {fileID: 0}
+  draggingSprite: {fileID: 0}
+  inventorySprite: {fileID: 0}
+  title: 30
+  studio: 32
+  genre: 33
+  rentalPeriod: 2
+  stars: 2f000000
+  director: 48
+  producer: 49
+  summary: 31
+  rating: 53
+  year: 1982
+  duration: 109
+  color: 1

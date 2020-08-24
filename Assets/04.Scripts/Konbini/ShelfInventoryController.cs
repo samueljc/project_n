@@ -79,7 +79,7 @@ public class ShelfInventoryController : InventoryController {
   /// Broadcast an inventory full event.
   /// </summary>
   private void SayInventoryFull() {
-    string text = LocalizationManager.GetText(MessageKey.StoreShelf_OutOfSpace_1);
+    string text = LocalizationManager.GetText("konbini/shelf/no space");
     playerDialogEvent.Raise(new DialogCue(text, 2f));
   }
 
@@ -87,7 +87,7 @@ public class ShelfInventoryController : InventoryController {
   /// Broadcast an invalid item.
   /// </summary>
   private void SayInvalidItem() {
-    string text = LocalizationManager.GetText(MessageKey.StoreShelf_InvalidItem_1);
+    string text = LocalizationManager.GetText("konbini/shelf/invalid item");
     playerDialogEvent.Raise(new DialogCue(text, 2f));
   }
 }

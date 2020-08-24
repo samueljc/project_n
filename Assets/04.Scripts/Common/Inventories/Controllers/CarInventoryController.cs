@@ -29,7 +29,7 @@ public class CarInventoryController : InventoryCellController {
   /// Broadcast that we can't put that in the car.
   /// </summary>
   private void SayCarInvalidItem() {
-    string text = LocalizationManager.GetText(MessageKey.CarInventory_InvalidItem_1);
+    string text = LocalizationManager.GetText("car/inventory/invalid item");
     playerDialogEvent.Raise(new DialogCue(text, 2f));
   }
 
@@ -37,7 +37,7 @@ public class CarInventoryController : InventoryCellController {
   /// Broadcast that there's no room in the car.
   /// </summary>
   private void SayCarOutOfSpace() {
-    string text = LocalizationManager.GetText(MessageKey.CarInventory_InvalidItem_1);
+    string text = LocalizationManager.GetText("car/inventory/no space");
     playerDialogEvent.Raise(new DialogCue(text, 2f));
   }
 }

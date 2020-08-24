@@ -4301,6 +4301,16 @@ PrefabInstance:
       propertyPath: messageKey
       value: 19
       objectReference: {fileID: 0}
+    - target: {fileID: 103965279621540941, guid: 74bb1622bc3d67548878a6b73dc43cbe,
+        type: 3}
+      propertyPath: key
+      value: suburb/confirm finish
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029540146581759344, guid: 74bb1622bc3d67548878a6b73dc43cbe,
+        type: 3}
+      propertyPath: key
+      value: no
+      objectReference: {fileID: 0}
     - target: {fileID: 3638056929593961379, guid: 74bb1622bc3d67548878a6b73dc43cbe,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4415,6 +4425,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Exit
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626104828209289173, guid: 74bb1622bc3d67548878a6b73dc43cbe,
+        type: 3}
+      propertyPath: key
+      value: yes
       objectReference: {fileID: 0}
     - target: {fileID: 5809872397184759118, guid: 74bb1622bc3d67548878a6b73dc43cbe,
         type: 3}
