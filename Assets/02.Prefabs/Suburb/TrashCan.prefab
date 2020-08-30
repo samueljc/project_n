@@ -90,8 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 057b656da1dcf5a41b1142b3ead44be9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blacklist: {fileID: 0}
-  whitelist: {fileID: 11400000, guid: e78250c3dee2b544a9071e64036d6d32, type: 2}
+  whitelist: {fileID: 11400000, guid: 786ae3b5c3ce31543b04296f8d246387, type: 2}
   playerDialogEvent: {fileID: 11400000, guid: 3897048f063c18b43a5bcb7f12a0f0d2, type: 2}
 --- !u!222 &1634907792316216244
 CanvasRenderer:

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a0297a7df4515d4d894d557a0201842, type: 3}
+  m_Name: TheThing
+  m_EditorClassIdentifier: 
+  name: 
+  description: 
+  price: 0
+  worldSprite: {fileID: 21300000, guid: 6cd5d5ddbde20cc4c9f0edb1efcf8664, type: 3}
+  draggingSprite: {fileID: 21300000, guid: 6cd5d5ddbde20cc4c9f0edb1efcf8664, type: 3}
+  inventorySprite: {fileID: 21300000, guid: 6cd5d5ddbde20cc4c9f0edb1efcf8664, type: 3}
+  title: movie/the thing/title
+  studio: movie/studio/universal pictures
+  genres:
+  - movie/genre/thriller
+  - movie/genre/horror
+  rentalPeriod: 5
+  stars:
+  - movie/person/kurt russell
+  director: movie/person/john carpenter
+  producer: movie/person/david foster
+  summary: movie/the thing/summary
+  rating: movie/rating/r
+  year: 1982
+  duration: 109
+  color: 1

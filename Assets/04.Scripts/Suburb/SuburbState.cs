@@ -29,13 +29,13 @@ public class SuburbState : ScriptableObject {
   /// day.
   /// </summary>
   [SerializeField]
-  private ItemBlacklist playerEODBlacklist;
+  private Matcher playerEODBlacklist;
 
   /// <summary>
   /// A list of items that should not be in the tree at the end of the day.
   /// </summary>
   [SerializeField]
-  private ItemBlacklist treeEODBlacklist;
+  private Matcher treeEODBlacklist;
 
   /// <summary>
   /// Denotes if the suburb has been visited for the day.
@@ -88,22 +88,26 @@ public class SuburbState : ScriptableObject {
     // completed.
     foreach (SuburbHouseState house in this.houses) {
       if (house.Lawn.Count > 0) {
+        // TODO: notify house incomplete
         continue;
       }
       foreach (PortableItem item in house.Tree) {
-        if (treeEODBlacklist.Contains(item)) {
+        if (treeEODBlacklist.Matches(item?.details)) {
+          // TODO: notify house incomplete
           continue;
         }
       }
       if (house.Planter.Capacity != house.Planter.Count) {
+        // TODO: notify house incomplete
         continue;
       }
       this.player.wallet.value += 2;
     }
 
-    // Remove any bushes from the player's inventory.
+    // Remove any forbidden items from the player's inventory at the end of
+    // the day.
     foreach (PortableItem item in this.player.inventory) {
-      if (playerEODBlacklist.Contains(item)) {
+      if (playerEODBlacklist.Matches(item?.details)) {
         this.player.inventory.Remove(item);
       }
     }

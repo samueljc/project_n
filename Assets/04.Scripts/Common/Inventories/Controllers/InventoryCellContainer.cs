@@ -30,12 +30,7 @@ public class InventoryCellContainer : MonoBehaviour {
   /// </remarks>
   void Awake() {
     for (int i = 0 ; i < this.inventory.Capacity; ++i) {
-      InventoryCellController cell = Instantiate<InventoryCellController>(
-        cellPrefab,
-        Vector2.zero,
-        Quaternion.identity,
-        this.transform
-      );
+      InventoryCellController cell = Instantiate<InventoryCellController>(cellPrefab, this.transform);
       cell.Initialize(this.itemPrefab, this.inventory, i);
       // Inventory cells need be disabled by default so that we can initialize
       // them before they try to connect any listeners.

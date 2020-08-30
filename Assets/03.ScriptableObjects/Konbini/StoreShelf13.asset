@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: StoreShelf13
   m_EditorClassIdentifier: 
   Capacity: 30
-  blacklist: {fileID: 0}
-  whitelist: {fileID: 11400000, guid: d5497fb3cc76f414e9c5432f0f63ebe4, type: 2}
+  whitelist: {fileID: 11400000, guid: 999d7002a1771884fb67c5d2365b7232, type: 2}
   physicalSpaceAvailable: 400
   physicalItemGap: 1

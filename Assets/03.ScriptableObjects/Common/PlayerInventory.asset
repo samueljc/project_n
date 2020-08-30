@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: PlayerInventory
   m_EditorClassIdentifier: 
   Capacity: 2
-  blacklist: {fileID: 11400000, guid: 72b798badd748964eba6c53bdeef039e, type: 2}
-  whitelist: {fileID: 0}
+  whitelist: {fileID: 11400000, guid: ee19a1562b627b24e82cd8e64993514f, type: 2}

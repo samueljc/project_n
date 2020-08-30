@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d2171ecc6449840bb9b5a0b026417d, type: 3}
   m_Name: PlayerCarInventory
   m_EditorClassIdentifier: 
-  capacity: 10
-  blacklist: {fileID: 11400000, guid: d40cf2237a3501f45931a6f067dab1a4, type: 2}
-  whitelist: {fileID: 0}
+  Capacity: 10
+  whitelist: {fileID: 11400000, guid: ee19a1562b627b24e82cd8e64993514f, type: 2}

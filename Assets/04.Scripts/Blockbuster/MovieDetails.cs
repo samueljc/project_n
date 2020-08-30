@@ -1,9 +1,9 @@
 using UnityEngine;
 
 /// <summary>
-/// A portable item with details about the movie.
+/// Details about a movie.
 /// </summary>
-[CreateAssetMenu(fileName="New Movie Details", menuName="Scriptable Objects/Movie Details")]
+[CreateAssetMenu(fileName="New Movie Details", menuName="Scriptable Objects/Portable Items/Movie Details")]
 public class MovieDetails : PortableItemDetails {
   [SerializeField]
   private string title;

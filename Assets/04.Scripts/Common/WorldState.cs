@@ -30,6 +30,11 @@ public sealed class WorldState : MonoBehaviour {
   public StoreState storeState;
 
   /// <summary>
+  /// The state of the blockbuster.
+  /// </summary>
+  public BlockbusterState blockbusterState;
+
+  /// <summary>
   /// The state of the suburb.
   /// </summary>
   public SuburbState suburbState;
@@ -68,6 +73,7 @@ public sealed class WorldState : MonoBehaviour {
     this.playerCar.Clear();
     this.playerCar.Add(this.CreateShovel());
     this.storeState.Repopulate();
+    this.blockbusterState.Repopulate();
     this.suburbState.Repopulate();
   }
 

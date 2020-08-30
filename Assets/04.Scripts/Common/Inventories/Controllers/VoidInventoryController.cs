@@ -6,20 +6,9 @@ using UnityEngine.EventSystems;
 /// </summary>
 public abstract class VoidInventoryController : MonoBehaviour, IDropHandler {
   /// <summary>
-  /// Items not allowed in this inventory.
-  /// </summary>
-  /// <remarks>
-  /// If the whitelist is set this will be ignored.
-  /// </remarks>
-  public ItemBlacklist blacklist;
-
-  /// <summary>
   /// The only items allowed in this inventory.
   /// </summary>
-  /// <remarks>
-  /// If this is set the blacklist will be ignored.
-  /// </remarks>
-  public ItemWhitelist whitelist;
+  public Matcher whitelist;
 
   /// <inheritdoc />
   /// <remarks>
@@ -30,7 +19,7 @@ public abstract class VoidInventoryController : MonoBehaviour, IDropHandler {
   public void OnDrop(PointerEventData eventData) {
     PortableItemController obj = eventData.pointerDrag?.GetComponent<PortableItemController>();
     PortableItem item = obj?.Item;
-    if (item == null || !item.Filter(this.whitelist, this.blacklist)) {
+    if (item == null || !whitelist.Matches(item.details)) {
       this.HandleDropError(InventoryError.InvalidItem);
       return;
     }

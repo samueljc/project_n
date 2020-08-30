@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53e8a324dec37eb429e3dcd7c8350fec, type: 3}
+  m_Script: {fileID: 11500000, guid: c0104657933292e4e9dce20e10841b4e, type: 3}
   m_Name: PlayerEODBlacklist
   m_EditorClassIdentifier: 
-  items:
-  - {fileID: 11400000, guid: 9b0d6353114adae4f8f947d1b190c2c2, type: 2}
-  - {fileID: 11400000, guid: d391c74371315e24f9a9c7e726bbb305, type: 2}
-  - {fileID: 11400000, guid: ae2bb1eb3d7d4a240803189ccbd0d020, type: 2}
+  matchers:
+  - {fileID: 11400000, guid: 957797c57056351408f1ce6dfa5e5fbd, type: 2}
+  - {fileID: 11400000, guid: ae977e6430308f449affd516d9365561, type: 2}
+  - {fileID: 11400000, guid: fb0d799208524e64ab580e2d0d07aad4, type: 2}

@@ -3,7 +3,7 @@ using UnityEngine;
 /// <summary>
 /// Unchanging details about an item.
 /// </summary>
-[CreateAssetMenu(fileName="New Portable Item Details", menuName="Scriptable Objects/Portable Item Details")]
+[CreateAssetMenu(fileName="New Portable Item Details", menuName="N/Portable Items/Portable Item Details")]
 public class PortableItemDetails : ScriptableObject {
   /// <summary>
   /// The name of the item.

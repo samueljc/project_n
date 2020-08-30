@@ -26,22 +26,10 @@ public class Inventory : ScriptableObject, IEnumerable<PortableItem> {
   public int Capacity = 10;
 
   /// <summary>
-  /// Items not allowed in this inventory.
+  /// The whitelist for allowed items.
   /// </summary>
-  /// <remarks>
-  /// If the whitelist is set this will be ignored.
-  /// </remarks>
   [SerializeField]
-  private ItemBlacklist blacklist;
-
-  /// <summary>
-  /// The only items allowed in this inventory.
-  /// </summary>
-  /// <remarks>
-  /// If this is set the blacklist will be ignored.
-  /// </remarks>
-  [SerializeField]
-  private ItemWhitelist whitelist;
+  private Matcher whitelist;
 
   /// <summary>
   /// A list containing the inventory's <c>PortableItem</c>s.
@@ -133,7 +121,10 @@ public class Inventory : ScriptableObject, IEnumerable<PortableItem> {
   /// <param name="item">The item to check.</param>
   /// <returns>True if supported, false otherwise.</returns>
   public bool Supports(PortableItem item) {
-    return item.Filter(this.whitelist, this.blacklist);
+    if (this.whitelist == null) {
+      return false;
+    }
+    return this.whitelist.Matches(item?.details);
   }
 
   /// <summary>

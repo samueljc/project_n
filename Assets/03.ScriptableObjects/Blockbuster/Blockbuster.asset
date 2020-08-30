@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbeae7da182fe5c4a9d8d7b0cbb9c12c, type: 3}
+  m_Name: Blockbuster
+  m_EditorClassIdentifier: 
+  shelves:
+  - inventory: {fileID: 11400000, guid: 3b88b9bb25a3e3d4d95dae152aa41c1a, type: 2}
+  - inventory: {fileID: 11400000, guid: 963a82e26c7384f48a898087d0b0ed96, type: 2}
+  - inventory: {fileID: 11400000, guid: 8248a5ff3c7690a439820dba682c6cab, type: 2}
+  - inventory: {fileID: 11400000, guid: cb85a866bd105dd42989ec2cc8644b6c, type: 2}
+  - inventory: {fileID: 11400000, guid: b3a88ccc717bf5d4ea5211a21fd16caa, type: 2}
+  - inventory: {fileID: 11400000, guid: 7132b0be053b2e8489686be6716cc746, type: 2}
+  factory: {fileID: 11400000, guid: f8f0534559e443b4c9dd1e0ec4d70ee4, type: 2}

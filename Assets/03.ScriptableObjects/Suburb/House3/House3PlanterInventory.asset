@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: House3PlanterInventory
   m_EditorClassIdentifier: 
   Capacity: 3
-  blacklist: {fileID: 0}
-  whitelist: {fileID: 11400000, guid: 609f47b02bc8bf040b6d90a8b6d56782, type: 2}
+  whitelist: {fileID: 11400000, guid: 957797c57056351408f1ce6dfa5e5fbd, type: 2}

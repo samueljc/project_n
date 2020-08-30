@@ -16,7 +16,7 @@ public class StoreShelfState {
   /// based on the provided factory.
   /// </summary>
   /// <param name="factory">
-  /// A factory describing items that can be generated on th
+  /// A factory describing items that can be generated on the shelf.
   /// </param>
   public void Repopulate(PortableItemFactory factory) {
     this.inventory.Clear();
@@ -24,7 +24,7 @@ public class StoreShelfState {
     for (int i = 0; i < newItems; ++i) {
       InventoryError err = this.inventory.Add(factory.CreateRandomItem());
       if (err != InventoryError.NoError) {
-        Debug.LogFormat("Could not add item to shelf: {0}", err);
+        Debug.LogFormat("Could not add item to konbini shelf: {0}", err);
       }
     }
   }

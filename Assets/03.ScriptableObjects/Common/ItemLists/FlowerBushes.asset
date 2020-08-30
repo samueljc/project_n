@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 157e7598233ca234dafe0c6991813165, type: 3}
+  m_Name: FlowerBushes
+  m_EditorClassIdentifier: 
+  items:
+  - {fileID: 11400000, guid: d391c74371315e24f9a9c7e726bbb305, type: 2}
+  - {fileID: 11400000, guid: ae2bb1eb3d7d4a240803189ccbd0d020, type: 2}
+  - {fileID: 11400000, guid: 9b0d6353114adae4f8f947d1b190c2c2, type: 2}

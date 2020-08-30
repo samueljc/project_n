@@ -48,5 +48,6 @@ MonoBehaviour:
   journal: {fileID: 11400000, guid: 6e0e85766db8f2f48be79edbbff3f054, type: 2}
   numbers: {fileID: 11400000, guid: c9513881b789c9d4f915fd5c74c7b040, type: 2}
   storeState: {fileID: 11400000, guid: 2170aef719de990499cfde966ec6d4ce, type: 2}
+  blockbusterState: {fileID: 11400000, guid: 232ded4d8e7d1dc4b8429b29f05481ad, type: 2}
   suburbState: {fileID: 11400000, guid: 523aec875f84ad54bba80f70ccf2c439, type: 2}
   shovel: {fileID: 11400000, guid: 8cf92f5ad3815f043b40105dd1f4dac6, type: 2}

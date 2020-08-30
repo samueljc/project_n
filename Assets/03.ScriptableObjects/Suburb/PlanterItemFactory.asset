@@ -12,7 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0451b11195f8b884baf252b4039f4a5e, type: 3}
   m_Name: PlanterItemFactory
   m_EditorClassIdentifier: 
-  items:
-  - {fileID: 11400000, guid: d391c74371315e24f9a9c7e726bbb305, type: 2}
-  - {fileID: 11400000, guid: 9b0d6353114adae4f8f947d1b190c2c2, type: 2}
-  - {fileID: 11400000, guid: ae2bb1eb3d7d4a240803189ccbd0d020, type: 2}
+  items: {fileID: 11400000, guid: 7393cb86f80c04f4f9d68f805309fec1, type: 2}
