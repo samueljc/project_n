@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 5386936246488990675}
   - component: {fileID: 5763079235449604841}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: Details
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 8721156419168193059}
   - component: {fileID: 1258129751830033504}
   m_Layer: 5
-  m_Name: VHSCase
+  m_Name: MovieInspector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8721156419168193058}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 904d6fe32a4cec04991780e28ca73c91, type: 3}
+  m_Script: {fileID: 11500000, guid: ed0c6fc290b89574eb0d9f4d685cef1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Title: {fileID: 4883934248890067703}

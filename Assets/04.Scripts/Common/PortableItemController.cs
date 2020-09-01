@@ -11,7 +11,13 @@ public enum PortableObjectOrientation {
 /// Game controller for an underlying <c>PortableItem</c>.
 /// </summary>
 /// <seealso cref="PortableItem" />
-public class PortableItemController : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerUpHandler {
+public class PortableItemController : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerUpHandler, IPointerClickHandler {
+  /// <summary>
+  /// Event handler for inspect events.
+  /// </summary>
+  [SerializeField]
+  private PortableItemEvent inspectEvent;
+
   /// <summary>
   /// The underlying item.
   /// </summary>
@@ -66,7 +72,7 @@ public class PortableItemController : MonoBehaviour, IPointerDownHandler, IBegin
   /// <summary>
   /// Boolean used internally for hiding drag events.
   /// </summary>
-  private bool hideDrag = false;
+  private bool disableDrag = false;
 
   /// <summary>
   /// The cursor offset when initating a drag event.
@@ -136,7 +142,7 @@ public class PortableItemController : MonoBehaviour, IPointerDownHandler, IBegin
   public void OnPointerDown(PointerEventData eventData) {
     Debug.Log("OnPointerDown");
     if (this.inventory != null && !this.inventory.CanTakeItem(this.item)) {
-      this.hideDrag = true;
+      this.disableDrag = true;
       eventData.pointerPress = null;
     }
   }
@@ -148,7 +154,7 @@ public class PortableItemController : MonoBehaviour, IPointerDownHandler, IBegin
   /// canvas to make sure it's above everything else.
   /// </remarks>
   public void OnBeginDrag(PointerEventData eventData) {
-    if (this.hideDrag) {
+    if (this.disableDrag) {
       // Note: Setting pointerDrag to null stop the subsequent OnDrag and
       // OnDragEnd events. It also immediately triggers OnPointerUp.
       eventData.pointerDrag = null;
@@ -196,7 +202,15 @@ public class PortableItemController : MonoBehaviour, IPointerDownHandler, IBegin
   /// Reset the pointer event.
   /// </remarks>
   public void OnPointerUp(PointerEventData eventData) {
-    this.hideDrag = false;
+    this.disableDrag = false;
+  }
+
+  /// <summary>
+  /// Raise an inspect event if the user clicked.
+  /// </summary>
+  public void OnPointerClick(PointerEventData eventData) {
+    this.disableDrag = false;
+    this.inspectEvent.Raise(this.item);
   }
 
   /// <summary>

@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf16e842b6c38b47bb8d64b7c6c9517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 0}
+  inspectEvent: {fileID: 11400000, guid: 5e4439a11565c3248b4f433a684eb482, type: 2}
 --- !u!225 &6831630889754557384
 CanvasGroup:
   m_ObjectHideFlags: 0

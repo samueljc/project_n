@@ -70,7 +70,7 @@ public class MovieDetailsController : MonoBehaviour {
   /// <summary>
   /// The underlying movie details presented on this case.
   /// </summary>
-  public MovieDetails Details {
+  public MovieDetails Movie {
     get {
       return this.details;
     }

@@ -3,7 +3,7 @@ using UnityEngine;
 /// <summary>
 /// An event for when dialog should be created.
 /// </summary>
-[CreateAssetMenu(fileName="New Dialog Event", menuName="Scriptable Objects/Events/Dialog Event")]
+[CreateAssetMenu(fileName="New Dialog Event", menuName="N/Events/Dialog Event")]
 public class DialogEvent : ScriptableObject {
   /// <summary>
   /// Handler for dialog events.

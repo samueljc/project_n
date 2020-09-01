@@ -8,6 +8,6 @@ class DebugMovieSceneController : UnityEngine.MonoBehaviour {
   public MovieDetailsController vhsCase;
   
   private void Start() {
-    vhsCase.Details = details;
+    vhsCase.Movie = details;
   }
 }
