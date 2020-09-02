@@ -27,22 +27,17 @@ public class LocalizedText : MonoBehaviour {
   private TextMeshProUGUI textGUI;
 
   /// <summary>
-  /// Whether to use the default key to set the string value on start.
+  /// The text to use when the item is enabled.
   /// </summary>
-  /// <remarks>
-  /// This is intended to avoid 
-  /// </remarks>
-  private bool textIsSet = false;
+  private string text;
 
   /// <inheritdoc />
   private void Awake() {
     this.textGUI = this.GetComponentInChildren<TextMeshProUGUI>();
-  }
-
-  /// <inheritdoc />
-  private void Start() {
-    if (!this.textIsSet && this.key != "") {
-      this.SetText(LocalizationManager.GetText(key));
+    if (this.text == null) {
+      this.SetText(this.text);
+    } else {
+      this.SetText(LocalizationManager.GetText(this.key));
     }
   }
 
@@ -55,11 +50,7 @@ public class LocalizedText : MonoBehaviour {
       return;
     }
     this.key = key;
-    if (this.key == "") {
-      this.SetText("");
-    } else {
-      this.SetText(LocalizationManager.GetText(key));
-    }
+    this.SetText(LocalizationManager.GetText(key));
   }
 
   /// <summary>
@@ -71,11 +62,7 @@ public class LocalizedText : MonoBehaviour {
   public void SetMessage(string key, params object[] args) {
     // can't short-circuit this one unless we want to store the args too
     this.key = key;
-    if (this.key == "") {
-      this.SetText("");
-    } else {
-      this.SetText(LocalizationManager.GetTextFormat(key, args));
-    }
+    this.SetText(LocalizationManager.GetTextFormat(key, args));
   }
 
   /// <summary>
@@ -84,7 +71,9 @@ public class LocalizedText : MonoBehaviour {
   /// <param name="text">The string to use</param>
   /// <remarks>No localization will be attempted.</remarks>
   public void SetText(string text) {
-    this.textGUI.text = text;
-    this.textIsSet = true;
+    this.text = text;
+    if (this.textGUI != null) {
+      this.textGUI.text = this.text;
+    }
   }
 }

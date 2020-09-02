@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// Controls the inspection of a portable item.
 /// </summary>
-public class Inspector : MonoBehaviour {
+public class Inspector : MonoBehaviour, IPointerClickHandler {
   /// <summary>
   /// The portable item event handler for inspect events.
   /// </summary>
@@ -43,6 +44,13 @@ public class Inspector : MonoBehaviour {
   }
 
   /// <summary>
+  /// Close the inspector if it's clicked on.
+  /// </summary>
+  public void OnPointerClick(PointerEventData eventData) {
+    this.Hide();
+  }
+
+  /// <summary>
   /// Show the given item.
   /// </summary>
   /// <param name="item">The item to show.</param>
@@ -65,5 +73,7 @@ public class Inspector : MonoBehaviour {
   /// </summary>
   public void Hide() {
     this.canvas.SetActive(false);
+    this.movieDetails.gameObject.SetActive(false);
+    this.itemDetails.gameObject.SetActive(false);
   }
 }

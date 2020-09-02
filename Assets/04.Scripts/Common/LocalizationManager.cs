@@ -125,6 +125,10 @@ public class LocalizationManager {
     if (LocalizationManager.instance == null) {
       LocalizationManager.Initialize();
     }
+    // empty string and null are both special values for an empty string
+    if (key == null || key == "") {
+      return "";
+    }
     try {
       return LocalizationManager.instance.messages[key];
     } catch (KeyNotFoundException) {

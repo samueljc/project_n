@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7194866421220971279}
   - component: {fileID: 6037238003417149691}
   m_Layer: 5
-  m_Name: Dragging
+  m_Name: DraggingCanvas
   m_TagString: DraggingCanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,10 +50,10 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1000
   m_TargetDisplay: 0
