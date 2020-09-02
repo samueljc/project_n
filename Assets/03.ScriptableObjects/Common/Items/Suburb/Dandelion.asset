@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1cc5ccca37cf0047933e3396d0897af, type: 3}
   m_Name: Dandelion
   m_EditorClassIdentifier: 
-  name: Dandelion
-  description: 
+  name: item/dandelion/name
+  description: item/dandelion/description
   price: 0
   worldSprite: {fileID: 21300000, guid: ed9e229905c4e704f90ace0eeadef5de, type: 3}
   draggingSprite: {fileID: 21300000, guid: ed9e229905c4e704f90ace0eeadef5de, type: 3}

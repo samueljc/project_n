@@ -32,7 +32,7 @@ public class ItemDetailsController : MonoBehaviour {
     get { return this.item; }
     set {
       if (this.item != value) {
-        UpdateDetails(this.item);
+        UpdateDetails(value);
       }
     }
   }

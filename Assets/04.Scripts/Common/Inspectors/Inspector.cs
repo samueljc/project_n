@@ -29,8 +29,8 @@ public class Inspector : MonoBehaviour, IPointerClickHandler {
 
   /// <inheritdoc />
   private void Awake() {
-    this.movieDetails = this.canvas.GetComponentInChildren<MovieDetailsController>();
-    this.itemDetails = this.canvas.GetComponentInChildren<ItemDetailsController>();
+    this.movieDetails = this.canvas.GetComponentInChildren<MovieDetailsController>(true);
+    this.itemDetails = this.canvas.GetComponentInChildren<ItemDetailsController>(true);
   }
 
   /// <inheritdoc />

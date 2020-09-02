@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1cc5ccca37cf0047933e3396d0897af, type: 3}
   m_Name: Weed
   m_EditorClassIdentifier: 
-  name: Weed
-  description: 
+  name: item/weed/name
+  description: item/weed/description
   price: 0
   worldSprite: {fileID: 21300000, guid: 0ece52815fc42274fa5e6aef98e6f2b1, type: 3}
   draggingSprite: {fileID: 21300000, guid: 0ece52815fc42274fa5e6aef98e6f2b1, type: 3}

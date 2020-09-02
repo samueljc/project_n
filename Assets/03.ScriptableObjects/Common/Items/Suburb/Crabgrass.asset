@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1cc5ccca37cf0047933e3396d0897af, type: 3}
   m_Name: Crabgrass
   m_EditorClassIdentifier: 
-  name: Crabgrass
-  description: 
+  name: item/crabgrass/name
+  description: item/crabgrass/description
   price: 0
   worldSprite: {fileID: 21300000, guid: 6a91b1329b6f09a4d88d188bd91f1d18, type: 3}
   draggingSprite: {fileID: 21300000, guid: 6a91b1329b6f09a4d88d188bd91f1d18, type: 3}

@@ -128,6 +128,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2123023087}
     m_Modifications:
+    - target: {fileID: 1827118978266693919, guid: 35dfe06777982494da25251c3ae17eb0,
+        type: 3}
+      propertyPath: key
+      value: location/beach
+      objectReference: {fileID: 0}
     - target: {fileID: 6448678201716219461, guid: 35dfe06777982494da25251c3ae17eb0,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -428,6 +433,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2123023087}
     m_Modifications:
+    - target: {fileID: 1827118978266693919, guid: 35dfe06777982494da25251c3ae17eb0,
+        type: 3}
+      propertyPath: key
+      value: location/blockbuster
+      objectReference: {fileID: 0}
     - target: {fileID: 6448678201716219461, guid: 35dfe06777982494da25251c3ae17eb0,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -587,6 +597,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2123023087}
     m_Modifications:
+    - target: {fileID: 1827118978266693919, guid: 35dfe06777982494da25251c3ae17eb0,
+        type: 3}
+      propertyPath: key
+      value: location/suburb
+      objectReference: {fileID: 0}
     - target: {fileID: 6448678201716219461, guid: 35dfe06777982494da25251c3ae17eb0,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -1540,7 +1555,7 @@ PrefabInstance:
     - target: {fileID: 2152850992530321087, guid: 7d4f84a003b408643842cbd838eae73c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4896761151064504995, guid: 7d4f84a003b408643842cbd838eae73c,
         type: 3}
@@ -1550,7 +1565,7 @@ PrefabInstance:
     - target: {fileID: 5949606102555371945, guid: 7d4f84a003b408643842cbd838eae73c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6232708192410369982, guid: 7d4f84a003b408643842cbd838eae73c,
         type: 3}
@@ -1647,6 +1662,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2123023087}
     m_Modifications:
+    - target: {fileID: 1827118978266693919, guid: 35dfe06777982494da25251c3ae17eb0,
+        type: 3}
+      propertyPath: key
+      value: location/konbini
+      objectReference: {fileID: 0}
     - target: {fileID: 6448678201716219461, guid: 35dfe06777982494da25251c3ae17eb0,
         type: 3}
       propertyPath: m_textInfo.characterCount

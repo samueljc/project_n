@@ -29,15 +29,20 @@ public class LocalizedText : MonoBehaviour {
   /// <summary>
   /// The text to use when the item is enabled.
   /// </summary>
-  private string text;
+  private string text = null;
 
   /// <inheritdoc />
   private void Awake() {
-    this.textGUI = this.GetComponentInChildren<TextMeshProUGUI>();
+    this.textGUI = this.GetComponentInChildren<TextMeshProUGUI>(true);
     if (this.text == null) {
-      this.SetText(this.text);
+      // TODO(sjc): this should probably be removed, eventually, in order to
+      // force all UI strings to be in the localization manager, but it's
+      // useful for now when I'm inserting debug buttons.
+      if (this.key != null && this.key != "") {
+        this.SetText(LocalizationManager.GetText(this.key));
+      }
     } else {
-      this.SetText(LocalizationManager.GetText(this.key));
+      this.SetText(this.text);
     }
   }
 

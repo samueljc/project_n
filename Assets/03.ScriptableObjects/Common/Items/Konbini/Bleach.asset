@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1cc5ccca37cf0047933e3396d0897af, type: 3}
   m_Name: Bleach
   m_EditorClassIdentifier: 
-  name: Bleach
-  description: A bottle of bleach.
+  name: item/bleach/name
+  description: item/bleach/description
   price: 6
   worldSprite: {fileID: 21300000, guid: d04ffa271638f0240a8c9a4a62d41e17, type: 3}
   draggingSprite: {fileID: 21300000, guid: d04ffa271638f0240a8c9a4a62d41e17, type: 3}

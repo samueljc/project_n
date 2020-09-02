@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1cc5ccca37cf0047933e3396d0897af, type: 3}
   m_Name: HydrangeaBush
   m_EditorClassIdentifier: 
-  name: Hydrangea Bush
-  description: 
+  name: item/hydrangeas/name
+  description: item/hydrangeas/description
   price: 0
   worldSprite: {fileID: 21300000, guid: 11bde13d95d58d74eabbb7e8892f3899, type: 3}
   draggingSprite: {fileID: 21300000, guid: 11bde13d95d58d74eabbb7e8892f3899, type: 3}

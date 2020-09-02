@@ -140,7 +140,6 @@ public class PortableItemController : MonoBehaviour, IPointerDownHandler, IBegin
   /// the user clicks instead of when they actually start dragging.
   /// </remarks>
   public void OnPointerDown(PointerEventData eventData) {
-    Debug.Log("OnPointerDown");
     if (this.inventory != null && !this.inventory.CanTakeItem(this.item)) {
       this.disableDrag = true;
       eventData.pointerPress = null;
@@ -160,7 +159,6 @@ public class PortableItemController : MonoBehaviour, IPointerDownHandler, IBegin
       eventData.pointerDrag = null;
       return;
     }
-    Debug.Log("OnBeginDrag");
 
     this.startDragPosition = this.rectTransform.anchoredPosition;
     this.startDragParent = this.transform.parent;

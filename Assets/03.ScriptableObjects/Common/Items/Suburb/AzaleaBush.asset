@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1cc5ccca37cf0047933e3396d0897af, type: 3}
   m_Name: AzaleaBush
   m_EditorClassIdentifier: 
-  name: Azalea Bush
-  description: 
+  name: item/azaleas/name
+  description: item/azaleas/description
   price: 0
   worldSprite: {fileID: 21300000, guid: 6b2749487af9cc34b86bb171eff15ac6, type: 3}
   draggingSprite: {fileID: 21300000, guid: 6b2749487af9cc34b86bb171eff15ac6, type: 3}

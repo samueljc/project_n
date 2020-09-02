@@ -13,7 +13,6 @@ public class PortableItemDetails : ScriptableObject {
   /// <summary>
   /// The description of the item.
   /// </summary>
-  [TextArea]
   public string description;
 
   /// <summary>
